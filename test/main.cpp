@@ -6,6 +6,7 @@
 #include <boost/typeof/typeof.hpp>
 #pragma message("done")
 
+#include <boost/detail/workaround.hpp>
 #include <boost/type_traits/is_same.hpp>
 #include <boost/type_traits/remove_reference.hpp>
 #include <boost/type_traits/remove_const.hpp>
@@ -28,7 +29,11 @@ struct typeof_test
 {
     static T foo();
     enum {value = boost::is_same<
-        BOOST_TYPEOF_TPL(typeof_test::foo()),  //fully qualify foo() to avoid problems with g++
+#if BOOST_WORKAROUND(BOOST_MSVC,<=1300)
+        BOOST_TYPEOF_TPL(foo()),  //MSVC 6.5 chokes when foo is fully qualified.
+#else
+        BOOST_TYPEOF_TPL(typeof_test<T>::foo()),  //fully qualify foo() to avoid problems with g++
+#endif
         typename boost::remove_reference<typename boost::remove_const<T>::type>::type
     >::value};
 };
@@ -80,7 +85,9 @@ BOOST_STATIC_ASSERT(typeof_test<double x::*>::value);
 
 #pragma message("modifiers...")
 BOOST_STATIC_ASSERT((typeof_test<boost::mpl::vector3<const int* const, const int[20], const int&>*>::value));
+#ifndef BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
 BOOST_STATIC_ASSERT((typeof_test<boost::mpl::vector2<const int* const, const int&>&>::value));
+#endif
 BOOST_STATIC_ASSERT((typeof_test<boost::mpl::vector1<int[5]> >::value));
 BOOST_STATIC_ASSERT((typeof_test<boost::mpl::vector1<const int[5]> >::value));
 
@@ -117,9 +124,15 @@ struct noncopiable_test
     const boost::noncopyable& foo();
     void bar()
     {
+#if BOOST_WORKAROUND(BOOST_MSVC,<=1200)
+        //MSVC chokes when typeof of return value of member function.
+        BOOST_AUTO(const& v, noncopiable_test().foo());
+#else
         BOOST_AUTO(const& v, foo());
+#endif
     }
 };
+
 
 #pragma message("ODR...")
 void odr_test()

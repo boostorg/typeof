@@ -8,9 +8,10 @@ struct encode_impl<ARRAY_ID+n>
     template<typename V,typename T,typename Types>
     struct encoder {
         BOOST_STATIC_CONSTANT(unsigned,size=(sizeof(*((T*)NULL))/sizeof((*((T*)NULL))[0])));
+        typedef typename mpl::next<typename mpl::next<V>::type>::type next_type;
         typedef void(*function_ptr)(
             sizer<ARRAY_ID+n>,
-            typename mpl::next<typename mpl::next<V>::type>::type
+            next_type,
             T,
             Types
         );
