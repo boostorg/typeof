@@ -36,6 +36,26 @@
 using namespace std;
 using namespace boost;
 
+#if BOOST_WORKAROUND(BOOST_MSVC,<=1300)
+
+template<class T> 
+mpl::vector1<T> typeof_test_helper(type<T> const&);
+
+template<class T> 
+struct typeof_test
+{
+    static type<T> dummy;
+    enum {value = boost::is_same<
+        BOOST_TYPEOF_TPL(typeof_test_helper(dummy)),
+        mpl::vector1<T>
+        >::value
+    };
+};
+
+template<class T> 
+type<T> typeof_test<T>::dummy;
+
+#else //!BOOST_WORKAROUND(BOOST_MSVC,<=1300)
 template<class T> 
 mpl::vector1<T> typeof_test_helper();
 
@@ -48,6 +68,8 @@ struct typeof_test
         >::value
     };
 };
+
+#endif //BOOST_WORKAROUND(BOOST_MSVC,<=1300)
 
 #pragma message("started")
 
