@@ -79,11 +79,4 @@ namespace boost { namespace type_of{\
    BOOST_TYPEOF_DECODE_TEMPLATE(template_type,seq)\
 }}//namespace boost::type_of
 
-#define BOOST_TYPEOF_REGISTER_TEMPLATE_TYPE_PARAM_(z, n, data) (typename)
-
-#define BOOST_TYPEOF_REGISTER_TEMPLATE(template_type, n)\
-    BOOST_TYPEOF_REGISTER_TEMPLATE_X(template_type,\
-        BOOST_PP_REPEAT(n, BOOST_TYPEOF_REGISTER_TEMPLATE_TYPE_PARAM_, ~)\
-    )
-
 #endif //BOOST_VINTAGE_TEMPLATE_ENCODING_HPP_INCLUDED

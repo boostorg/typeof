@@ -3,6 +3,7 @@
 // License, Version 1.0. (http://www.boost.org/LICENSE_1_0.txt)
 
 #include <boost/preprocessor/cat.hpp>
+#include <boost/detail/workaround.hpp>
 
 #ifndef BOOST_TYPEOF_VINTAGE_CONFIG_HPP_INCLUDED
 #define BOOST_TYPEOF_VINTAGE_CONFIG_HPP_INCLUDED

@@ -2,8 +2,8 @@
 // Use, modification and distribution is subject to the Boost Software
 // License, Version 1.0. (http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef BOOST_VINTAGE_PRESERVE_LVALUE_HPP_INCLUDED
-#define BOOST_VINTAGE_PRESERVE_LVALUE_HPP_INCLUDED
+#ifndef BOOST_VINTAGE_LVALUE_TYPEOF_HPP_INCLUDED
+#define BOOST_VINTAGE_LVALUE_TYPEOF_HPP_INCLUDED
 
 #include <boost/type_traits/is_const.hpp>
 
@@ -59,11 +59,11 @@ namespace boost
 // Since this is always a type, 
 // just add "typename" when using in templates
 
-#define BOOST_TYPEOF_PRESERVE_LVALUE(expr)                  \
+#define BOOST_LVALUE_TYPEOF(expr)                           \
     boost::type_of::decorate_type<                          \
         BOOST_TYPEOF(expr),                                 \
-        sizeof(*boost::type_of::classify_expression(expr))   \
+        sizeof(*boost::type_of::classify_expression(expr))  \
     >::type
 
 
-#endif //BOOST_VINTAGE_PRESERVE_LVALUE_HPP_INCLUDED
+#endif //BOOST_VINTAGE_LVALUE_TYPEOF_HPP_INCLUDED
