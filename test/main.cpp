@@ -27,6 +27,9 @@
 #include <boost/typeof/std/bitset.hpp>
 #include <boost/typeof/std/functional.hpp>
 #include <boost/typeof/std/valarray.hpp>
+#include <boost/typeof/std/locale.hpp>
+#include <boost/typeof/std/iterator.hpp>
+#include <boost/typeof/std/iosfwd.hpp>
 
 #include BOOST_TYPEOF_INCREMENT_REGISTRATION_GROUP()
 
@@ -78,9 +81,12 @@ BOOST_STATIC_ASSERT(typeof_test<double(*)(int, double, short, char*, bool, char,
 BOOST_STATIC_ASSERT(typeof_test<void(*)()>::value);
 BOOST_STATIC_ASSERT(typeof_test<void(*)(int, double, short, char*, bool, char, float, long, unsigned short)>::value);
 
-#pragma message("function references...")
-BOOST_STATIC_ASSERT(typeof_test<void(&)()>::value);
-BOOST_STATIC_ASSERT(typeof_test<int(&)(int, short)>::value);
+
+#ifdef BOOST_TYPEOF_COMPLIANT
+#  pragma message("function references...")
+   BOOST_STATIC_ASSERT(typeof_test<void(&)()>::value);
+   BOOST_STATIC_ASSERT(typeof_test<int(&)(int, short)>::value);
+#endif//BOOST_TYPEOF_COMPLIANT
 
 #ifdef BOOST_TYPEOF_COMPLIANT 
 #   pragma message("function values...")
@@ -180,8 +186,8 @@ BOOST_STATIC_ASSERT(typeof_test<less_equal<int> >::value);
 BOOST_STATIC_ASSERT(typeof_test<logical_and<int> >::value);
 BOOST_STATIC_ASSERT(typeof_test<logical_or<int> >::value);
 BOOST_STATIC_ASSERT(typeof_test<logical_not<int> >::value);
-BOOST_STATIC_ASSERT(typeof_test<unary_negate<int> >::value);
-BOOST_STATIC_ASSERT(typeof_test<binary_negate<int> >::value);
+BOOST_STATIC_ASSERT(typeof_test<unary_negate<negate<int> > >::value);
+BOOST_STATIC_ASSERT(typeof_test<binary_negate<less<int> > >::value);
 BOOST_STATIC_ASSERT(typeof_test<binder1st<less<int> > >::value);
 BOOST_STATIC_ASSERT(typeof_test<binder2nd<less<int> > >::value);
 
