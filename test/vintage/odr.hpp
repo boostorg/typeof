@@ -10,12 +10,15 @@
 void odr_test1();
 void odr_test2();
 
+#if! BOOST_WORKAROUND(BOOST_MSVC,==1300)
+
 // trying to cause ODR violation in a class template
 
 template<class T, class U>
 class sum_t
 {
 public:
+//    VC7 fails using template types in typeof expression.
     typedef BOOST_TYPEOF_TPL(T() + U()) result_type;
 
     sum_t(const T& t, const U& u);
@@ -50,5 +53,6 @@ typename sum_t<T, U>::result_type sum(const T& t, const U& u)
     BOOST_AUTO_TPL(result, t + u);
     return result;
 }
+#endif
 
 #endif//ODR_HPP_INCLUDED

@@ -9,10 +9,12 @@ using namespace std;
 
 void odr_test1()
 {
+#if! BOOST_WORKAROUND(BOOST_MSVC,==1300)
     char i = 5;
     double d = 3.14;
     cout << sum(d, i) << endl; 
     cout << sum(i, d) << endl; 
     cout << make_sum(d, i)() << endl; 
     cout << make_sum(i, d)() << endl; 
+#endif
 }
