@@ -15,10 +15,15 @@
 
 // BOOST_TYPEOF, BOOST_TYPEOF_TPL
 
-#if defined(BOOST_TYPEOF_COMPLIANT)
+#if defined(BOOST_TYPEOF_NATIVE) && defined(BOOST_MSVC)
+#   define BOOST_TYPEOF_TEXT "using msvc 'native' imlementation"
+#   include <boost/typeof/message.hpp>
+#	include <boost/typeof/msvc/typeof_impl.hpp>
+
+#elif defined(BOOST_TYPEOF_COMPLIANT)
 #   define BOOST_TYPEOF_TEXT "using compliant imlementation"
 #   include <boost/typeof/message.hpp>
-#	include <boost/typeof/compliant/typeof_impl.hpp>
+#   include <boost/typeof/compliant/typeof_impl.hpp>
 
 #elif defined(BOOST_TYPEOF_VINTAGE)
 #   define BOOST_TYPEOF_TEXT "using vintage imlementation"
@@ -40,7 +45,7 @@
 
 // lvalue typeof
 
-#if defined(BOOST_TYPEOF_VINTAGE)
+#if defined(BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION)
 #	include <boost/typeof/vintage/lvalue_typeof.hpp>
 #else
 #	include <boost/typeof/compliant/lvalue_typeof.hpp>
@@ -54,7 +59,7 @@
 #elif defined(BOOST_TYPEOF_VINTAGE)
 #	include <boost/typeof/vintage/type_encoding.hpp>
 #	include <boost/typeof/vintage/template_encoding.hpp>
-#else//BOOST_TYPEOF_NATIVE
+#else//BOOST_TYPEOF_NATIVE and BOOST_TYPEOF_MSVC
 #	define BOOST_TYPEOF_REGISTER_TYPE(x)
 #	define BOOST_TYPEOF_REGISTER_TEMPLATE(x, params)
 #endif
@@ -66,7 +71,6 @@
     <boost/typeof/increment_registration_group.hpp>
 
 // register stuff
-
 #include <boost/typeof/register_fundamental.hpp>
 
 #if defined(BOOST_TYPEOF_COMPLIANT)
