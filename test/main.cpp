@@ -25,6 +25,8 @@
 #include <boost/typeof/std/map.hpp>
 #include <boost/typeof/std/set.hpp>
 #include <boost/typeof/std/bitset.hpp>
+#include <boost/typeof/std/functional.hpp>
+#include <boost/typeof/std/valarray.hpp>
 
 #include BOOST_TYPEOF_INCREMENT_REGISTRATION_GROUP()
 
@@ -145,7 +147,7 @@ struct noncopiable_test
     }
 };
 
-#pragma message("STL...")
+#pragma message("STL containers...")
 
 BOOST_STATIC_ASSERT(typeof_test<string>::value);
 BOOST_STATIC_ASSERT(typeof_test<deque<int> >::value);
@@ -158,6 +160,34 @@ BOOST_STATIC_ASSERT((typeof_test<multimap<int, int> >::value));
 BOOST_STATIC_ASSERT(typeof_test<set<int> >::value);
 BOOST_STATIC_ASSERT(typeof_test<multiset<int> >::value);
 BOOST_STATIC_ASSERT(typeof_test<bitset<10> >::value);
+
+#pragma message("function objects...")
+
+BOOST_STATIC_ASSERT((typeof_test<unary_function<int, int> >::value));
+BOOST_STATIC_ASSERT((typeof_test<binary_function<int, int, int> >::value));
+BOOST_STATIC_ASSERT(typeof_test<plus<int> >::value);
+BOOST_STATIC_ASSERT(typeof_test<minus<int> >::value);
+BOOST_STATIC_ASSERT(typeof_test<multiplies<int> >::value);
+BOOST_STATIC_ASSERT(typeof_test<divides<int> >::value);
+BOOST_STATIC_ASSERT(typeof_test<modulus<int> >::value);
+BOOST_STATIC_ASSERT(typeof_test<negate<int> >::value);
+BOOST_STATIC_ASSERT(typeof_test<equal_to<int> >::value);
+BOOST_STATIC_ASSERT(typeof_test<not_equal_to<int> >::value);
+BOOST_STATIC_ASSERT(typeof_test<greater<int> >::value);
+BOOST_STATIC_ASSERT(typeof_test<less<int> >::value);
+BOOST_STATIC_ASSERT(typeof_test<greater_equal<int> >::value);
+BOOST_STATIC_ASSERT(typeof_test<less_equal<int> >::value);
+BOOST_STATIC_ASSERT(typeof_test<logical_and<int> >::value);
+BOOST_STATIC_ASSERT(typeof_test<logical_or<int> >::value);
+BOOST_STATIC_ASSERT(typeof_test<logical_not<int> >::value);
+BOOST_STATIC_ASSERT(typeof_test<unary_negate<int> >::value);
+BOOST_STATIC_ASSERT(typeof_test<binary_negate<int> >::value);
+BOOST_STATIC_ASSERT(typeof_test<binder1st<less<int> > >::value);
+BOOST_STATIC_ASSERT(typeof_test<binder2nd<less<int> > >::value);
+
+#pragma message("valarray...")
+
+BOOST_STATIC_ASSERT(typeof_test<valarray<int> >::value);
 
 #pragma message("ODR...")
 void odr_test()

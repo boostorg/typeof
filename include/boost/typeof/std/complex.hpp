@@ -4,16 +4,14 @@
 
 // This is a generated file -- please do not modify by hand.
 
-#ifndef BOOST_TYPEOF_STD_memory_hpp_INCLUDED
-#define BOOST_TYPEOF_STD_memory_hpp_INCLUDED
+#ifndef BOOST_TYPEOF_STD_complex_hpp_INCLUDED
+#define BOOST_TYPEOF_STD_complex_hpp_INCLUDED
 
-#include <memory>
+#include <complex>
 #include <boost/typeof/typeof.hpp>
 
 #include BOOST_TYPEOF_INCREMENT_REGISTRATION_GROUP()
 
-BOOST_TYPEOF_REGISTER_TEMPLATE(std::allocator, 1)
-BOOST_TYPEOF_REGISTER_TEMPLATE(std::raw_storage_iterator, 2)
-BOOST_TYPEOF_REGISTER_TEMPLATE(std::auto_ptr, 1)
+BOOST_TYPEOF_REGISTER_TEMPLATE(std::complex, 1)
 
-#endif//BOOST_TYPEOF_STD_memory_hpp_INCLUDED
+#endif//BOOST_TYPEOF_STD_complex_hpp_INCLUDED

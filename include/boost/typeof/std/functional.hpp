@@ -2,7 +2,7 @@
 // Use, modification and distribution is subject to the Boost Software
 // License, Version 1.0. (http://www.boost.org/LICENSE_1_0.txt)
 
-// This is a generated file -- please do not modify.
+// This is a generated file -- please do not modify by hand.
 
 #ifndef BOOST_TYPEOF_STD_functional_hpp_INCLUDED
 #define BOOST_TYPEOF_STD_functional_hpp_INCLUDED
@@ -39,9 +39,11 @@ BOOST_TYPEOF_REGISTER_TEMPLATE(std::mem_fun_t, 2)
 BOOST_TYPEOF_REGISTER_TEMPLATE(std::mem_fun1_t, 3)
 BOOST_TYPEOF_REGISTER_TEMPLATE(std::mem_fun_ref_t, 2)
 BOOST_TYPEOF_REGISTER_TEMPLATE(std::mem_fun1_ref_t, 3)
+#if !BOOST_WORKAROUND(BOOST_MSVC, <= 1300)
 BOOST_TYPEOF_REGISTER_TEMPLATE(std::const_mem_fun_t, 2)
 BOOST_TYPEOF_REGISTER_TEMPLATE(std::const_mem_fun1_t, 3)
 BOOST_TYPEOF_REGISTER_TEMPLATE(std::const_mem_fun_ref_t, 2)
 BOOST_TYPEOF_REGISTER_TEMPLATE(std::const_mem_fun1_ref_t, 3)
+#endif//BOOST_WORKAROUND(BOOST_MSVC, <= 1300)
 
 #endif//BOOST_TYPEOF_STD_functional_hpp_INCLUDED

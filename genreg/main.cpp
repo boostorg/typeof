@@ -36,7 +36,7 @@ string copyright(const string& master)
         "// Copyright (C) 2004 " + master + ".\n"
         "// Use, modification and distribution is subject to the Boost Software\n"
         "// License, Version 1.0. (http://www.boost.org/LICENSE_1_0.txt)\n\n"
-        "// This is a generated file -- please do not modify."
+        "// This is a generated file -- please do not modify by hand."
         ;
 }
 
@@ -71,6 +71,12 @@ public:
         {
             m_isnew = false;
             m_out << endl << "#include BOOST_TYPEOF_INCREMENT_REGISTRATION_GROUP()" << endl << endl;
+        }
+
+        if (text[0] == '#')
+        {
+            m_out << text << endl;
+            return;
         }
 
         tokenizer<escaped_list_separator<char> > tokens(text, escaped_list_separator<char>('\\', ',', '\"'));
@@ -147,7 +153,7 @@ int main()
                 file_ptr->include(name);
                 file_ptr->include("boost/typeof/typeof.hpp");
             }
-            else if (text[0] == '#')
+            else if (text[0] == '@')
             {
                 string name = text.substr(1);
                 file_ptr->include(string("boost/typeof/std/") + name + ".hpp");
