@@ -11,42 +11,62 @@
 #include <boost/preprocessor/repetition/repeat.hpp>
 #include <boost/preprocessor/arithmetic/sub.hpp>
 #include <boost/preprocessor/arithmetic/dec.hpp>
+#include <boost/preprocessor/seq/for_each.hpp>
 
 #include <boost/typeof/config.hpp>
 #include <boost/typeof/vintage/encode_decode.hpp>
 #include <boost/typeof/vintage/int_encoding.hpp>
 #include <boost/typeof/register_integral.hpp>
 
-#define BOOST_TYPEOF_REGISTER_TEMPLATE_ENCODE_TYPE(n, Params)\
+//
+
+#define BOOST_TYPEOF_PARAM_CAST(Param)\
+    BOOST_PP_CAT(BOOST_TYPEOF_CAST_, BOOST_PP_SEQ_ELEM(0, Param))
+
+// 
+
+#define BOOST_TYPEOF_ENCODE_TYPE_PARAM(This, n)\
     BOOST_PP_CAT(P, n)
 
-#define BOOST_TYPEOF_REGISTER_TEMPLATE_ENCODE_VALUE(n, Params)\
-    integral_wrapper<\
-        BOOST_PP_CAT(P, n)\
-    >
-
-#define BOOST_TYPEOF_REGISTER_TEMPLATE_DECODE_TYPE(n, PARAMS)\
+#define BOOST_TYPEOF_DECODE_TYPE_PARAM(This, n)\
     typedef typename decode_impl<TYPEOF_GET_VALUE(BOOST_PP_CAT(iter,n))>::\
         decoder<TYPEOF_GET_NEXT(BOOST_PP_CAT(iter,n))> BOOST_PP_CAT(d,n);\
     typedef typename BOOST_PP_CAT(d,n)::type BOOST_PP_CAT(P,n);\
     typedef typename BOOST_PP_CAT(d,n)::iter BOOST_PP_CAT(iter,BOOST_PP_INC(n));
 
-#define BOOST_TYPEOF_REGISTER_TEMPLATE_DECODE_VALUE(n, Params)\
-    typedef decode_integral<BOOST_PP_CAT(iter,n)> BOOST_PP_CAT(d,n);\
-    BOOST_STATIC_CONSTANT(BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_TYPE(n, Params),BOOST_PP_CAT(P,n)=(TYPEOF_GET_VALUE(BOOST_PP_CAT(d,n))));\
-    typedef typename BOOST_PP_CAT(d,n)::iter BOOST_PP_CAT(iter,BOOST_PP_INC(n));
-
-#define BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_CAST_VALUE(n,Params)\
-    BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_TYPE(n, Params)(BOOST_PP_CAT(P,n))
-
-#define BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_CAST_TYPE(n,Params)\
+#define BOOST_TYPEOF_CAST_TYPE_PARAM(This, n)\
     BOOST_PP_CAT(P,n)
 
-#define BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_CAST(z, n, Params)\
-    BOOST_PP_CAT(\
-        BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_CAST_,\
-        BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_SUFFIX(n, Params)\
-    )(n, Params)
+//
+
+#define BOOST_TYPEOF_ENCODE_INTEGRAL_PARAM(This, n)\
+    integral_wrapper<\
+        BOOST_PP_CAT(P, n)\
+    >
+
+#define BOOST_TYPEOF_DECODE_INTEGRAL_PARAM(This, n)\
+    typedef decode_integral<BOOST_PP_CAT(iter,n)> BOOST_PP_CAT(d,n);\
+    BOOST_STATIC_CONSTANT(BOOST_TYPEOF_PARAM_GETTYPE(This),BOOST_PP_CAT(P,n)=(TYPEOF_GET_VALUE(BOOST_PP_CAT(d,n))));\
+    typedef typename BOOST_PP_CAT(d,n)::iter BOOST_PP_CAT(iter,BOOST_PP_INC(n));
+
+#define BOOST_TYPEOF_CAST_INTEGRAL_PARAM(This, n)\
+    BOOST_TYPEOF_PARAM_GETTYPE(This)(BOOST_PP_CAT(P,n))
+
+//
+
+#define BOOST_TYPEOF_REGISTER_TEMPLATE_DECODE_PARAM(r, data, n, elem)\
+    BOOST_TYPEOF_PARAM_DECODE(BOOST_TYPEOF_MAKE_OBJ(elem))(BOOST_TYPEOF_MAKE_OBJ(elem), n)
+
+#define BOOST_TYPEOF_REGISTER_TEMPLATE_ENCODE_PARAM(r, data, n, elem)\
+    , BOOST_TYPEOF_PARAM_ENCODE(BOOST_TYPEOF_MAKE_OBJ(elem))(BOOST_TYPEOF_MAKE_OBJ(elem), n)
+
+#define BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_PAIR(r, data, n, elem)\
+    BOOST_PP_COMMA_IF(n) BOOST_TYPEOF_PARAM_GETTYPE(BOOST_TYPEOF_MAKE_OBJ(elem)) BOOST_PP_CAT(P, n)
+
+#define BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_CAST(r, data, n, elem)\
+    BOOST_PP_COMMA_IF(n) BOOST_TYPEOF_PARAM_CAST(BOOST_TYPEOF_MAKE_OBJ(elem))(BOOST_TYPEOF_MAKE_OBJ(elem), n)
+
+//
 
 #define BOOST_TYPEOF_ENCODE_TEMPLATE_X_IMPL(Name, Params, ID)\
     template<>\
@@ -61,15 +81,15 @@
         };\
     };\
     template<\
-        BOOST_PP_ENUM(\
-            BOOST_PP_SEQ_SIZE(Params),\
+        BOOST_PP_SEQ_FOR_EACH_I(\
             BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_PAIR,\
+            ~,\
             Params\
         ),typename V,typename Types>\
     typename encode_impl<ID>::\
         encoder<\
-            V,\
-            BOOST_PP_ENUM(BOOST_PP_SEQ_SIZE(Params),BOOST_TYPEOF_REGISTER_TEMPLATE_ENCODE_PARAM,Params),\
+            V\
+            BOOST_PP_SEQ_FOR_EACH_I(BOOST_TYPEOF_REGISTER_TEMPLATE_ENCODE_PARAM,~,Params),\
             Types\
         > encode(Name<BOOST_PP_ENUM_PARAMS(BOOST_PP_SEQ_SIZE(Params),P)> const& (*)(V,Types));
 
@@ -80,8 +100,8 @@
         template<typename Iter>\
         struct decoder {\
             typedef Iter iter0;\
-            BOOST_PP_REPEAT(BOOST_PP_SEQ_SIZE(Params),BOOST_TYPEOF_REGISTER_TEMPLATE_DECODE_PARAM,Params)\
-            typedef Name<BOOST_PP_ENUM(BOOST_PP_SEQ_SIZE(Params),BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_CAST,Params)> type;\
+            BOOST_PP_SEQ_FOR_EACH_I(BOOST_TYPEOF_REGISTER_TEMPLATE_DECODE_PARAM,~,Params)\
+            typedef Name<BOOST_PP_SEQ_FOR_EACH_I(BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_CAST,~,Params)> type;\
             typedef BOOST_PP_CAT(iter,BOOST_PP_SEQ_SIZE(Params)) iter;\
         };\
     };

@@ -21,7 +21,6 @@
 				Optimization="0"
 				AdditionalIncludeDirectories="C:\boost\boost_1_32_0;..\..\..\.."
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
-				GeneratePreprocessedFile="0"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="5"
@@ -69,8 +68,9 @@
 			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="&quot;C:\ark\boost-sandbox\boost-sandbox&quot;"
+				AdditionalIncludeDirectories="C:\boost\boost_1_32_0;..\..\..\.."
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
+				GeneratePreprocessedFile="0"
 				RuntimeLibrary="4"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
@@ -171,6 +171,9 @@
 			</File>
 			<File
 				RelativePath="..\..\..\..\boost\typeof\register_fundamental.hpp">
+			</File>
+			<File
+				RelativePath="..\..\..\..\boost\typeof\register_integral.hpp">
 			</File>
 			<File
 				RelativePath="..\..\..\..\boost\typeof\compliant\register_mem_functions.hpp">

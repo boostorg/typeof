@@ -276,6 +276,7 @@ void odr_test()
 int main()
 {
     odr_test();
+	return 0;
 }
 
 #pragma message("done!")
