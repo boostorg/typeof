@@ -325,7 +325,7 @@ namespace test_integral
 
 void odr_test()
 {
-#ifndef BOOST_TYPEOF_VINTAGE
+#if !defined(_MSC_VER) || _MSC_VER > 0x0700
 
     void odr_test1();
     void odr_test2();

@@ -3,7 +3,7 @@
 // License, Version 1.0. (http://www.boost.org/LICENSE_1_0.txt)
 
 #include <boost/typeof/config.hpp>
-#ifndef BOOST_TYPEOF_VINTAGE
+#if !defined(_MSC_VER) || _MSC_VER > 0x0700
 
 #include <iostream>
 #include "odr.hpp"
