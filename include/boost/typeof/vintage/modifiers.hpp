@@ -15,7 +15,7 @@ sizer<0xffff> encode(...);
 template<unsigned N>
 struct validate_type {
     template<typename T>
-    struct use_BOOST_TYPEOF_REGISTER_TYPE {
+    struct Type_Not_Registered_With_Typeof_System {
         typedef int type;
     };
 };
@@ -23,7 +23,7 @@ struct validate_type {
 template<>
 struct validate_type<0xffff> {
     template<typename T>
-    struct use_BOOST_TYPEOF_REGISTER_TYPE {
+    struct Type_Not_Registered_With_Typeof_System {
     };
 };
 
@@ -34,8 +34,13 @@ struct encode_impl<NO_MODIFIERS>
     struct encoder {
         typedef T const& (*function_ptr)(V,Types);
         BOOST_STATIC_CONSTANT(unsigned,value=sizeof(encode(function_ptr(NULL))));
-        //If T is a template type, use BOOST_TYPEOF_REGISTER_TEMPLATE.
-        typedef validate_type<value>::use_BOOST_TYPEOF_REGISTER_TYPE<T>::type type_validation;
+        /*
+            If T is a simple type, use BOOST_TYPEOF_REGISTER_TYPE
+            if T is a simple template type (containing only typenames) use BOOST_TYPEOF_REGISTER_TEMPLATE
+            If T is a complex template type (containing integral constants) use BOOST_TYPEOF_REGISTER_TEMPLATE_X
+            If T is a nested class, you need to use BOOST_TYPEOF_REGISTER_TYPE for every concrete instantiation of that class.
+        */
+        typedef validate_type<value>::Type_Not_Registered_With_Typeof_System<T>::type type_validation;
     };
 };
 
