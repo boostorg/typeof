@@ -27,8 +27,9 @@
 #endif
 
 // auto
-#define BOOST_AUTO(Var, Expr) BOOST_TYPEOF(Expr) Var(Expr)
-#define BOOST_AUTO_TPL(Var, Expr) BOOST_TYPEOF_TPL(Expr) Var(Expr)
+#define BOOST_AUTO(Var, Expr) BOOST_TYPEOF(Expr) Var = Expr
+#define BOOST_AUTO_TPL(Var, Expr) BOOST_TYPEOF_TPL(Expr) Var = Expr
+
 // lvalue typeof
 
 #if defined(BOOST_TYPEOF_VINTAGE)

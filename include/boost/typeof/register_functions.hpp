@@ -36,12 +36,9 @@ namespace boost
 {
     namespace type_of
     {   
-        namespace 
-        {
-            # define BOOST_PP_ITERATION_LIMITS (0, BOOST_TYPEOF_LIMIT_FUNCTION_ARITY)
-		    // BOOST_PP_FILENAME_1 is defined outside
-            # include BOOST_PP_ITERATE()    
-        }
+        # define BOOST_PP_ITERATION_LIMITS (0, BOOST_TYPEOF_LIMIT_FUNCTION_ARITY)
+		// BOOST_PP_FILENAME_1 is defined outside
+        # include BOOST_PP_ITERATE()    
     }
 }
 

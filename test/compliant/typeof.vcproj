@@ -115,13 +115,16 @@
 			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
 			<File
-				RelativePath=".\main.cpp">
+				RelativePath="..\main.cpp">
 			</File>
 			<File
 				RelativePath=".\odr1.cpp">
 			</File>
 			<File
 				RelativePath=".\odr2.cpp">
+			</File>
+			<File
+				RelativePath=".\test_compliant.cpp">
 			</File>
 		</Filter>
 		<Filter
@@ -201,14 +204,14 @@
 			Name="stl"
 			Filter="">
 			<File
-				RelativePath=".\stl\register.hpp">
+				RelativePath="..\stl\register.hpp">
 			</File>
 		</Filter>
 		<Filter
 			Name="mpl"
 			Filter="">
 			<File
-				RelativePath=".\mpl\register.hpp">
+				RelativePath="..\mpl\register.hpp">
 			</File>
 		</Filter>
 	</Files>
