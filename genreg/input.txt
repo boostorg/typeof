@@ -143,9 +143,7 @@ TEMPLATE,std::basic_iostream,1,2
 
 #ifdef BOOST_TYPEOF_COMPLIANT
 TYPE,std::istream
-TYPE,std::wistream
 TYPE,std::iostream
-TYPE,std::wiostream
 #endif//BOOST_TYPEOF_COMPLIANT
 
 ~ostream
@@ -155,7 +153,6 @@ TEMPLATE,std::basic_ostream,1,2
 
 #ifdef BOOST_TYPEOF_COMPLIANT
 TYPE,std::ostream
-TYPE,std::wostream
 #endif//BOOST_TYPEOF_COMPLIANT
 
 ~sstream
@@ -169,13 +166,9 @@ TEMPLATE,std::basic_stringstream,1,3
 
 #ifdef BOOST_TYPEOF_COMPLIANT
 TYPE,std::stringbuf
-TYPE,std::wstringbuf
 TYPE,std::istringstream
-TYPE,std::wistringstream
 TYPE,std::ostringstream
-TYPE,std::wostringstream
 TYPE,std::stringstream
-TYPE,std::wstringstream
 #endif//BOOST_TYPEOF_COMPLIANT
 
 ~fstream
@@ -188,13 +181,9 @@ TEMPLATE,std::basic_fstream,1,2
 
 #ifdef BOOST_TYPEOF_COMPLIANT
 TYPE,std::filebuf
-TYPE,std::wfilebuf
 TYPE,std::ifstream
-TYPE,std::wifstream
 TYPE,std::ofstream
-TYPE,std::wofstream
 TYPE,std::fstream
-TYPE,std::wfstream
 #endif//BOOST_TYPEOF_COMPLIANT
 
 ~iterator

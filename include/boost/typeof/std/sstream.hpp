@@ -36,13 +36,9 @@ BOOST_TYPEOF_REGISTER_TEMPLATE(std::basic_stringstream, 2)
 BOOST_TYPEOF_REGISTER_TEMPLATE(std::basic_stringstream, 3)
 #ifdef BOOST_TYPEOF_COMPLIANT
 BOOST_TYPEOF_REGISTER_TYPE(std::stringbuf)
-BOOST_TYPEOF_REGISTER_TYPE(std::wstringbuf)
 BOOST_TYPEOF_REGISTER_TYPE(std::istringstream)
-BOOST_TYPEOF_REGISTER_TYPE(std::wistringstream)
 BOOST_TYPEOF_REGISTER_TYPE(std::ostringstream)
-BOOST_TYPEOF_REGISTER_TYPE(std::wostringstream)
 BOOST_TYPEOF_REGISTER_TYPE(std::stringstream)
-BOOST_TYPEOF_REGISTER_TYPE(std::wstringstream)
 #endif//BOOST_TYPEOF_COMPLIANT
 
 #endif//BOOST_TYPEOF_STD_sstream_hpp_INCLUDED

@@ -36,11 +36,14 @@
 #define BOOST_TYPEOF_REGISTER_TEMPLATE_unsignedint      BOOST_TYPEOF_REGISTER_TEMPLATE_integral(unsigned int)
 #define BOOST_TYPEOF_REGISTER_TEMPLATE_unsignedlong     BOOST_TYPEOF_REGISTER_TEMPLATE_integral(unsigned long)
 
+#define BOOST_TYPEOF_REGISTER_TEMPLATE_signedchar     BOOST_TYPEOF_REGISTER_TEMPLATE_integral(signed char)
+
 //////////
 
 #define BOOST_TYPEOF_TO_SEQ(tokens) BOOST_TYPEOF_ ## tokens ## _BOOST_TYPEOF 
 
 #define BOOST_TYPEOF_unsigned (unsigned)
+#define BOOST_TYPEOF_signed (signed)
 
 #define BOOST_TYPEOF_char_BOOST_TYPEOF (char)(_)
 #define BOOST_TYPEOF_short_BOOST_TYPEOF (short)(_)
@@ -175,6 +178,7 @@ namespace boost
             (unsigned short)
             (unsigned int)
             (unsigned long)
+            (signed char)
             )
     }
 }

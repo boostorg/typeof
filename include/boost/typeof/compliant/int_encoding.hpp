@@ -9,81 +9,114 @@
 #include <boost/mpl/vector.hpp>
 #include <boost/mpl/size_t.hpp>
 
-namespace boost
-{
-    namespace type_of
+namespace boost{namespace type_of{
+
+    template<class T> struct get_unsigned
     {
-        template<class T, T n> 
-        struct split
-        {
-            static const size_t u = (size_t)n; 
-            static const size_t value1 = (u >> 16) + 1;
-            static const size_t value2 = (u << 16 >> 16) + 1;
-        };
+        typedef T type;
+    };
+    template<> struct get_unsigned<signed char>
+    {
+        typedef unsigned char type;
+    };
+    template<> struct get_unsigned<char>
+    {
+        typedef unsigned char type;
+    };
+    template<> struct get_unsigned<short>
+    {
+        typedef unsigned short type;
+    };
+    template<> struct get_unsigned<int>
+    {
+        typedef unsigned int type;
+    };
+    template<> struct get_unsigned<long>
+    {
+        typedef unsigned long type;
+    };
 
-        template<class T, size_t u1, size_t u2>
-        struct join
-        {
-            static const T value = (T)(((u1 - 1) << 16) + (u2 - 1));
-        };
+    //////////////////////////
 
-        template<class V, class T, T n>
-        struct encode_long_integral
-        {
-            typedef
-                typename BOOST_TYPEOF_PUSH_BACK<
-                typename BOOST_TYPEOF_PUSH_BACK<
-                V
-                , mpl::size_t<split<T, n>::value1> >::type
-                , mpl::size_t<split<T, n>::value2> >::type
-                type;
-        };
+    template<size_t n, bool Overflow> 
+    struct pack
+    {
+        static const size_t value = 
+            (n + 1) * 2 + (Overflow ? 1 : 0);
+    };
 
-        template<class T, class Iter> 
-        struct decode_long_integral
-        {
-            static const T value = join<
-                T,
-                mpl::deref<Iter>::type::value,
-                mpl::deref<typename mpl::next<Iter>::type>::type::value
-            >::value;
+    template<size_t m> 
+    struct unpack
+    {
+        static const size_t value =
+            (m / 2) - 1;
 
-            typedef typename mpl::next<typename mpl::next<Iter>::type>::type iter;
-        };
+        static const bool overflow = 
+            (m % 2 == 1);
+    };
 
-        template<class V, class T, T n>
-        struct encode_short_integral
-        {
-            typedef
-                typename BOOST_TYPEOF_PUSH_BACK<
-                V
-                , mpl::size_t<(size_t)n + 1> >::type
-                type;
-        };
+    ////////////////////////////////
 
-        template<class T, class Iter> 
-        struct decode_short_integral
-        {
-            static const T value = (T)(mpl::deref<Iter>::type::value - 1);
-            typedef typename mpl::next<Iter>::type iter;
-        };
+    template<class V, size_t n, bool overflow = (n >= 0x3fffffff)>
+    struct encode_size_t : BOOST_TYPEOF_PUSH_BACK<
+        V, 
+        boost::mpl::size_t<pack<n, false>::value> 
+    >
+    {};
 
-        template<class V, class T, T n>
-        struct encode_integral : mpl::if_c<
-            (sizeof(T) < 4),
-            encode_short_integral<V, T, n>,
-            encode_long_integral<V, T, n>
-            >::type
-        {};
+    template<class V, size_t n>
+    struct encode_size_t<V, n, true> : BOOST_TYPEOF_PUSH_BACK<typename BOOST_TYPEOF_PUSH_BACK<
+        V,
+        boost::mpl::size_t<pack<n % 0x3ffffffe, true>::value> >::type,
+        boost::mpl::size_t<n / 0x3ffffffe>
+    >
+    {};
 
-        template<class T, class Iter> 
-        struct decode_integral : mpl::if_c<
-            (sizeof(T) < 4),
-            decode_short_integral<T, Iter>,
-            decode_long_integral<T, Iter>
-            >::type
-        {};
-    }
-}//namespace 
+    template<class V, class T, T n>
+    struct encode_integral : encode_size_t< V, (typename get_unsigned<T>::type)n > 
+    {};
+
+    ///////////////////////////
+
+    template<size_t n, class Iter, bool overflow> 
+    struct decode_size_t;
+
+    template<size_t n, class Iter> 
+    struct decode_size_t<n, Iter, false>
+    {
+        static const size_t value = n;
+        typedef Iter iter;
+    };
+
+    template<size_t n, class Iter> 
+    struct decode_size_t<n, Iter, true>
+    {
+        static const size_t m = boost::mpl::deref<Iter>::type::value;
+
+        static const size_t value = m * 0x3ffffffe + n;
+        typedef typename boost::mpl::next<Iter>::type iter;
+    };
+
+    template<class T, class Iter>
+    struct decode_integral
+    {
+        static const size_t m = 
+            boost::mpl::deref<Iter>::type::value;
+
+        static const size_t n = 
+            unpack<m>::value;
+
+        static const bool overflow =
+            unpack<m>::overflow;
+
+        typedef typename boost::mpl::next<Iter>::type nextpos;
+        
+        static const T value = 
+            decode_size_t<n, nextpos, overflow>::value;
+
+        typedef typename decode_size_t<n, nextpos, overflow>::iter iter;
+    };
+
+}}//namespace 
 
 #endif//BOOST_TYPEOF_INT_ENCODING_HPP_INCLUDED

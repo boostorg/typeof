@@ -41,40 +41,36 @@
 using namespace std;
 using namespace boost;
 
-#if BOOST_WORKAROUND(BOOST_MSVC,<=1300)
-
 template<class T> 
-mpl::vector1<T> typeof_test_helper(type<T> const&);
-
-template<class T> 
-struct typeof_test
-{
-    static type<T> dummy;
-    enum {value = boost::is_same<
-        BOOST_TYPEOF_TPL(typeof_test_helper(dummy)),
-        mpl::vector1<T>
-        >::value
-    };
-};
-
-template<class T> 
-type<T> typeof_test<T>::dummy;
-
-#else //!BOOST_WORKAROUND(BOOST_MSVC,<=1300)
-template<class T> 
-mpl::vector1<T> typeof_test_helper();
+mpl::vector1<T> typeof_test_helper(mpl::vector1<T>*);
 
 template<class T> 
 struct typeof_test
 {
     enum {value = boost::is_same<
-        BOOST_TYPEOF_TPL(typeof_test_helper<T>()),
+        BOOST_TYPEOF_TPL(typeof_test_helper(reinterpret_cast<mpl::vector1<T>*>(0))),
         mpl::vector1<T>
         >::value
     };
 };
 
-#endif //BOOST_WORKAROUND(BOOST_MSVC,<=1300)
+#pragma message("modifiers...")
+
+BOOST_STATIC_ASSERT(typeof_test<int*>::value);
+BOOST_STATIC_ASSERT(typeof_test<int&>::value);
+BOOST_STATIC_ASSERT(typeof_test<int[20]>::value);
+BOOST_STATIC_ASSERT(typeof_test<const int>::value);
+BOOST_STATIC_ASSERT(typeof_test<volatile int>::value);
+BOOST_STATIC_ASSERT(typeof_test<volatile const int>::value);
+BOOST_STATIC_ASSERT(typeof_test<volatile int[20]>::value);
+BOOST_STATIC_ASSERT(typeof_test<volatile const int[20]>::value);
+
+BOOST_STATIC_ASSERT((typeof_test<boost::mpl::vector3<const int* const, const int[20], const int&>*>::value));
+#ifndef BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
+BOOST_STATIC_ASSERT((typeof_test<boost::mpl::vector2<const int* const, const int&>&>::value));
+#endif
+BOOST_STATIC_ASSERT((typeof_test<boost::mpl::vector1<int[5]> >::value));
+BOOST_STATIC_ASSERT((typeof_test<boost::mpl::vector1<const int[5]> >::value));
 
 #pragma message("started")
 
@@ -84,7 +80,7 @@ struct x
 BOOST_TYPEOF_REGISTER_TYPE(x)
 
 template<class T, char c, unsigned short us, 
-    int i, unsigned long ul, bool b1, bool b2, unsigned u> struct with_integrals
+    int i, unsigned long ul, bool b1, bool b2, signed char sc, unsigned u> struct with_integrals
 {};
 
 BOOST_TYPEOF_REGISTER_TEMPLATE_X(with_integrals, 
@@ -95,12 +91,13 @@ BOOST_TYPEOF_REGISTER_TEMPLATE_X(with_integrals,
     (unsigned long)
     (bool)
     (bool)
+    (signed char)
     (unsigned)
     )
 
 #pragma message("integral...")
-BOOST_STATIC_ASSERT((typeof_test<with_integrals<int, 5, 4, 3, 2, true, false, 5> >::value));
-BOOST_STATIC_ASSERT((typeof_test<with_integrals<int, 1, 1, 0, ULONG_MAX, false, true, 0> >::value));
+BOOST_STATIC_ASSERT((typeof_test<with_integrals<int, 5, 4, -3, 2, true, false, -1, 5> >::value));
+BOOST_STATIC_ASSERT((typeof_test<with_integrals<int, 1, 1, 0, ULONG_MAX, false, true, -1, 0> >::value));
 
 #pragma message("namespace-level function pointers...")
 BOOST_STATIC_ASSERT(typeof_test<double(*)()>::value);
@@ -132,14 +129,6 @@ BOOST_STATIC_ASSERT(typeof_test<double(x::*)()volatile const>::value);
 
 #pragma message("data members...")
 BOOST_STATIC_ASSERT(typeof_test<double x::*>::value);
-
-#pragma message("modifiers...")
-BOOST_STATIC_ASSERT((typeof_test<boost::mpl::vector3<const int* const, const int[20], const int&>*>::value));
-#ifndef BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
-BOOST_STATIC_ASSERT((typeof_test<boost::mpl::vector2<const int* const, const int&>&>::value));
-#endif
-BOOST_STATIC_ASSERT((typeof_test<boost::mpl::vector1<int[5]> >::value));
-BOOST_STATIC_ASSERT((typeof_test<boost::mpl::vector1<const int[5]> >::value));
 
 #pragma message("Lvalue test...")
 void lvalue_typeof_test()
