@@ -45,6 +45,7 @@ BOOST_TYPEOF_DEFINE_TEMPLATE(enum_class,1,(MyEnum))
 #define BOOST_TYPEOF__long__        BOOST_TYPEOF_integral BOOST_PP_LPAREN() dummy
 #define BOOST_TYPEOF__unsigned__    BOOST_TYPEOF_unsigned_integral BOOST_PP_LPAREN() dummy
 #define BOOST_TYPEOF__signed__      BOOST_TYPEOF_integral BOOST_PP_LPAREN() dummy
+#define BOOST_TYPEOF__size_t__      BOOST_TYPEOF_unsigned_integral BOOST_PP_LPAREN() dummy
 #define BOOST_TYPEOF__unsigned BOOST_TYPEOF_unsigned_integral BOOST_PP_LPAREN()
 #define BOOST_TYPEOF__signed BOOST_TYPEOF_integral BOOST_PP_LPAREN()
 
