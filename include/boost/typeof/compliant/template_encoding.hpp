@@ -57,7 +57,7 @@
     >\
     struct encode_type_impl<V, Name<BOOST_PP_ENUM_PARAMS(Size, P)> >\
     {\
-        typedef typename BOOST_TYPEOF_PUSH_BACK<V, boost::mpl::size_t<ID> >::type V0;\
+        typedef typename mpl::push_back<V, boost::mpl::size_t<ID> >::type V0;\
         BOOST_PP_SEQ_FOR_EACH_I(BOOST_TYPEOF_REGISTER_TEMPLATE_ENCODE_PARAM, ~, Params)\
         typedef BOOST_PP_CAT(V, Size) type;\
     };\

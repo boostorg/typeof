@@ -19,7 +19,7 @@
     (Params)
 
 #define BOOST_TYPEOF_TEMPLATE_PARAM_GETPARAMS(This)\
-    BOOST_PP_SEQ_ELEM(1, This)
+    BOOST_TYPEOF_TOSEQ(BOOST_PP_SEQ_ELEM(1, This))
 
 //Encode / decode this
 #define BOOST_TYPEOF_TEMPLATE_PARAM_ENCODE(This, n)\
@@ -82,7 +82,7 @@ namespace boost
         BOOST_PP_ENUM_PARAMS(\
         BOOST_PP_SEQ_SIZE(Params),\
         P)> >\
-    :   BOOST_TYPEOF_PUSH_BACK<V, mpl::size_t<ID> >\
+    :   mpl::push_back<V, mpl::size_t<ID> >\
     {\
     };\
     template<class Iter> struct decode_template_impl<mpl::size_t<ID>, Iter>\

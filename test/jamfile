@@ -1,0 +1,18 @@
+project-root ;
+
+variant debug_native : debug ;
+variant release_native : release ;
+
+exe typeof 
+: 
+	main.cpp
+	compliant/test_compliant.cpp
+	compliant/odr1.cpp
+	compliant/odr2.cpp
+: 
+	<include>C:/boost/boost_1_32_0
+	<include>../../..
+	<gcc><debug><define>BOOST_TYPEOF_COMPLIANT
+	<gcc><release><define>BOOST_TYPEOF_COMPLIANT
+#	<*><*><define>BOOST_TYPEOF_SILENT
+;

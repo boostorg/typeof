@@ -2,9 +2,13 @@
 // Use, modification and distribution is subject to the Boost Software
 // License, Version 1.0. (http://www.boost.org/LICENSE_1_0.txt)
 
-#pragma message("including typeof.hpp...")
+#define BOOST_TYPEOF_TEXT "including typeof.hpp..."
+#include <boost/typeof/message.hpp>
+
 #include <boost/typeof/typeof.hpp>
-#pragma message("done")
+
+#define BOOST_TYPEOF_TEXT "done"
+#include <boost/typeof/message.hpp>
 
 #include <boost/detail/workaround.hpp>
 #include <boost/type_traits/is_same.hpp>
@@ -55,7 +59,9 @@ struct typeof_test
 };
 
 #ifdef BOOST_TYPEOF_COMPLIANT
-#pragma message("template template encoding...")
+
+#define BOOST_TYPEOF_TEXT "template template encoding..."
+#include <boost/typeof/message.hpp>
 
 namespace template_template {
     template<template<typename,unsigned int> class P0,int P1>
@@ -63,7 +69,12 @@ namespace template_template {
 
     template<typename A,unsigned int B> 
     struct C {};
+
+    template<template<class, class> class T> 
+    struct A;
 }
+
+BOOST_TYPEOF_REGISTER_TEMPLATE(template_template::A, (BOOST_TYPEOF_TEMPLATE(2)))
 
 BOOST_TYPEOF_REGISTER_TEMPLATE(template_template::tt_test,
                                (BOOST_TYPEOF_TEMPLATE((typename)(unsigned int)))
@@ -76,9 +87,12 @@ BOOST_TYPEOF_REGISTER_TEMPLATE(template_template::C,
                                )
 
 BOOST_STATIC_ASSERT((typeof_test<template_template::tt_test<template_template::C,4> >::value));
+
+
 #endif 
 
-#pragma message("modifiers...")
+#define BOOST_TYPEOF_TEXT "modifiers..."
+#include <boost/typeof/message.hpp>
 
 BOOST_STATIC_ASSERT(typeof_test<int*>::value);
 BOOST_STATIC_ASSERT(typeof_test<int&>::value);
@@ -95,8 +109,6 @@ BOOST_STATIC_ASSERT((typeof_test<boost::mpl::vector2<const int* const, const int
 #endif
 BOOST_STATIC_ASSERT((typeof_test<boost::mpl::vector1<int[5]> >::value));
 BOOST_STATIC_ASSERT((typeof_test<boost::mpl::vector1<const int[5]> >::value));
-
-#pragma message("started")
 
 struct x
 {};
@@ -119,11 +131,15 @@ BOOST_TYPEOF_REGISTER_TEMPLATE(with_integrals,
     (unsigned)
     )
 
-#pragma message("integral...")
+#define BOOST_TYPEOF_TEXT "integral..."
+#include <boost/typeof/message.hpp>
+
 BOOST_STATIC_ASSERT((typeof_test<with_integrals<int, 5, 4, -3, 2, true, false, -1, 5> >::value));
 BOOST_STATIC_ASSERT((typeof_test<with_integrals<int, 1, 1, 0, ULONG_MAX, false, true, -1, 0> >::value));
 
-#pragma message("namespace-level function pointers...")
+#define BOOST_TYPEOF_TEXT "namespace-level function pointers..."
+#include <boost/typeof/message.hpp>
+
 BOOST_STATIC_ASSERT(typeof_test<double(*)()>::value);
 BOOST_STATIC_ASSERT(typeof_test<double(*)(int, double, short, char*, bool, char, float, long, unsigned short)>::value);
 BOOST_STATIC_ASSERT(typeof_test<void(*)()>::value);
@@ -131,18 +147,26 @@ BOOST_STATIC_ASSERT(typeof_test<void(*)(int, double, short, char*, bool, char, f
 
 
 #ifdef BOOST_TYPEOF_COMPLIANT
-#  pragma message("function references...")
-   BOOST_STATIC_ASSERT(typeof_test<void(&)()>::value);
-   BOOST_STATIC_ASSERT(typeof_test<int(&)(int, short)>::value);
+
+#   define BOOST_TYPEOF_TEXT "function references..."
+#   include <boost/typeof/message.hpp>
+
+    BOOST_STATIC_ASSERT(typeof_test<void(&)()>::value);
+    BOOST_STATIC_ASSERT(typeof_test<int(&)(int, short)>::value);
 #endif//BOOST_TYPEOF_COMPLIANT
 
 #ifdef BOOST_TYPEOF_COMPLIANT 
-#   pragma message("function values...")
+
+#   define BOOST_TYPEOF_TEXT "function values..."
+#   include <boost/typeof/message.hpp>
+
     BOOST_STATIC_ASSERT(typeof_test<void()>::value);
     BOOST_STATIC_ASSERT(typeof_test<double(bool)>::value);
 #endif//BOOST_TYPEOF_COMPLIANT
 
-#pragma message("member functions...")
+#define BOOST_TYPEOF_TEXT "member functions..."
+#include <boost/typeof/message.hpp>
+
 BOOST_STATIC_ASSERT(typeof_test<double(x::*)()>::value);
 BOOST_STATIC_ASSERT(typeof_test<double(x::*)(int, double, short, char*, bool, char, float, long, unsigned short)>::value);
 BOOST_STATIC_ASSERT(typeof_test<void(x::*)()>::value);
@@ -151,10 +175,14 @@ BOOST_STATIC_ASSERT(typeof_test<double(x::*)()const>::value);
 BOOST_STATIC_ASSERT(typeof_test<double(x::*)()volatile>::value);
 BOOST_STATIC_ASSERT(typeof_test<double(x::*)()volatile const>::value);
 
-#pragma message("data members...")
+#define BOOST_TYPEOF_TEXT "data members..."
+#include <boost/typeof/message.hpp>
+
 BOOST_STATIC_ASSERT(typeof_test<double x::*>::value);
 
-#pragma message("Lvalue test...")
+#define BOOST_TYPEOF_TEXT "Lvalue test..."
+#include <boost/typeof/message.hpp>
+
 void lvalue_typeof_test()
 {
     int n;
@@ -178,7 +206,8 @@ void lvalue_typeof_test()
     //BOOST_STATIC_ASSERT((boost::is_same<BOOST_LVALUE_TYPEOF(int(21)), int>::value));
 }
 
-#pragma message("Noncopyable...")
+#define BOOST_TYPEOF_TEXT "Noncopyable..."
+#include <boost/typeof/message.hpp>
 
 BOOST_TYPEOF_REGISTER_TYPE(boost::noncopyable)
 
@@ -193,7 +222,8 @@ struct noncopiable_test
     }
 };
 
-#pragma message("STL containers...")
+#define BOOST_TYPEOF_TEXT "STL containers..."
+#include <boost/typeof/message.hpp>
 
 BOOST_STATIC_ASSERT(typeof_test<string>::value);
 BOOST_STATIC_ASSERT(typeof_test<deque<int> >::value);
@@ -207,7 +237,8 @@ BOOST_STATIC_ASSERT(typeof_test<set<int> >::value);
 BOOST_STATIC_ASSERT(typeof_test<multiset<int> >::value);
 BOOST_STATIC_ASSERT(typeof_test<bitset<10> >::value);
 
-#pragma message("function objects...")
+#define BOOST_TYPEOF_TEXT "function objects..."
+#include <boost/typeof/message.hpp>
 
 BOOST_STATIC_ASSERT((typeof_test<unary_function<int, int> >::value));
 BOOST_STATIC_ASSERT((typeof_test<binary_function<int, int, int> >::value));
@@ -231,11 +262,13 @@ BOOST_STATIC_ASSERT(typeof_test<binary_negate<less<int> > >::value);
 BOOST_STATIC_ASSERT(typeof_test<binder1st<less<int> > >::value);
 BOOST_STATIC_ASSERT(typeof_test<binder2nd<less<int> > >::value);
 
-#pragma message("valarray...")
+#define BOOST_TYPEOF_TEXT "valarray..."
+#include <boost/typeof/message.hpp>
 
 BOOST_STATIC_ASSERT(typeof_test<valarray<int> >::value);
 
-#pragma message("compiling integral param wrapper...")
+#define BOOST_TYPEOF_TEXT "compiling integral param wrapper..."
+#include <boost/typeof/message.hpp>
 
 namespace test_integral
 {
@@ -281,26 +314,35 @@ namespace test_integral
         BOOST_AUTO(yy, xx);
         BOOST_AUTO(yyy, xxx);
 
-        y;
-        yy;
-        yyy;
+        y = y;
+        yy = yy;
+        yyy = yyy;
     }
 }
 
-#pragma message("ODR...")
+#define BOOST_TYPEOF_TEXT "ODR..."
+#include <boost/typeof/message.hpp>
+
 void odr_test()
 {
+#ifndef BOOST_TYPEOF_VINTAGE
+
     void odr_test1();
     void odr_test2();
     odr_test1();
     odr_test2();
+
+#endif//BOOST_TYPEOF_VINTAGE
 }
 
-#pragma message("main()...")
+#define BOOST_TYPEOF_TEXT "main()..."
+#include <boost/typeof/message.hpp>
+
 int main()
 {
     odr_test();
 	return 0;
 }
 
-#pragma message("done!")
+#define BOOST_TYPEOF_TEXT "done!"
+#include <boost/typeof/message.hpp>

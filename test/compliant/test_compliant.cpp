@@ -1,14 +1,24 @@
-#pragma warning(disable:4512)
+// Copyright (C) 2005 Arkadiy Vertleyb
+// Use, modification and distribution is subject to the Boost Software
+// License, Version 1.0. (http://www.boost.org/LICENSE_1_0.txt)
+
+#include <boost/typeof/config.hpp>
+#ifndef BOOST_TYPEOF_VINTAGE
+
+#ifdef _MSC_VER
+#   pragma warning(disable:4512)
+#endif
 
 #include <boost/typeof/typeof.hpp>
-
 #include "spirit/register.hpp"
 #include "lambda/register.hpp"
 #include <libs/typeof/test/stl/register.hpp>
 #include <cassert>
 #include <iostream>
 
-#pragma message("compiling Lambda example...")
+#define BOOST_TYPEOF_TEXT "compiling Lambda example..."
+#include <boost/typeof/message.hpp>
+
 void test_lambda()
 {
     using namespace boost::lambda;
@@ -22,7 +32,9 @@ void test_lambda()
     std::cout << typeid(fun).name() << std::endl;
 }
 
-#pragma message("compiling Spirit example...")
+#define BOOST_TYPEOF_TEXT "compiling Spirit example..."
+#include <boost/typeof/message.hpp>
+
 void test_spirit1()
 {
     using namespace boost::spirit;
@@ -41,7 +53,9 @@ void test_spirit1()
     cout << endl;
 }
 
-#pragma message("compiling another Spirit example...")
+#define BOOST_TYPEOF_TEXT "compiling another Spirit example..."
+#include <boost/typeof/message.hpp>
+
 void test_spirit2()
 {
     using namespace boost::spirit;
@@ -61,4 +75,21 @@ void test_spirit2()
     if (!success)
         throw 0;
 }
-#pragma message("done!")
+
+#define BOOST_TYPEOF_TEXT "negate test"
+#include <boost/typeof/message.hpp>
+
+#include <functional>
+namespace negate_test
+{
+    template<class T> T make();
+
+    template <class T>
+    BOOST_TYPEOF_TPL(make<std::negate<T> >()(T()))
+    operator-(T const& x)
+    {
+        return std::negate<T>()(x);
+    }
+}
+
+#endif//BOOST_TYPEOF_VINTAGE

@@ -17,7 +17,7 @@
     {\
         typedef\
             typename encode_type<\
-            typename BOOST_TYPEOF_PUSH_BACK<\
+            typename mpl::push_back<\
             V\
             , mpl::size_t<ID> >::type\
             , T>::type\
@@ -61,8 +61,8 @@ namespace boost{namespace type_of{namespace{
     {\
         typedef\
             typename encode_type<\
-            typename BOOST_TYPEOF_PUSH_BACK<\
-            typename BOOST_TYPEOF_PUSH_BACK<\
+            typename mpl::push_back<\
+            typename mpl::push_back<\
             V\
             , mpl::size_t<ID> >::type\
             , mpl::size_t<N> >::type\

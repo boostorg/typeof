@@ -2,6 +2,9 @@
 // Use, modification and distribution is subject to the Boost Software
 // License, Version 1.0. (http://www.boost.org/LICENSE_1_0.txt)
 
+#include <boost/typeof/config.hpp>
+#ifndef BOOST_TYPEOF_VINTAGE
+
 #include <iostream>
 #include "odr.hpp"
 
@@ -16,3 +19,5 @@ void odr_test1()
     cout << make_sum(d, i)() << endl; 
     cout << make_sum(i, d)() << endl; 
 }
+
+#endif//BOOST_TYPEOF_VINTAGE

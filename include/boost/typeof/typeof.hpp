@@ -16,11 +16,13 @@
 // BOOST_TYPEOF, BOOST_TYPEOF_TPL
 
 #if defined(BOOST_TYPEOF_COMPLIANT)
-#   pragma message("using compliant imlementation")
+#   define BOOST_TYPEOF_TEXT "using compliant imlementation"
+#   include <boost/typeof/message.hpp>
 #	include <boost/typeof/compliant/typeof_impl.hpp>
 
 #elif defined(BOOST_TYPEOF_VINTAGE)
-#   pragma message("using vintage imlementation")
+#   define BOOST_TYPEOF_TEXT "using vintage imlementation"
+#   include <boost/typeof/message.hpp>
 #	include <boost/typeof/vintage/typeof_impl.hpp>
 
 #else//BOOST_TYPEOF_NATIVE
