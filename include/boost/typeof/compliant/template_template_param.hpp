@@ -9,28 +9,38 @@
 #include <boost/preprocessor/comparison/not_equal.hpp>
 #include <boost/preprocessor/arithmetic/dec.hpp>
 
-namespace boost{namespace type_of {namespace {
-    template<class T,class Iter>
-    struct decode_template_impl;
+namespace boost
+{
+    namespace type_of 
+    {
+        namespace 
+        {
+            template<class V, class Type_Not_Registered_With_Typeof_System> struct encode_template_impl;
+            template<class T, class Iter> struct decode_template_impl;
+        }
+        template<class V, class T> struct encode_template
+            : encode_template_impl<V, T>
+        {};
 
-    template<class Iter> struct decode_template
-        : decode_template_impl<typename mpl::deref<Iter>::type, typename mpl::next<Iter>::type>
-    {};
-}}}
+        template<class Iter> struct decode_template 
+            :   decode_template_impl<typename mpl::deref<Iter>::type, typename mpl::next<Iter>::type>
+        {};
+    }
+}
 
 #define BOOST_TYPEOF_MAKE_OBJ_template(x)   BOOST_TYPEOF_TEMPLATE_PARAM(x)
 #define BOOST_TYPEOF_TEMPLATE(X) template(X) BOOST_TYPEOF_EAT
 #define BOOST_TYPEOF_template(X) (template(X))
 
+
 #define BOOST_TYPEOF_TEMPLATE_PARAM(Type)\
     (TEMPLATE_PARAM)\
-    (Type)\
-    (class)
+    (Type)
 
+//Encode / decode this
 #define BOOST_TYPEOF_ENCODE_TEMPLATE_PARAM(This, n)\
-   typedef typename BOOST_TYPEOF_TEMPLATE_TEMPLATE_NAME(encode_template,This)<\
-       BOOST_PP_CAT(V, n),\
-       BOOST_PP_CAT(P, n)\
+   typedef typename encode_template<BOOST_PP_CAT(V, n),\
+       BOOST_PP_CAT(P, n)<BOOST_TYPEOF_SEQ_ENUM(BOOST_TYPEOF_PARAM_GETTYPE(This),BOOST_TYPEOF_PLACEHOLDER)>\
    >::type BOOST_PP_CAT(V, BOOST_PP_INC(n));
 
 #define BOOST_TYPEOF_DECODE_TEMPLATE_PARAM(This, n)\
@@ -38,57 +48,77 @@ namespace boost{namespace type_of {namespace {
    typedef typename BOOST_PP_CAT(d, n)::type BOOST_PP_CAT(P, n);\
    typedef typename BOOST_PP_CAT(d, n)::iter BOOST_PP_CAT(iter,BOOST_PP_INC(n));
 
-//In order to handle template template arguments correctly, we need to expand
-//e.g (typename)(typename) to template <typename,typename> class.
-#define BOOST_TYPEOF_EXPAND_TEMPLATE_PARAM(Param)\
-    template<BOOST_TYPEOF_EXPAND_TEMPLATE_PARAM_IMPL(BOOST_TYPEOF_PARAM_GETTYPE(Param))> class
+//Expand argument
+#define BOOST_TYPEOF_PARAM_EXPAND_TEMPLATE_PARAM(Param) \
+    template <BOOST_TYPEOF_SEQ_ENUM(BOOST_TYPEOF_PARAM_GETTYPE(Param),BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_TYPE)> class
 
-#define BOOST_TYPEOF_EXPAND_TEMPLATE_PARAM_IMPL(Param)\
-    BOOST_PP_ENUM(BOOST_PP_SEQ_SIZE(Param),BOOST_TYPEOF_EXPAND_TEMPLATE_ELEMENT,Param)
+#define BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_TYPE(z,n,elem)\
+    BOOST_TYPEOF_PARAM_EXPAND_TYPE(BOOST_TYPEOF_MAKE_OBJ(elem))
 
-#define BOOST_TYPEOF_EXPAND_TEMPLATE_ELEMENT(z,n,Param) BOOST_PP_SEQ_ELEM(n, Param)
+//Placeholder arguments to create a dummy template template.
+#define BOOST_TYPEOF_PLACEHOLDER(z,n,elem)\
+    BOOST_PP_CAT(BOOST_TYPEOF_PLACEHOLDER_, BOOST_PP_SEQ_ELEM(0, BOOST_TYPEOF_MAKE_OBJ(elem)))(BOOST_TYPEOF_MAKE_OBJ(elem))
 
-//This is used during decode of template template arguments, tt arguments are wrapped inside encode_template_...
-//and the decode_template_... must define a class PN for these arguments.
-#define BOOST_TYPEOF_COMPACT_TEMPLATE_PARAM(Param) class
-#define BOOST_TYPEOF_COMPACT_TYPE_PARAM(Param) BOOST_TYPEOF_PARAM_GETTYPE(Param)
-#define BOOST_TYPEOF_COMPACT_INTEGRAL_PARAM(Param) BOOST_TYPEOF_PARAM_GETTYPE(Param)
-#define BOOST_TYPEOF_COMPACT_EXPLICIT_INTEGRAL_PARAM(Param) BOOST_TYPEOF_PARAM_GETTYPE(Param)
+#define BOOST_TYPEOF_PLACEHOLDER_TYPE_PARAM(Param) int
+#define BOOST_TYPEOF_PLACEHOLDER_INTEGRAL_PARAM(Param) BOOST_TYPEOF_PARAM_GETTYPE(Param)(0)
+#define BOOST_TYPEOF_PLACEHOLDER_TEMPLATE_PARAM(Param) Nested_Template_Template_Arguments_Not_Supported
 
-#define BOOST_TYPEOF_COMPACT_TYPE(Param)\
-    BOOST_PP_CAT(BOOST_TYPEOF_COMPACT_, BOOST_PP_SEQ_ELEM(0, Param))(Param)
+//Template template registration
+#define BOOST_TYPEOF_REGISTER_TYPE_FOR_TEMPLATE_TEMPLATE(Name,Params,ID)\
+    template<class V\
+        BOOST_TYPEOF_SEQ_ENUM_TRAILING(Params,BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_PAIR)\
+    >\
+    struct encode_template_impl<V,Name<\
+        BOOST_PP_ENUM_PARAMS(\
+        BOOST_PP_SEQ_SIZE(Params),\
+        P)> >\
+    :   BOOST_TYPEOF_PUSH_BACK<V, mpl::size_t<ID> >\
+    {\
+    };\
+    template<class Iter> struct decode_template_impl<mpl::size_t<ID>, Iter>\
+    {\
+        BOOST_PP_REPEAT(BOOST_PP_SEQ_SIZE(Params),BOOST_TYPEOF_TYPEDEF_INT_PN,_)\
+        typedef Name<BOOST_TYPEOF_SEQ_ENUM(Params,BOOST_TYPEOF_PLACEHOLDER)> type;\
+        typedef Iter iter;\
+    };
 
-//Again, decode_template_... specializations must expand to encode_template_...<boost::mpl::vector0,Pn>.
-#define BOOST_TYPEOF_WRAPPED_TEMPLATE_PARAM(n,Param) BOOST_TYPEOF_TEMPLATE_TEMPLATE_NAME(encode_template,Param)<boost::mpl::vector0<>,BOOST_PP_CAT(P,n)>
-#define BOOST_TYPEOF_WRAPPED_TYPE_PARAM(n,Param) BOOST_PP_CAT(P,n)
-#define BOOST_TYPEOF_WRAPPED_INTEGRAL_PARAM(n,Param) BOOST_PP_CAT(P,n)
-#define BOOST_TYPEOF_WRAPPED_EXPLICIT_INTEGRAL_PARAM(n,Param) BOOST_PP_CAT(P,n)
+#define BOOST_TYPEOF_TYPEDEF_INT_PN(z,n,Params) typedef int BOOST_PP_CAT(P,n);
 
-#define BOOST_TYPEOF_WRAPPED_TYPE_IMPL(n,Param)\
-    BOOST_PP_CAT(BOOST_TYPEOF_WRAPPED_, BOOST_PP_SEQ_ELEM(0, Param))(n,Param)
+#define BOOST_TYPEOF_REGISTER_NOTHING(Name,Params,ID)
 
-#define BOOST_TYPEOF_WRAPPED_TYPE(z,n,Params)\
-    BOOST_TYPEOF_WRAPPED_TYPE_IMPL(n,BOOST_TYPEOF_MAKE_OBJ(BOOST_PP_SEQ_ELEM(n, Params)))
+//Template template param decoding
+#define BOOST_TYPEOF_TYPEDEF_DECODED_TEMPLATE_TEMPLATE_TYPE(Name,Params)\
+    template<BOOST_TYPEOF_SEQ_ENUM(Params,BOOST_TYPEOF_REGISTER_DECLARE_DECODER_TYPE_PARAM_PAIR)>\
+    struct decode_params;\
+    template<BOOST_TYPEOF_SEQ_ENUM(Params,BOOST_TYPEOF_REGISTER_DECODER_TYPE_PARAM_PAIR)>\
+    struct decode_params<BOOST_TYPEOF_SEQ_ENUM(Params,BOOST_TYPEOF_PLACEHOLDER_TYPES)>\
+    {\
+        typedef Name<BOOST_PP_ENUM_PARAMS(BOOST_PP_SEQ_SIZE(Params),T)> type;\
+    };\
+    typedef typename decode_params<BOOST_PP_ENUM_PARAMS(BOOST_PP_SEQ_SIZE(Params),P)>::type type;
 
+//'template<class,int> class' is reduced to 'class'
+#define BOOST_TYPEOF_DECLARATION_TYPE(elem)\
+    BOOST_PP_CAT(BOOST_TYPEOF_DECLARATION_TYPE_, BOOST_PP_SEQ_ELEM(0, elem))(elem)
+#define BOOST_TYPEOF_DECLARATION_TYPE_TYPE_PARAM(Param) BOOST_TYPEOF_PARAM_GETTYPE(Param)
+#define BOOST_TYPEOF_DECLARATION_TYPE_INTEGRAL_PARAM(Param) BOOST_TYPEOF_PARAM_GETTYPE(Param)
+#define BOOST_TYPEOF_DECLARATION_TYPE_TEMPLATE_PARAM(Param) class
 
-//We need to generate a unique name for template template registration:  
-#define BOOST_TYPEOF_TEMPLATE_TEMPLATE_NAME(prefix,Params)\
-    BOOST_TYPEOF_TEMPLATE_TEMPLATE_NAME_IMPL(prefix,BOOST_TYPEOF_PARAM_GETTYPE(Params))
+#define BOOST_TYPEOF_REGISTER_DECLARE_DECODER_TYPE_PARAM_PAIR(z,n,elem) \
+    BOOST_TYPEOF_DECLARATION_TYPE(BOOST_TYPEOF_MAKE_OBJ(elem)) BOOST_PP_CAT(T, n)
 
-#define BOOST_TYPEOF_TEMPLATE_TEMPLATE_NAME_IMPL(prefix,Params)\
-    BOOST_PP_SEQ_FOLD_LEFT(\
-        BOOST_TYPEOF_TEMPLATE_TEMPLATE_CAT,\
-        BOOST_PP_SEQ_HEAD((prefix)Params),\
-        BOOST_PP_SEQ_TAIL((prefix)Params)\
-    )
+#define BOOST_TYPEOF_PLACEHOLDER_TYPES(z,n,elem)\
+    BOOST_PP_CAT(BOOST_TYPEOF_PLACEHOLDER_TYPES_, BOOST_PP_SEQ_ELEM(0, BOOST_TYPEOF_MAKE_OBJ(elem)))(n,BOOST_TYPEOF_MAKE_OBJ(elem))
 
-#define BOOST_TYPEOF_TEMPLATE_TEMPLATE_CAT(s,state,x)\
-    BOOST_PP_SEQ_CAT((state)(_)(BOOST_TYPEOF_PARAM_GETNAME(BOOST_TYPEOF_MAKE_OBJ(x))))    
+#define BOOST_TYPEOF_PLACEHOLDER_TYPES_TYPE_PARAM(n,Param) BOOST_PP_CAT(T,n)
+#define BOOST_TYPEOF_PLACEHOLDER_TYPES_INTEGRAL_PARAM(n,Param) BOOST_PP_CAT(T,n)
+#define BOOST_TYPEOF_PLACEHOLDER_TYPES_TEMPLATE_PARAM(n,Param) BOOST_PP_CAT(T,n)<BOOST_TYPEOF_SEQ_ENUM(BOOST_TYPEOF_PARAM_GETTYPE(Param),BOOST_TYPEOF_PLACEHOLDER)>
+
 
 //Category: Can this parameter be used in a template template class?
-//0 -> Not supported
-//1 -> Simple type
+//1 -> Simple type or integral constant
 //2 -> Template template type (can not be used to create template template template types :)
+
 #define BOOST_TYPEOF_PARAM_TT_CATEGORY(Param) \
     BOOST_PP_CAT(BOOST_TYPEOF_TT_CATEGORY_,BOOST_PP_SEQ_ELEM(0, Param))
 #define BOOST_TYPEOF_TT_CATEGORY_INTEGRAL_PARAM 1
@@ -98,17 +128,6 @@ namespace boost{namespace type_of {namespace {
 
 #define BOOST_TYPEOF_CHECK_TT_CATEGORY(s, data, elem)\
     BOOST_PP_EQUAL(BOOST_TYPEOF_PARAM_TT_CATEGORY(BOOST_TYPEOF_MAKE_OBJ(elem)), data)
-//BOOST_TYPEOF_PARAM_TT_CATEGORY(BOOST_TYPEOF_MAKE_OBJ(elem))
-//Test if the current template arguments support template template encoding
-#define BOOST_TYPEOF_SUPPORT_TEMPLATE_TEMPLATE_ENCODING(Params)\
-    BOOST_PP_EQUAL(\
-        BOOST_PP_DEC(\
-            BOOST_PP_SEQ_SIZE(\
-                (_)BOOST_PP_SEQ_FILTER(BOOST_TYPEOF_CHECK_TT_CATEGORY,1,Params)\
-            )\
-        ),\
-        BOOST_PP_SEQ_SIZE(Params)\
-    )
 
 //Check if one of the arguments is a template template argument.
 #define BOOST_TYPEOF_HAS_TEMPLATE_TEMPLATE_ARGUMENTS(Params)\
@@ -119,81 +138,10 @@ namespace boost{namespace type_of {namespace {
         1\
     )
 
-//Return the sequence of template template arguments
-#define BOOST_TYPEOF_GET_TEMPLATE_TEMPLATE_SEQUENCES(Params)\
-    BOOST_PP_SEQ_FILTER(BOOST_TYPEOF_CHECK_TT_CATEGORY,2,Params)
-
 //Define template template arguments
 #define BOOST_TYPEOF_REGISTER_TEMPLATE_TEMPLATE_IMPL(Name,Params,ID)\
-    BOOST_TYPEOF_REGISTER_THIS_FOR_TT_ENCODING(Name,Params,ID)
-
-    //BOOST_PP_IF(BOOST_TYPEOF_SUPPORT_TEMPLATE_TEMPLATE_ENCODING(Params),\
-    //    BOOST_TYPEOF_REGISTER_THIS_FOR_TT_ENCODING,\
-    //    BOOST_TYPEOF_REGISTER_ARGUMENTS_FOR_TT_ENCODING)(Name,Params,ID)
-
-#define BOOST_TYPEOF_REGISTER_TEMPLATE_TEMPLATE(Name,Params)\
-    namespace boost{namespace type_of{namespace{\
-    BOOST_TYPEOF_REGISTER_TEMPLATE_TEMPLATE_IMPL(Name,Params,BOOST_TYPEOF_UNIQUE_ID())\
-    }}}
-
-//Define template template params
-#define BOOST_TYPEOF_REGISTER_THIS_FOR_TT_ENCODING(Name,Params,ID)\
-    template<typename V,BOOST_TYPEOF_EXPAND_TYPE(BOOST_TYPEOF_TEMPLATE_PARAM(Params)) T>\
-    struct BOOST_TYPEOF_TEMPLATE_TEMPLATE_NAME_IMPL(encode_template,Params);\
-    template<typename V>\
-    struct BOOST_TYPEOF_TEMPLATE_TEMPLATE_NAME_IMPL(encode_template,Params)<V,Name>\
-    : BOOST_TYPEOF_PUSH_BACK<V, mpl::size_t<ID> >\
-    {};\
-    template<class Iter> struct decode_template_impl<mpl::size_t<ID>, Iter> \
-    {\
-        typedef BOOST_TYPEOF_TEMPLATE_TEMPLATE_NAME_IMPL(encode_template,Params)<\
-            boost::mpl::vector0<>,\
-            Name\
-        > type;\
-        typedef Iter iter;\
-    };   
-
-//Check if one of the arguments needs to be predeclared
-#define BOOST_TYPEOF_REGISTER_ARGUMENTS_FOR_TT_ENCODING(Name,Params,ID)\
-    BOOST_TYPEOF_DEFINE_TEMPLATE_TEMPLATE_ARGUMENTS(Name,Params,ID,(_)BOOST_TYPEOF_GET_TEMPLATE_TEMPLATE_SEQUENCES(Params))
-
-#define BOOST_TYPEOF_DEFINE_TEMPLATE_TEMPLATE_ARGUMENTS(Name,Params,ID,TTParams)\
-    BOOST_PP_CAT(\
-        BOOST_TYPEOF_DEFINE_TEMPLATE_TEMPLATE_ARGUMENTS_,\
-        BOOST_PP_NOT_EQUAL(BOOST_PP_SEQ_SIZE(TTParams),1)\
-    )(Name,Params,ID,TTParams)
-
-#define BOOST_TYPEOF_DEFINE_TEMPLATE_TEMPLATE_ARGUMENTS_0(Name,Params,ID,TTParams)\
-
-//We have template template arguments, we need to implement a special decoding for this.
-#define BOOST_TYPEOF_DEFINE_TEMPLATE_TEMPLATE_ARGUMENTS_1(Name,Params,ID,TTParams)\
-    BOOST_PP_SEQ_FOR_EACH(BOOST_TYPEOF_DEFINE_TEMPLATE_TEMPLATE_ARGUMENT,_,BOOST_PP_SEQ_POP_FRONT(TTParams))\
-    template<typename T\
-        BOOST_TYPEOF_SEQ_ENUM_TRAILING(Params,BOOST_TYPEOF_REGISTER_COMPACT_TEMPLATE_PARAM_PAIR)\
-    >\
-    struct BOOST_TYPEOF_TEMPLATE_TEMPLATE_NAME_IMPL(decode_template,Params);\
-    template<\
-        BOOST_TYPEOF_SEQ_ENUM(Params,BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_PAIR)\
-    >\
-    struct BOOST_TYPEOF_TEMPLATE_TEMPLATE_NAME_IMPL(decode_template,Params)<\
-    boost::mpl::size_t<ID> BOOST_PP_ENUM_TRAILING(\
-        BOOST_PP_SEQ_SIZE(Params),\
-        BOOST_TYPEOF_WRAPPED_TYPE,\
-        Params\
-    ) > {\
-        typedef Name< BOOST_PP_ENUM_PARAMS(BOOST_PP_SEQ_SIZE(Params), P) > type;\
-    };
-
-//Make the signature for this template template argument available.
-#define BOOST_TYPEOF_DEFINE_TEMPLATE_TEMPLATE_ARGUMENT(r,data,elem)\
-    template<typename V,BOOST_TYPEOF_EXPAND_TYPE(BOOST_TYPEOF_MAKE_OBJ(elem)) T>\
-    struct BOOST_TYPEOF_TEMPLATE_TEMPLATE_NAME(encode_template,BOOST_TYPEOF_MAKE_OBJ(elem));
-
-//This typedef is used inside decode_type_impl as a replacement for typedef Name<P0,P1,...PN> type;
-#define BOOST_TYPEOF_REGISTER_TEMPLATE_TEMPLATE_TYPE(Name,Params,ID)\
-    typename BOOST_TYPEOF_TEMPLATE_TEMPLATE_NAME_IMPL(decode_template,Params)<boost::mpl::size_t<ID> BOOST_PP_ENUM_TRAILING_PARAMS(BOOST_PP_SEQ_SIZE(Params), P) >::type
-
-#define BOOST_TYPEOF_REGISTER_COMPACT_TEMPLATE_PARAM_PAIR(z,n,elem)\
-   BOOST_TYPEOF_COMPACT_TYPE(BOOST_TYPEOF_MAKE_OBJ(elem)) BOOST_PP_CAT(P, n)
+    BOOST_PP_IF(BOOST_TYPEOF_HAS_TEMPLATE_TEMPLATE_ARGUMENTS(Params),\
+        BOOST_TYPEOF_REGISTER_NOTHING,\
+        BOOST_TYPEOF_REGISTER_TYPE_FOR_TEMPLATE_TEMPLATE)(Name,Params,ID)
 
 #endif //BOOST_TYPEOF_COMPLIANT_TEMPLATE_TEMPLATE_PARAM_HPP_INCLUDED

@@ -117,6 +117,4 @@ namespace boost { namespace type_of{\
    BOOST_TYPEOF_DECODE_TEMPLATE_X_IMPL(template_type,seq,BOOST_TYPEOF_UNIQUE_ID())\
 }}//namespace boost::type_of
 
-#define BOOST_TYPEOF_REGISTER_TEMPLATE_WITH_DEFAULTS_X(Name, Params)
-
 #endif //BOOST_VINTAGE_TEMPLATE_ENCODING_HPP_INCLUDED

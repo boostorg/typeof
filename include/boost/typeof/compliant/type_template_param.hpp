@@ -20,6 +20,4 @@
     typedef typename BOOST_PP_CAT(d, n)::type BOOST_PP_CAT(P, n);\
     typedef typename BOOST_PP_CAT(d, n)::iter BOOST_PP_CAT(iter, BOOST_PP_INC(n));
 
-#define BOOST_TYPEOF_EXPAND_TYPE_PARAM(Param) BOOST_TYPEOF_PARAM_GETTYPE(Param)
-
 #endif//BOOST_TYPEOF_COMPLIANT_TYPE_TEMPLATE_PARAM_HPP_INCLUDED
