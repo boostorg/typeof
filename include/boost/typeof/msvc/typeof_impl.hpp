@@ -88,7 +88,7 @@ namespace boost
         };
 
         template<typename T, int ID>
-        struct msvc_typeof : public msvc_typeof_base<ID>
+        struct msvc_typeof : msvc_typeof_base<ID>
         {
             template<>
             struct id2type_impl<true> 
@@ -98,23 +98,37 @@ namespace boost
         };
 # else 
         template<int ID>
-        class msvc_typeof_base
+        struct msvc_typeof_base
         {
-        public:
-            class id2type;
+
+            struct id2type;
         };
 
         template<typename T, int ID>
-        class msvc_typeof : public msvc_typeof_base<ID>
+        struct msvc_typeof : msvc_typeof_base<ID>
         {
-        public:
-            class msvc_typeof_base<ID>::id2type // This uses nice VC6-VC7 bugfeature
+            struct msvc_typeof_base<ID>::id2type // This uses nice VC6-VC7 bugfeature
             {
-            public:
                 typedef T type;
             };
         };
 # endif
+        template<int ID>
+        struct msvc_typeid_wrapper {
+            typedef typename msvc_typeof_base<ID>::id2type id2type;
+            typedef typename id2type::type type;
+        };
+        //Workaround for ETI-bug for VC6 and VC7
+        template<>
+        struct msvc_typeid_wrapper<1> {
+            typedef msvc_typeid_wrapper<1> type;
+        };
+        //Workaround for ETI-bug for VC7.1
+        template<>
+        struct msvc_typeid_wrapper<4> {
+            typedef msvc_typeid_wrapper<4> type;
+        };
+
         //Tie it all together
         template<typename T>
         struct encode_type
@@ -135,7 +149,7 @@ namespace boost
 }
 
 # define BOOST_TYPEOF(expr) \
-    boost::type_of::msvc_typeof_base<sizeof(*boost::type_of::encode_start(expr))>::id2type::type
+    boost::type_of::msvc_typeid_wrapper<sizeof(*boost::type_of::encode_start(expr))>::type
 
 # define BOOST_TYPEOF_TPL(expr) typename BOOST_TYPEOF(expr)
 
