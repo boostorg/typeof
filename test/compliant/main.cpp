@@ -123,15 +123,15 @@ BOOST_TYPEOF_REGISTER_TYPE(noncop)
 
 main()
 {
-//#pragma message("integral...")
-//    {
-//        with_integrals<int, 5, 4, 3, 2, true, false, 5> expr;
-//        BOOST_AUTO(v, expr);
-//        v;
-//        with_integrals<int, 1, 1, 0, ULONG_MAX, false, true, 0> expr1;
-//        BOOST_AUTO(v1, expr1);
-//        v1;
-//    }
+#pragma message("integral...")
+    {
+        with_integrals<int, 5, 4, 3, 2, true, false, 5> expr;
+        BOOST_AUTO(v, expr);
+        v;
+        with_integrals<int, 1, 1, 0, ULONG_MAX, false, true, 0> expr1;
+        BOOST_AUTO(v1, expr1);
+        v1;
+    }
 #pragma message("Noncopyable...")
     {
         //BOOST_AUTO(v, foo_nc());
