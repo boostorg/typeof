@@ -99,6 +99,22 @@ BOOST_TYPEOF_REGISTER_TEMPLATE_X(with_integrals,
 BOOST_STATIC_ASSERT((typeof_test<with_integrals<int, 5, 4, -3, 2, true, false, -1, 5> >::value));
 BOOST_STATIC_ASSERT((typeof_test<with_integrals<int, 1, 1, 0, ULONG_MAX, false, true, -1, 0> >::value));
 
+#ifdef BOOST_TYPEOF_COMPLIANT
+#pragma message("template template encoding...")
+
+namespace template_template {
+    template<template<typename,unsigned int> class P0,int P1>
+    struct tt_test {};
+
+    template<typename A,unsigned int B> 
+    struct C {};
+}
+
+BOOST_TYPEOF_REGISTER_TEMPLATE_X(template_template::tt_test,(BOOST_TYPEOF_TEMPLATE( (typename)(unsigned int) ))(int))
+BOOST_TYPEOF_REGISTER_TEMPLATE_X(template_template::C,(typename)(unsigned int))
+BOOST_STATIC_ASSERT((typeof_test<template_template::tt_test<template_template::C,4> >::value));
+#endif 
+
 #pragma message("namespace-level function pointers...")
 BOOST_STATIC_ASSERT(typeof_test<double(*)()>::value);
 BOOST_STATIC_ASSERT(typeof_test<double(*)(int, double, short, char*, bool, char, float, long, unsigned short)>::value);
