@@ -2,6 +2,8 @@
 // Use, modification and distribution is subject to the Boost Software
 // License, Version 1.0. (http://www.boost.org/LICENSE_1_0.txt)
 
+#include <boost/typeof/compliant/encode_decode_params.hpp>
+
 // member functions
 
 template<class V, class T, class R BOOST_PP_ENUM_TRAILING_PARAMS(n, class P)> 

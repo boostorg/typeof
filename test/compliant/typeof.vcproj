@@ -270,6 +270,9 @@
 					RelativePath="..\..\..\..\boost\typeof\compliant\encode_decode.hpp">
 				</File>
 				<File
+					RelativePath="..\..\..\..\boost\typeof\compliant\encode_decode_params.hpp">
+				</File>
+				<File
 					RelativePath="..\..\..\..\boost\typeof\compliant\int_encoding.hpp">
 				</File>
 				<File

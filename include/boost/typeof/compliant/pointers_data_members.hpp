@@ -5,7 +5,7 @@
 #ifndef BOOST_TYPEOF_COMPLIANT_POINTERS_DATA_MEMBERS_HPP_INCLUDED
 #define BOOST_TYPEOF_COMPLIANT_POINTERS_DATA_MEMBERS_HPP_INCLUDED
 
-#include <boost/typeof/compliant/concatenate.hpp>
+#include <boost/typeof/compliant/encode_decode_params.hpp>
 #include <boost/typeof/compliant/encode_decode.hpp>
 
 #include BOOST_TYPEOF_INCREMENT_REGISTRATION_GROUP()

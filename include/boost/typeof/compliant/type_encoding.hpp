@@ -5,8 +5,6 @@
 #ifndef BOOST_TYPEOF_COMPLIANT_TYPE_ENCODING_HPP_INCLUDED
 #define BOOST_TYPEOF_COMPLIANT_TYPE_ENCODING_HPP_INCLUDED
 
-#include <boost/typeof/compliant/concatenate.hpp>
-
 #define BOOST_TYPEOF_REGISTER_TYPE_IMPL(T, Id)                          \
                                                                         \
     template<class V> struct encode_type_impl<V, T >                    \

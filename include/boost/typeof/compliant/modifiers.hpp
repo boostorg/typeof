@@ -6,7 +6,6 @@
 #define BOOST_TYPEOF_COMPLIANT_MODIFIERS_HPP_INCLUDED
 
 #include <boost/typeof/compliant/encode_decode.hpp>
-#include <boost/typeof/compliant/concatenate.hpp>
 
 #include BOOST_TYPEOF_INCREMENT_REGISTRATION_GROUP()
 
