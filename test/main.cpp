@@ -28,8 +28,13 @@
 #include <boost/typeof/std/functional.hpp>
 #include <boost/typeof/std/valarray.hpp>
 #include <boost/typeof/std/locale.hpp>
+#include <boost/typeof/std/iostream.hpp>
+#include <boost/typeof/std/streambuf.hpp>
+#include <boost/typeof/std/istream.hpp>
+#include <boost/typeof/std/ostream.hpp>
+#include <boost/typeof/std/sstream.hpp>
+#include <boost/typeof/std/fstream.hpp>
 #include <boost/typeof/std/iterator.hpp>
-#include <boost/typeof/std/iosfwd.hpp>
 
 #include BOOST_TYPEOF_INCREMENT_REGISTRATION_GROUP()
 
