@@ -22,7 +22,7 @@
     typedef typename decode##n::iter BOOST_PP_CAT(iter, BOOST_PP_INC(n));
 
 #define BOOST_TYPEOF_DECODE_PARAMS(n)\
-    BOOST_PP_REPEAT(n, BOOST_TYPEOF_DECODE_PARAM, BOOST_PP_EMPTY());
+    BOOST_PP_REPEAT(n, BOOST_TYPEOF_DECODE_PARAM, ~)
 
 // The P0, P1, ... PN are encoded and added to V 
 
@@ -34,7 +34,7 @@
 
 #define BOOST_TYPEOF_ENCODE_PARAMS(n, ID)                                   \
     BOOST_PP_REPEAT(n, BOOST_TYPEOF_ENCODE_PARAMS_BEGIN, BOOST_PP_EMPTY())  \
-    typename BOOST_TYPEOF_PUSH_BACK<V, mpl::size_t<ID> >::type                     \
+    typename BOOST_TYPEOF_PUSH_BACK<V, mpl::size_t<ID> >::type              \
     BOOST_PP_REPEAT(n, BOOST_TYPEOF_ENCODE_PARAMS_END, BOOST_PP_EMPTY())
 
 // constant-time push_back for mpl::vector
