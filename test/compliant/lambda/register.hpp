@@ -25,6 +25,6 @@ BOOST_TYPEOF_REGISTER_TYPE(boost::lambda::greater_action)
 BOOST_TYPEOF_REGISTER_TYPE(boost::lambda::less_action)
 BOOST_TYPEOF_REGISTER_TYPE(boost::lambda::and_action)
 BOOST_TYPEOF_REGISTER_TYPE(boost::lambda::subscript_action)
-BOOST_TYPEOF_REGISTER_TEMPLATE_X(boost::lambda::placeholder, (int))
+BOOST_TYPEOF_REGISTER_TEMPLATE(boost::lambda::placeholder, (int))
 
 #endif//LAMBDA_REGISTER_HPP_INCLUDED

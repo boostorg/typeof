@@ -65,8 +65,15 @@ namespace template_template {
     struct C {};
 }
 
-BOOST_TYPEOF_REGISTER_TEMPLATE_X(template_template::tt_test,(BOOST_TYPEOF_TEMPLATE( (typename)(unsigned int) ))(int))
-BOOST_TYPEOF_REGISTER_TEMPLATE_X(template_template::C,(typename)(unsigned int))
+BOOST_TYPEOF_REGISTER_TEMPLATE(template_template::tt_test,
+                               (BOOST_TYPEOF_TEMPLATE((typename)(unsigned int)))
+                               (int)
+                               )
+
+BOOST_TYPEOF_REGISTER_TEMPLATE(template_template::C,
+                               (typename)
+                               (unsigned int)
+                               )
 
 BOOST_STATIC_ASSERT((typeof_test<template_template::tt_test<template_template::C,4> >::value));
 #endif 
@@ -100,7 +107,7 @@ template<class T, char c, unsigned short us,
     int i, unsigned long ul, bool b1, bool b2, signed char sc, unsigned u> struct with_integrals
 {};
 
-BOOST_TYPEOF_REGISTER_TEMPLATE_X(with_integrals, 
+BOOST_TYPEOF_REGISTER_TEMPLATE(with_integrals, 
     (class)
     (char)
     (unsigned short)
@@ -249,18 +256,18 @@ namespace test_integral
     {};
 }
 
-BOOST_TYPEOF_REGISTER_TEMPLATE_X(test_integral::foo, 
-                                 (BOOST_TYPEOF_INTEGRAL(test_integral::E))
-                                );
+BOOST_TYPEOF_REGISTER_TEMPLATE(test_integral::foo, 
+                               (BOOST_TYPEOF_INTEGRAL(test_integral::E))
+                               );
 
-BOOST_TYPEOF_REGISTER_TEMPLATE_X(test_integral::blah, 
-                                (BOOST_TYPEOF_INTEGRAL(unsigned long int))
-                                );
+BOOST_TYPEOF_REGISTER_TEMPLATE(test_integral::blah, 
+                               (BOOST_TYPEOF_INTEGRAL(unsigned long int))
+                               );
 
-BOOST_TYPEOF_REGISTER_TEMPLATE_X(test_integral::bar, 
-                                (class)
-                                (BOOST_TYPEOF_INTEGRAL(P0))
-                                );
+BOOST_TYPEOF_REGISTER_TEMPLATE(test_integral::bar,
+                               (class)
+                               (BOOST_TYPEOF_INTEGRAL(P0))
+                               );
 
 namespace test_integral
 {

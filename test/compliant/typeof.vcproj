@@ -134,12 +134,6 @@
 			</File>
 			<File
 				RelativePath=".\test_compliant.cpp">
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						GeneratePreprocessedFile="0"/>
-				</FileConfiguration>
 			</File>
 		</Filter>
 		<Filter
@@ -232,13 +226,6 @@
 			Filter="">
 			<File
 				RelativePath=".\lambda\register.hpp">
-			</File>
-		</Filter>
-		<Filter
-			Name="stl"
-			Filter="">
-			<File
-				RelativePath="..\stl\register.hpp">
 			</File>
 		</Filter>
 		<Filter

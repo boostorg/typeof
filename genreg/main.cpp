@@ -33,7 +33,7 @@ string name2path(const string& name, const string& ext)
 string copyright(const string& master)
 {
     return
-        "// Copyright (C) 2004 " + master + ".\n"
+        "// Copyright (C) 2005 " + master + ".\n"
         "// Use, modification and distribution is subject to the Boost Software\n"
         "// License, Version 1.0. (http://www.boost.org/LICENSE_1_0.txt)\n\n"
         "// This is a generated file -- please do not modify by hand."
@@ -114,7 +114,7 @@ public:
         else if (what == "TEMPLATE_X")
         {
             string params = getTokenAt<string>(tokens, 2);
-            m_out << "BOOST_TYPEOF_REGISTER_TEMPLATE_X(" << name << ", " << params << ")" << endl; 
+            m_out << "BOOST_TYPEOF_REGISTER_TEMPLATE(" << name << ", " << params << ")" << endl; 
         }
         else
         {

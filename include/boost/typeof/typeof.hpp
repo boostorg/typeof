@@ -5,6 +5,10 @@
 #ifndef BOOST_TYPEOF_TYPEOF_HPP_INCLUDED
 #define BOOST_TYPEOF_TYPEOF_HPP_INCLUDED
 
+#include <boost/preprocessor/cat.hpp>
+#include <boost/preprocessor/seq/cat.hpp>
+#include <boost/preprocessor/expand.hpp>
+
 // implementation
 
 #include <boost/typeof/config.hpp>
@@ -50,20 +54,8 @@
 #	include <boost/typeof/vintage/template_encoding.hpp>
 #else//BOOST_TYPEOF_NATIVE
 #	define BOOST_TYPEOF_REGISTER_TYPE(x)
-#	define BOOST_TYPEOF_REGISTER_TEMPLATE_X(x, params)
+#	define BOOST_TYPEOF_REGISTER_TEMPLATE(x, params)
 #endif
-
-#define BOOST_TYPEOF_REGISTER_TEMPLATE_TYPE_PARAM_(z, n, data) (typename)
-
-#define BOOST_TYPEOF_REGISTER_TEMPLATE(Name, n)\
-    BOOST_TYPEOF_REGISTER_TEMPLATE_X(Name,\
-        BOOST_PP_REPEAT(n, BOOST_TYPEOF_REGISTER_TEMPLATE_TYPE_PARAM_, ~)\
-    )
-
-#define BOOST_TYPEOF_REGISTER_TEMPLATE_WITH_DEFAULTS(Name, n)\
-    BOOST_TYPEOF_REGISTER_TEMPLATE_WITH_DEFAULTS_X(Name,\
-        BOOST_PP_REPEAT(n, BOOST_TYPEOF_REGISTER_TEMPLATE_TYPE_PARAM_, ~)\
-    )
 
 #define BOOST_TYPEOF_UNIQUE_ID()\
     BOOST_TYPEOF_REGISTRATION_GROUP * 0x10000 + __LINE__

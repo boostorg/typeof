@@ -45,11 +45,12 @@
 
 //Branch the decoding
 #define BOOST_TYPEOF_TYPEDEF_DECODED_TYPE(Name,Params)\
-    BOOST_PP_IF(BOOST_TYPEOF_HAS_TEMPLATE_TEMPLATE_ARGUMENTS(Params),\
+    BOOST_PP_IF(BOOST_TYPEOF_HAS_TEMPLATES(Params),\
         BOOST_TYPEOF_TYPEDEF_DECODED_TEMPLATE_TEMPLATE_TYPE,\
         BOOST_TYPEOF_TYPEDEF_DECODED_TEMPLATE_TYPE)(Name,Params)
 
-#define BOOST_TYPEOF_REGISTER_TEMPLATE_X_IMPL(Name, Params, Size, ID)\
+#define BOOST_TYPEOF_REGISTER_TEMPLATE_IMPL(Name, Params, Size, ID)\
+    namespace boost{namespace type_of{namespace{\
     BOOST_TYPEOF_REGISTER_TEMPLATE_TEMPLATE_IMPL(Name, Params, ID)\
     template<class V\
         BOOST_TYPEOF_SEQ_ENUM_TRAILING(Params, BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_PAIR)\
@@ -67,21 +68,7 @@
         BOOST_PP_SEQ_FOR_EACH_I(BOOST_TYPEOF_REGISTER_TEMPLATE_DECODE_PARAM, ~, Params)\
         BOOST_TYPEOF_TYPEDEF_DECODED_TYPE(Name, Params)\
         typedef BOOST_PP_CAT(iter, Size) iter;\
-    };
-
-#define BOOST_TYPEOF_OBJECT_MAKER(s, data, elem)\
-    BOOST_TYPEOF_MAKE_OBJ(elem)
-
-#define BOOST_TYPEOF_TRANSFORM_PARAMS(Params)\
-    BOOST_PP_SEQ_TRANSFORM(BOOST_TYPEOF_OBJECT_MAKER, ~, Params)
-
-#define BOOST_TYPEOF_REGISTER_TEMPLATE_X(Name, Params)\
-    namespace boost{namespace type_of{namespace{\
-        BOOST_TYPEOF_REGISTER_TEMPLATE_X_IMPL(\
-            Name,\
-            BOOST_TYPEOF_TRANSFORM_PARAMS(Params),\
-            BOOST_PP_SEQ_SIZE(Params),\
-            BOOST_TYPEOF_UNIQUE_ID())\
+    };\
     }}}
 
 #endif//BOOST_TYPEOF_COMPLIANT_TEMPLATE_ENCODING_HPP_INCLUDED

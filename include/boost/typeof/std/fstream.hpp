@@ -1,4 +1,4 @@
-// Copyright (C) 2004 Arkadiy Vertleyb, Peder Holt.
+// Copyright (C) 2005 Arkadiy Vertleyb, Peder Holt.
 // Use, modification and distribution is subject to the Boost Software
 // License, Version 1.0. (http://www.boost.org/LICENSE_1_0.txt)
 
