@@ -1,3 +1,5 @@
+#pragma warning(disable:4512)
+
 #include <boost/typeof/typeof.hpp>
 
 #include "spirit/register.hpp"
@@ -13,7 +15,9 @@ void test_lambda()
 
     BOOST_AUTO(fun, _1 > 15 && _2 < 20);
     int n = 19;
-    //assert(fun(n, n));
+    
+    if (!fun(n, n))
+        throw 0;
 
     std::cout << typeid(fun).name() << std::endl;
 }
@@ -54,7 +58,8 @@ void test_spirit2()
         "/*this is a comment*/\n//this is a c++ comment\n\n",
         *skipper).full;
 
-    //assert(success);
+    if (!success)
+        throw 0;
 }
 
 

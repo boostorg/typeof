@@ -70,6 +70,9 @@ BOOST_STATIC_ASSERT(typeof_test<double(*)(int, double, short, char*, bool, char,
 BOOST_STATIC_ASSERT(typeof_test<void(*)()>::value);
 BOOST_STATIC_ASSERT(typeof_test<void(*)(int, double, short, char*, bool, char, float, long, unsigned short)>::value);
 
+#pragma message("function references...")
+BOOST_STATIC_ASSERT(typeof_test<int&>::value);
+
 #pragma message("member functions...")
 BOOST_STATIC_ASSERT(typeof_test<double(x::*)()>::value);
 BOOST_STATIC_ASSERT(typeof_test<double(x::*)(int, double, short, char*, bool, char, float, long, unsigned short)>::value);
@@ -78,7 +81,6 @@ BOOST_STATIC_ASSERT(typeof_test<void(x::*)(int, double, short, char*, bool, char
 BOOST_STATIC_ASSERT(typeof_test<double(x::*)()const>::value);
 BOOST_STATIC_ASSERT(typeof_test<double(x::*)()volatile>::value);
 BOOST_STATIC_ASSERT(typeof_test<double(x::*)()volatile const>::value);
-//BOOST_STATIC_ASSERT(typeof_test<static double(x::*)()volatile const>::value);
 
 #pragma message("data members...")
 BOOST_STATIC_ASSERT(typeof_test<double x::*>::value);
@@ -130,6 +132,7 @@ struct noncopiable_test
 #else
         BOOST_AUTO(const& v, foo());
 #endif
+        v; // to avoid warning
     }
 };
 
