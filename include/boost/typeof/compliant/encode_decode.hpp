@@ -11,16 +11,22 @@ namespace boost
     {
         namespace
         {
-            template<class V, class Type_Not_Registered_With_Typeof_System> struct encode_type_impl;
-            template<class T, class Iter> struct decode_type_impl;
+            template<class V, class Type_Not_Registered_With_Typeof_System> 
+            struct encode_type_impl;
+            
+            template<class T, class Iter> 
+            struct decode_type_impl;
         }
 
-        template<class V, class T> struct encode_type 
-            : encode_type_impl<V, T>
+        template<class V, class T> 
+        struct encode_type : encode_type_impl<V, T>
         {};
 
-        template<class Iter> struct decode_type
-            : decode_type_impl<typename mpl::deref<Iter>::type, typename mpl::next<Iter>::type>
+        template<class Iter> 
+        struct decode_type : decode_type_impl<
+            typename mpl::deref<Iter>::type,
+            typename mpl::next<Iter>::type
+        >
         {};
     }
 }
