@@ -15,7 +15,7 @@
 #	include <boost/typeof/compliant/typeof_impl.hpp>
 
 #elif defined(BOOST_TYPEOF_VINTAGE)
-// include something to define BOOST_TYPEOF, BOOST_TYPEOF_TPL
+#	include <boost/typeof/vintage/typeof_impl.hpp>
 
 #else//BOOST_TYPEOF_NATIVE
 
@@ -27,14 +27,12 @@
 #endif
 
 // auto
-
 #define BOOST_AUTO(Var, Expr) BOOST_TYPEOF(Expr) Var(Expr)
 #define BOOST_AUTO_TPL(Var, Expr) BOOST_TYPEOF_TPL(Expr) Var(Expr)
-
 // lvalue typeof
 
 #if defined(BOOST_TYPEOF_VINTAGE)
-// include lvalue_typeof definition
+#	include <boost/typeof/vintage/lvalue_typeof.hpp>
 #else
 #	include <boost/typeof/compliant/lvalue_typeof.hpp>
 #endif
@@ -45,7 +43,8 @@
 #	include <boost/typeof/compliant/type_encoding.hpp>
 #	include <boost/typeof/compliant/template_encoding.hpp>
 #elif defined(BOOST_TYPEOF_VINTAGE)
-// include type encoding definitions
+#	include <boost/typeof/vintage/type_encoding.hpp>
+#	include <boost/typeof/vintage/template_encoding.hpp>
 #else//BOOST_TYPEOF_NATIVE
 #	define BOOST_TYPEOF_REGISTER_TYPE(x)
 #	define BOOST_TYPEOF_REGISTER_TEMPLATE_X(x, params)
@@ -76,7 +75,10 @@
 #	include <boost/typeof/register_functions.hpp>
 
 #elif defined(BOOST_TYPEOF_VINTAGE)
-//	include stuff here
+#	include <boost/typeof/vintage/modifiers.hpp>
+#	include <boost/typeof/vintage/pointers_data_members.hpp>
+#	define BOOST_PP_FILENAME_1 <boost/typeof/vintage/register_functions_iterate.hpp>
+#	include <boost/typeof/register_functions.hpp>
 #else //BOOST_TYPEOF_NATIVE
 #endif
 

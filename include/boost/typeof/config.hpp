@@ -5,6 +5,8 @@
 #ifndef BOOST_TYPEOF_CONFIG_HPP_INCLUDED
 #define BOOST_TYPEOF_CONFIG_HPP_INCLUDED
 
+#include <boost/config.hpp>
+
 #if !defined(BOOST_TYPEOF_COMPLIANT) && !defined(BOOST_TYPEOF_VINTAGE) && !defined(BOOST_TYPEOF_NATIVE) 
 
 #	if defined __GNUC__
@@ -13,7 +15,7 @@
 #	elif defined  __MWERKS__
 #		define BOOST_TYPEOF_NATIVE
 
-#	elif defined BOOST_TYPEOF_NO_PARTIAL_TEMPLATE_SPECIALIZATION
+#	elif defined BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
 #		define BOOST_TYPEOF_VINTAGE
 
 #	else
@@ -22,5 +24,10 @@
 #	endif
 
 #endif
+
+#ifdef BOOST_TYPEOF_VINTAGE
+#include <boost/typeof/vintage/config.hpp>
+#endif
+
 
 #endif//BOOST_TYPEOF_CONFIG_HPP_INCLUDED
