@@ -66,8 +66,7 @@ namespace template_template {
 }
 
 BOOST_TYPEOF_REGISTER_TEMPLATE_X(template_template::tt_test,(BOOST_TYPEOF_TEMPLATE( (typename)(unsigned int) ))(int))
-BOOST_TYPEOF_REGISTER_TEMPLATE_TEMPLATE(template_template::C,(typename)(unsigned int))
-
+BOOST_TYPEOF_REGISTER_TEMPLATE_X(template_template::C,(typename)(unsigned int))
 
 BOOST_STATIC_ASSERT((typeof_test<template_template::tt_test<template_template::C,4> >::value));
 #endif 

@@ -61,3 +61,4 @@ void test_spirit2()
     if (!success)
         throw 0;
 }
+#pragma message("done!")
