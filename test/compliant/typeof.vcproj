@@ -21,6 +21,7 @@
 				Optimization="0"
 				AdditionalIncludeDirectories="C:\boost\boost_1_32_0;..\..\..\.."
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
+				GeneratePreprocessedFile="0"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="5"
@@ -127,6 +128,12 @@
 			</File>
 			<File
 				RelativePath=".\test_compliant.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						GeneratePreprocessedFile="0"/>
+				</FileConfiguration>
 			</File>
 		</Filter>
 		<Filter
@@ -134,62 +141,78 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
 			<File
-				RelativePath="..\..\..\..\boost\typeof\compliant\concatenate.hpp">
-			</File>
-			<File
 				RelativePath="..\..\..\..\boost\typeof\config.hpp">
-			</File>
-			<File
-				RelativePath="..\..\..\..\boost\typeof\compliant\encode_decode.hpp">
 			</File>
 			<File
 				RelativePath="..\..\..\..\boost\typeof\increment_registration_group.hpp">
 			</File>
 			<File
-				RelativePath="..\..\..\..\boost\typeof\compliant\int_encoding.hpp">
-			</File>
-			<File
-				RelativePath="..\..\..\..\boost\typeof\compliant\limit_size.hpp">
-			</File>
-			<File
-				RelativePath="..\..\..\..\boost\typeof\compliant\lvalue_typeof.hpp">
-			</File>
-			<File
-				RelativePath="..\..\..\..\boost\typeof\compliant\modifiers.hpp">
-			</File>
-			<File
-				RelativePath=".\odr.hpp">
-			</File>
-			<File
-				RelativePath="..\..\..\..\boost\typeof\compliant\pointers_data_members.hpp">
+				RelativePath="..\..\..\..\boost\typeof\integral_template_param.hpp">
 			</File>
 			<File
 				RelativePath="..\..\..\..\boost\typeof\register_functions.hpp">
 			</File>
 			<File
-				RelativePath="..\..\..\..\boost\typeof\compliant\register_functions_iterate.hpp">
-			</File>
-			<File
 				RelativePath="..\..\..\..\boost\typeof\register_fundamental.hpp">
 			</File>
 			<File
-				RelativePath="..\..\..\..\boost\typeof\register_integral.hpp">
+				RelativePath="..\..\..\..\boost\typeof\template_encoding.hpp">
 			</File>
 			<File
-				RelativePath="..\..\..\..\boost\typeof\compliant\register_mem_functions.hpp">
-			</File>
-			<File
-				RelativePath="..\..\..\..\boost\typeof\compliant\template_encoding.hpp">
-			</File>
-			<File
-				RelativePath="..\..\..\..\boost\typeof\compliant\type_encoding.hpp">
+				RelativePath="..\..\..\..\boost\typeof\type_template_param.hpp">
 			</File>
 			<File
 				RelativePath="..\..\..\..\boost\typeof\typeof.hpp">
 			</File>
-			<File
-				RelativePath="..\..\..\..\boost\typeof\compliant\typeof_impl.hpp">
-			</File>
+			<Filter
+				Name="compliant"
+				Filter="">
+				<File
+					RelativePath="..\..\..\..\boost\typeof\compliant\concatenate.hpp">
+				</File>
+				<File
+					RelativePath="..\..\..\..\boost\typeof\compliant\encode_decode.hpp">
+				</File>
+				<File
+					RelativePath="..\..\..\..\boost\typeof\compliant\int_encoding.hpp">
+				</File>
+				<File
+					RelativePath="..\..\..\..\boost\typeof\compliant\integral_template_param.hpp">
+				</File>
+				<File
+					RelativePath="..\..\..\..\boost\typeof\compliant\limit_size.hpp">
+				</File>
+				<File
+					RelativePath="..\..\..\..\boost\typeof\compliant\lvalue_typeof.hpp">
+				</File>
+				<File
+					RelativePath="..\..\..\..\boost\typeof\compliant\modifiers.hpp">
+				</File>
+				<File
+					RelativePath="..\..\..\..\boost\typeof\compliant\pointers_data_members.hpp">
+				</File>
+				<File
+					RelativePath="..\..\..\..\boost\typeof\compliant\register_functions_iterate.hpp">
+				</File>
+				<File
+					RelativePath="..\..\..\..\boost\typeof\compliant\register_mem_functions.hpp">
+				</File>
+				<File
+					RelativePath="..\..\..\..\boost\typeof\compliant\template_encoding.hpp">
+				</File>
+				<File
+					RelativePath="..\..\..\..\boost\typeof\compliant\template_template_param.hpp">
+				</File>
+				<File
+					RelativePath="..\..\..\..\boost\typeof\compliant\type_encoding.hpp">
+				</File>
+				<File
+					RelativePath="..\..\..\..\boost\typeof\compliant\type_template_param.hpp">
+				</File>
+				<File
+					RelativePath="..\..\..\..\boost\typeof\compliant\typeof_impl.hpp">
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="spirit"

@@ -96,12 +96,16 @@ public:
             catch(const runtime_error&)
             {}
 
-            for (int i = nMin; i < nMax; ++i)
+            for (int i = nMin; i <= nMax; ++i)
             {
-                m_out << "BOOST_TYPEOF_REGISTER_TEMPLATE_WITH_DEFAULTS(" << name << ", " << i << ")" << endl;
+                if (i == nMin && i != nMax)
+                    m_out << "#ifdef BOOST_TYPEOF_COMPLIANT" << endl;
 
+                if (i == nMax && i != nMin)
+                    m_out << "#endif//BOOST_TYPEOF_COMPLIANT" << endl;
+
+                m_out << "BOOST_TYPEOF_REGISTER_TEMPLATE(" << name << ", " << i << ")" << endl;
             }
-            m_out << "BOOST_TYPEOF_REGISTER_TEMPLATE(" << name << ", " << nMax << ")" << endl;
         }
         else if (what == "TYPE")
         {

@@ -16,7 +16,9 @@
 #include <boost/typeof/config.hpp>
 #include <boost/typeof/vintage/encode_decode.hpp>
 #include <boost/typeof/vintage/int_encoding.hpp>
-#include <boost/typeof/register_integral.hpp>
+#include <boost/typeof/template_encoding.hpp>
+#include <boost/typeof/type_template_param.hpp>
+#include <boost/typeof/integral_template_param.hpp>
 
 //
 

@@ -2,8 +2,8 @@
 // Use, modification and distribution is subject to the Boost Software
 // License, Version 1.0. (http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef BOOST_TYPEOF_COMPLIANT_REGISTER_TEMPLATE_TEMPLATE_HPP_INCLUDED
-#define BOOST_TYPEOF_COMPLIANT_REGISTER_TEMPLATE_TEMPLATE_HPP_INCLUDED
+#ifndef BOOST_TYPEOF_COMPLIANT_TEMPLATE_TEMPLATE_PARAM_HPP_INCLUDED
+#define BOOST_TYPEOF_COMPLIANT_TEMPLATE_TEMPLATE_PARAM_HPP_INCLUDED
 
 #include <boost/preprocessor/comparison/equal.hpp>
 #include <boost/preprocessor/comparison/not_equal.hpp>
@@ -125,10 +125,16 @@ namespace boost{namespace type_of {namespace {
 
 //Define template template arguments
 #define BOOST_TYPEOF_REGISTER_TEMPLATE_TEMPLATE_IMPL(Name,Params,ID)\
-    BOOST_PP_IF(BOOST_TYPEOF_SUPPORT_TEMPLATE_TEMPLATE_ENCODING(Params),\
-        BOOST_TYPEOF_REGISTER_THIS_FOR_TT_ENCODING,\
-        BOOST_TYPEOF_REGISTER_ARGUMENTS_FOR_TT_ENCODING)(Name,Params,ID)
+    BOOST_TYPEOF_REGISTER_THIS_FOR_TT_ENCODING(Name,Params,ID)
 
+    //BOOST_PP_IF(BOOST_TYPEOF_SUPPORT_TEMPLATE_TEMPLATE_ENCODING(Params),\
+    //    BOOST_TYPEOF_REGISTER_THIS_FOR_TT_ENCODING,\
+    //    BOOST_TYPEOF_REGISTER_ARGUMENTS_FOR_TT_ENCODING)(Name,Params,ID)
+
+#define BOOST_TYPEOF_REGISTER_TEMPLATE_TEMPLATE(Name,Params)\
+    namespace boost{namespace type_of{namespace{\
+    BOOST_TYPEOF_REGISTER_TEMPLATE_TEMPLATE_IMPL(Name,Params,BOOST_TYPEOF_UNIQUE_ID())\
+    }}}
 
 //Define template template params
 #define BOOST_TYPEOF_REGISTER_THIS_FOR_TT_ENCODING(Name,Params,ID)\
@@ -187,8 +193,7 @@ namespace boost{namespace type_of {namespace {
 #define BOOST_TYPEOF_REGISTER_TEMPLATE_TEMPLATE_TYPE(Name,Params,ID)\
     typename BOOST_TYPEOF_TEMPLATE_TEMPLATE_NAME_IMPL(decode_template,Params)<boost::mpl::size_t<ID> BOOST_PP_ENUM_TRAILING_PARAMS(BOOST_PP_SEQ_SIZE(Params), P) >::type
 
-
 #define BOOST_TYPEOF_REGISTER_COMPACT_TEMPLATE_PARAM_PAIR(z,n,elem)\
    BOOST_TYPEOF_COMPACT_TYPE(BOOST_TYPEOF_MAKE_OBJ(elem)) BOOST_PP_CAT(P, n)
 
-#endif //BOOST_TYPEOF_COMPLIANT_REGISTER_TEMPLATE_TEMPLATE_HPP_INCLUDED
+#endif //BOOST_TYPEOF_COMPLIANT_TEMPLATE_TEMPLATE_PARAM_HPP_INCLUDED
