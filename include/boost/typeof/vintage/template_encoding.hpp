@@ -12,6 +12,8 @@
 #include <boost/preprocessor/arithmetic/sub.hpp>
 #include <boost/preprocessor/arithmetic/dec.hpp>
 #include <boost/preprocessor/seq/for_each.hpp>
+#include <boost/preprocessor/seq/for_each_i.hpp>
+//#include <boost/preprocessor/seq.hpp>
 
 #include <boost/typeof/config.hpp>
 #include <boost/typeof/vintage/encode_decode.hpp>

@@ -15,7 +15,7 @@
 #include <boost/typeof/compliant/integral_template_param.hpp>
 #include <boost/typeof/compliant/template_template_param.hpp>
 
-#include <boost/preprocessor/seq/transform.hpp>
+#include <boost/preprocessor/seq/for_each_i.hpp>
 
 #define BOOST_TYPEOF_PLACEHOLDER(z, n, elem)\
     BOOST_TYPEOF_VIRTUAL(PLACEHOLDER, elem)(elem)

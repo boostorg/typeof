@@ -3,13 +3,16 @@
 // Use, modification and distribution is subject to the Boost Software
 // License, Version 1.0. (http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef BOOST_TYPEOF_REGISTER_INTEGRAL_HPP_INCLUDED
-#define BOOST_TYPEOF_REGISTER_INTEGRAL_HPP_INCLUDED
+#ifndef BOOST_TYPEOF_TEMPLATE_ENCODING_HPP_INCLUDED
+#define BOOST_TYPEOF_TEMPLATE_ENCODING_HPP_INCLUDED
 
 #include <boost/preprocessor/cat.hpp>
-#include <boost/preprocessor/seq.hpp>
 #include <boost/preprocessor/repetition/enum_trailing.hpp>
-#include <boost/preprocessor/expand.hpp>
+#include <boost/preprocessor/control/iif.hpp>
+#include <boost/preprocessor/detail/is_unary.hpp>
+#include <boost/preprocessor/repetition/repeat.hpp>
+#include <boost/preprocessor/tuple/eat.hpp>
+#include <boost/preprocessor/seq/transform.hpp>
 
 // The template parameter description, entered by the user,
 // is converted into a polymorphic "object" 
@@ -39,41 +42,15 @@
 #define BOOST_TYPEOF_MAKE_OBJS(Params)\
     BOOST_PP_SEQ_TRANSFORM(BOOST_TYPEOF_OBJECT_MAKER, ~, Params)
 
+// As suggested by Paul Mensonides:
+
 #define BOOST_TYPEOF_TOSEQ(x)\
-    BOOST_PP_SEQ_CAT(\
-        (BOOST_TYPEOF_STEP3)\
-        (BOOST_PP_CAT(BOOST_TYPEOF_STEP2, BOOST_PP_EXPAND(BOOST_TYPEOF_STEP1 x)))\
-    )
+    BOOST_PP_IIF(\
+        BOOST_PP_IS_UNARY(x),\
+        x BOOST_PP_TUPLE_EAT(3), BOOST_PP_REPEAT\
+    )(x, BOOST_TYPEOF_TOSEQ_2, ~)
 
-#define BOOST_TYPEOF_STEP1(x) _(x)
-#define BOOST_TYPEOF_STEP2BOOST_TYPEOF_STEP1
-#define BOOST_TYPEOF_STEP3BOOST_TYPEOF_STEP2_
-
-#define BOOST_TYPEOF_STEP31 (class)
-#define BOOST_TYPEOF_STEP32 BOOST_TYPEOF_STEP31(class)
-#define BOOST_TYPEOF_STEP33 BOOST_TYPEOF_STEP32(class)
-#define BOOST_TYPEOF_STEP34 BOOST_TYPEOF_STEP33(class)
-#define BOOST_TYPEOF_STEP35 BOOST_TYPEOF_STEP34(class)
-#define BOOST_TYPEOF_STEP36 BOOST_TYPEOF_STEP35(class)
-#define BOOST_TYPEOF_STEP37 BOOST_TYPEOF_STEP36(class)
-#define BOOST_TYPEOF_STEP38 BOOST_TYPEOF_STEP37(class)
-#define BOOST_TYPEOF_STEP39 BOOST_TYPEOF_STEP38(class)
-#define BOOST_TYPEOF_STEP310 BOOST_TYPEOF_STEP39(class)
-#define BOOST_TYPEOF_STEP311 BOOST_TYPEOF_STEP310(class)
-#define BOOST_TYPEOF_STEP312 BOOST_TYPEOF_STEP311(class)
-#define BOOST_TYPEOF_STEP313 BOOST_TYPEOF_STEP312(class)
-#define BOOST_TYPEOF_STEP314 BOOST_TYPEOF_STEP313(class)
-#define BOOST_TYPEOF_STEP315 BOOST_TYPEOF_STEP314(class)
-#define BOOST_TYPEOF_STEP316 BOOST_TYPEOF_STEP315(class)
-#define BOOST_TYPEOF_STEP317 BOOST_TYPEOF_STEP316(class)
-#define BOOST_TYPEOF_STEP318 BOOST_TYPEOF_STEP317(class)
-#define BOOST_TYPEOF_STEP319 BOOST_TYPEOF_STEP318(class)
-#define BOOST_TYPEOF_STEP320 BOOST_TYPEOF_STEP319(class)
-
-// "interface"
-
-#define BOOST_TYPEOF_PARAM_EXPAND_TYPE(Param)\
-    BOOST_PP_CAT(BOOST_TYPEOF_PARAM_EXPAND_, BOOST_PP_SEQ_ELEM(0, Param))(Param)
+#define BOOST_TYPEOF_TOSEQ_2(z, n, _) (class)
 
 // BOOST_TYPEOF_VIRTUAL
 
@@ -104,4 +81,4 @@
 #define BOOST_TYPEOF_SEQ_ENUM_TRAILING_1(seq,macro)\
     BOOST_PP_ENUM_TRAILING(BOOST_PP_SEQ_SIZE(seq),BOOST_TYPEOF_SEQ_EXPAND_ELEMENT_1,(macro)(seq))
 
-#endif//BOOST_TYPEOF_COMPLIANT_TEMPLATE_ENCODING_HPP_INCLUDED
+#endif//BOOST_TYPEOF_TEMPLATE_ENCODING_HPP_INCLUDED
