@@ -6,10 +6,46 @@
 
 namespace
 {
-    // functions
+    // function pointers
 
     template<class V, class R BOOST_PP_ENUM_TRAILING_PARAMS(n, class P)> 
     struct encode_type_impl<V, R(*)(BOOST_PP_ENUM_PARAMS(n, P))>
+    {
+        typedef R BOOST_PP_CAT(P, n);
+        typedef BOOST_TYPEOF_ENCODE_PARAMS(BOOST_PP_INC(n), FUN_PTR_ID + n) type;
+    };
+
+    template<class Iter>
+    struct decode_type_impl<mpl::size_t<FUN_PTR_ID + n>, Iter>
+    {
+        typedef Iter iter0;
+        BOOST_TYPEOF_DECODE_PARAMS(BOOST_PP_INC(n))
+        typedef BOOST_PP_CAT(p, n)(*type)(BOOST_PP_ENUM_PARAMS(n, p));
+        typedef BOOST_PP_CAT(iter, BOOST_PP_INC(n)) iter;
+    };
+
+    // function references
+
+    template<class V, class R BOOST_PP_ENUM_TRAILING_PARAMS(n, class P)> 
+    struct encode_type_impl<V, R(&)(BOOST_PP_ENUM_PARAMS(n, P))>
+    {
+        typedef R BOOST_PP_CAT(P, n);
+        typedef BOOST_TYPEOF_ENCODE_PARAMS(BOOST_PP_INC(n), FUN_REF_ID + n) type;
+    };
+
+    template<class Iter>
+    struct decode_type_impl<mpl::size_t<FUN_REF_ID + n>, Iter>
+    {
+        typedef Iter iter0;
+        BOOST_TYPEOF_DECODE_PARAMS(BOOST_PP_INC(n))
+        typedef BOOST_PP_CAT(p, n)(&type)(BOOST_PP_ENUM_PARAMS(n, p));
+        typedef BOOST_PP_CAT(iter, BOOST_PP_INC(n)) iter;
+    };
+
+    // functions
+
+    template<class V, class R BOOST_PP_ENUM_TRAILING_PARAMS(n, class P)> 
+    struct encode_type_impl<V, R(BOOST_PP_ENUM_PARAMS(n, P))>
     {
         typedef R BOOST_PP_CAT(P, n);
         typedef BOOST_TYPEOF_ENCODE_PARAMS(BOOST_PP_INC(n), FUN_ID + n) type;
@@ -20,7 +56,7 @@ namespace
     {
         typedef Iter iter0;
         BOOST_TYPEOF_DECODE_PARAMS(BOOST_PP_INC(n))
-        typedef BOOST_PP_CAT(p, n)(*type)(BOOST_PP_ENUM_PARAMS(n, p));
+        typedef BOOST_PP_CAT(p, n)(type)(BOOST_PP_ENUM_PARAMS(n, p));
         typedef BOOST_PP_CAT(iter, BOOST_PP_INC(n)) iter;
     };
 

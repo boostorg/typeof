@@ -8,34 +8,40 @@
 
 #include <boost/detail/workaround.hpp>
 #include <boost/type_traits/is_same.hpp>
-#include <boost/type_traits/remove_reference.hpp>
-#include <boost/type_traits/remove_const.hpp>
 #include <boost/static_assert.hpp>
 #include <boost/noncopyable.hpp>
 
 #include <cassert>
 #include <iostream>
-#include <vector>
 
-#include "stl/register.hpp"
 #include "mpl/register.hpp"
+
+#include <boost/typeof/std/string.hpp>
+#include <boost/typeof/std/deque.hpp>
+#include <boost/typeof/std/list.hpp>
+#include <boost/typeof/std/queue.hpp>
+#include <boost/typeof/std/stack.hpp>
+#include <boost/typeof/std/vector.hpp>
+#include <boost/typeof/std/map.hpp>
+#include <boost/typeof/std/set.hpp>
+#include <boost/typeof/std/bitset.hpp>
 
 #include BOOST_TYPEOF_INCREMENT_REGISTRATION_GROUP()
 
 using namespace std;
+using namespace boost;
+
+template<class T> 
+mpl::vector1<T> typeof_test_helper();
 
 template<class T> 
 struct typeof_test
 {
-    static T foo();
     enum {value = boost::is_same<
-#if BOOST_WORKAROUND(BOOST_MSVC,<=1300)
-        BOOST_TYPEOF_TPL(foo()),  //MSVC 6.5 chokes when foo is fully qualified.
-#else
-        BOOST_TYPEOF_TPL(typeof_test<T>::foo()),  //fully qualify foo() to avoid problems with g++
-#endif
-        typename boost::remove_reference<typename boost::remove_const<T>::type>::type
-    >::value};
+        BOOST_TYPEOF_TPL(typeof_test_helper<T>()),
+        mpl::vector1<T>
+        >::value
+    };
 };
 
 #pragma message("started")
@@ -64,14 +70,21 @@ BOOST_TYPEOF_REGISTER_TEMPLATE_X(with_integrals,
 BOOST_STATIC_ASSERT((typeof_test<with_integrals<int, 5, 4, 3, 2, true, false, 5> >::value));
 BOOST_STATIC_ASSERT((typeof_test<with_integrals<int, 1, 1, 0, ULONG_MAX, false, true, 0> >::value));
 
-#pragma message("namespace-level functions...")
+#pragma message("namespace-level function pointers...")
 BOOST_STATIC_ASSERT(typeof_test<double(*)()>::value);
 BOOST_STATIC_ASSERT(typeof_test<double(*)(int, double, short, char*, bool, char, float, long, unsigned short)>::value);
 BOOST_STATIC_ASSERT(typeof_test<void(*)()>::value);
 BOOST_STATIC_ASSERT(typeof_test<void(*)(int, double, short, char*, bool, char, float, long, unsigned short)>::value);
 
 #pragma message("function references...")
-BOOST_STATIC_ASSERT(typeof_test<int&>::value);
+BOOST_STATIC_ASSERT(typeof_test<void(&)()>::value);
+BOOST_STATIC_ASSERT(typeof_test<int(&)(int, short)>::value);
+
+#ifdef BOOST_TYPEOF_COMPLIANT 
+#   pragma message("function values...")
+    BOOST_STATIC_ASSERT(typeof_test<void()>::value);
+    BOOST_STATIC_ASSERT(typeof_test<double(bool)>::value);
+#endif//BOOST_TYPEOF_COMPLIANT
 
 #pragma message("member functions...")
 BOOST_STATIC_ASSERT(typeof_test<double(x::*)()>::value);
@@ -121,21 +134,30 @@ void lvalue_typeof_test()
 
 BOOST_TYPEOF_REGISTER_TYPE(boost::noncopyable)
 
+const boost::noncopyable& noncopiable_test_helper();
+
 struct noncopiable_test
 {
-    const boost::noncopyable& foo();
     void bar()
     {
-#if BOOST_WORKAROUND(BOOST_MSVC,<=1200)
-        //MSVC chokes when typeof of return value of member function.
-        BOOST_AUTO(const& v, noncopiable_test().foo());
-#else
-        BOOST_AUTO(const& v, foo());
-#endif
+        BOOST_AUTO(const& v, noncopiable_test_helper());
         v; // to avoid warning
     }
 };
 
+#pragma message("STL...")
+
+BOOST_STATIC_ASSERT(typeof_test<string>::value);
+BOOST_STATIC_ASSERT(typeof_test<deque<int> >::value);
+BOOST_STATIC_ASSERT(typeof_test<list<int> >::value);
+BOOST_STATIC_ASSERT(typeof_test<queue<int> >::value);
+BOOST_STATIC_ASSERT(typeof_test<stack<int> >::value);
+BOOST_STATIC_ASSERT(typeof_test<vector<int> >::value);
+BOOST_STATIC_ASSERT((typeof_test<map<int, int> >::value));
+BOOST_STATIC_ASSERT((typeof_test<multimap<int, int> >::value));
+BOOST_STATIC_ASSERT(typeof_test<set<int> >::value);
+BOOST_STATIC_ASSERT(typeof_test<multiset<int> >::value);
+BOOST_STATIC_ASSERT(typeof_test<bitset<10> >::value);
 
 #pragma message("ODR...")
 void odr_test()

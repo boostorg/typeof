@@ -29,6 +29,7 @@
 #define BOOST_TYPEOF_REGISTER_TEMPLATE_long_     BOOST_TYPEOF_REGISTER_TEMPLATE_integral(long)
 #define BOOST_TYPEOF_REGISTER_TEMPLATE_bool_     BOOST_TYPEOF_REGISTER_TEMPLATE_integral(bool)
 #define BOOST_TYPEOF_REGISTER_TEMPLATE_unsigned_ BOOST_TYPEOF_REGISTER_TEMPLATE_integral(unsigned)
+#define BOOST_TYPEOF_REGISTER_TEMPLATE_size_t_   BOOST_TYPEOF_REGISTER_TEMPLATE_integral(size_t)
 
 #define BOOST_TYPEOF_REGISTER_TEMPLATE_unsignedchar     BOOST_TYPEOF_REGISTER_TEMPLATE_integral(unsigned char)
 #define BOOST_TYPEOF_REGISTER_TEMPLATE_unsignedshort    BOOST_TYPEOF_REGISTER_TEMPLATE_integral(unsigned short)
@@ -49,6 +50,7 @@
 #define BOOST_TYPEOF_class_BOOST_TYPEOF (class)(_)
 #define BOOST_TYPEOF_typename_BOOST_TYPEOF (typename)(_)
 #define BOOST_TYPEOF_unsigned_BOOST_TYPEOF (unsigned)(_)
+#define BOOST_TYPEOF_size_t_BOOST_TYPEOF (size_t)(_)
 
 #define char_BOOST_TYPEOF (char)
 #define short_BOOST_TYPEOF (short)
