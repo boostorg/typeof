@@ -211,6 +211,58 @@ BOOST_STATIC_ASSERT(typeof_test<binder2nd<less<int> > >::value);
 
 BOOST_STATIC_ASSERT(typeof_test<valarray<int> >::value);
 
+#pragma message("compiling integral param wrapper...")
+
+namespace test_integral
+{
+    // Enum template parameter
+    enum E{ONE, TWO, THREE};
+
+    template<E e> struct foo
+    {
+        BOOST_STATIC_CONSTANT(E,value=e);
+    };
+
+    // dependent template parameter
+    template<class T, T n> struct bar
+    {};
+
+    // multi-word template parameter
+    template<unsigned long int n> struct blah
+    {};
+}
+
+BOOST_TYPEOF_REGISTER_TEMPLATE_X(test_integral::foo, 
+                                 (BOOST_TYPEOF_INTEGRAL(test_integral::E))
+                                );
+
+BOOST_TYPEOF_REGISTER_TEMPLATE_X(test_integral::blah, 
+                                (BOOST_TYPEOF_INTEGRAL(unsigned long int))
+                                );
+
+BOOST_TYPEOF_REGISTER_TEMPLATE_X(test_integral::bar, 
+                                (class)
+                                (BOOST_TYPEOF_INTEGRAL(P0))
+                                );
+
+namespace test_integral
+{
+    void test()
+    {
+        foo<TWO> x;
+        bar<int, 5> xx;
+        blah<5> xxx;
+
+        BOOST_AUTO(y, x);
+        BOOST_AUTO(yy, xx);
+        BOOST_AUTO(yyy, xxx);
+
+        y;
+        yy;
+        yyy;
+    }
+}
+
 #pragma message("ODR...")
 void odr_test()
 {

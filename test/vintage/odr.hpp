@@ -33,7 +33,7 @@ sum_t<T,U>::sum_t(const T& t, const U& u)
 {}
 
 template<class T, class U>
-sum_t<T,U>::result_type sum_t<T,U>::operator()()
+typename sum_t<T,U>::result_type sum_t<T,U>::operator()()
 {
 //    BOOST_AUTO_TPL(result, m_sum);
     return m_sum;

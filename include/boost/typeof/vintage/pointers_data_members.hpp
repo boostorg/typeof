@@ -50,7 +50,7 @@ namespace boost { namespace type_of{
                 typedef int type;
             };
 
-            typedef workaround<A0,A1>::type type;
+            typedef workaround<P0,P1>::type type;
             typedef iter2 iter; 
         }; 
     };

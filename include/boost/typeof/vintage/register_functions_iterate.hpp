@@ -7,7 +7,7 @@
 template<>
 struct encode_impl<FUN_REF_ID + n>
 {
-    template<typename V,typename R BOOST_PP_ENUM_TRAILING_PARAMS(n,typename A),typename Types>
+    template<typename V,typename R BOOST_PP_ENUM_TRAILING_PARAMS(n,typename P),typename Types>
     struct encoder {
         typedef Types BOOST_PP_CAT(types_,n);
         BOOST_PP_REPEAT(n,BOOST_TYPEOF_PUSH_FRONT,n)
@@ -24,9 +24,9 @@ struct encode_impl<FUN_REF_ID + n>
     };
 };
 
-template<typename V,typename R BOOST_PP_ENUM_TRAILING_PARAMS(n,typename A),typename Types>
-typename encode_impl<FUN_REF_ID + n>::template encoder<V,R BOOST_PP_ENUM_TRAILING_PARAMS(n,A),Types>
-encode(R (& (*function)(V,Types))(BOOST_PP_ENUM_PARAMS(n,A)) );
+template<typename V,typename R BOOST_PP_ENUM_TRAILING_PARAMS(n,typename P),typename Types>
+typename encode_impl<FUN_REF_ID + n>::template encoder<V,R BOOST_PP_ENUM_TRAILING_PARAMS(n,P),Types>
+encode(R (& (*function)(V,Types))(BOOST_PP_ENUM_PARAMS(n,P)) );
 
 template<>
 struct decode_impl<FUN_REF_ID + n>
@@ -38,7 +38,7 @@ struct decode_impl<FUN_REF_ID + n>
         typedef typename decodeR::type R;
         typedef typename decodeR::iter iter0;
         BOOST_TYPEOF_DECODE_PARAMS(n);
-        typedef R (&type)(BOOST_PP_ENUM_PARAMS(n,A));
+        typedef R (&type)(BOOST_PP_ENUM_PARAMS(n,P));
         typedef BOOST_PP_CAT(iter,n) iter;
     };
 };
@@ -46,7 +46,7 @@ struct decode_impl<FUN_REF_ID + n>
 template<>
 struct encode_impl<FUN_ID + n>
 {
-    template<typename V,typename R BOOST_PP_ENUM_TRAILING_PARAMS(n,typename A),typename Types>
+    template<typename V,typename R BOOST_PP_ENUM_TRAILING_PARAMS(n,typename P),typename Types>
     struct encoder {
         typedef Types BOOST_PP_CAT(types_,n);
         BOOST_PP_REPEAT(n,BOOST_TYPEOF_PUSH_FRONT,n)
@@ -63,9 +63,9 @@ struct encode_impl<FUN_ID + n>
     };
 };
 
-template<typename V,typename R BOOST_PP_ENUM_TRAILING_PARAMS(n,typename A),typename Types>
-typename encode_impl<FUN_ID + n>::template encoder<V,R BOOST_PP_ENUM_TRAILING_PARAMS(n,A),Types>
-encode(R (* const& (*function)(V,Types))(BOOST_PP_ENUM_PARAMS(n,A)) );
+template<typename V,typename R BOOST_PP_ENUM_TRAILING_PARAMS(n,typename P),typename Types>
+typename encode_impl<FUN_ID + n>::template encoder<V,R BOOST_PP_ENUM_TRAILING_PARAMS(n,P),Types>
+encode(R (* const& (*function)(V,Types))(BOOST_PP_ENUM_PARAMS(n,P)) );
 
 template<>
 struct decode_impl<FUN_ID + n>
@@ -77,7 +77,7 @@ struct decode_impl<FUN_ID + n>
         typedef typename decodeR::type R;
         typedef typename decodeR::iter iter0;
         BOOST_TYPEOF_DECODE_PARAMS(n);
-        typedef R (*type)(BOOST_PP_ENUM_PARAMS(n,A));
+        typedef R (*type)(BOOST_PP_ENUM_PARAMS(n,P));
         typedef BOOST_PP_CAT(iter,n) iter;
     };
 };

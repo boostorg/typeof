@@ -8,7 +8,7 @@
 template<>
 struct encode_impl<BOOST_TYPEOF_id + n>
 {
-    template<typename V,typename R,typename T BOOST_PP_ENUM_TRAILING_PARAMS(n,typename A),typename Types>
+    template<typename V,typename R,typename T BOOST_PP_ENUM_TRAILING_PARAMS(n,typename P),typename Types>
     struct encoder {
         typedef Types BOOST_PP_CAT(types_,n);
         BOOST_PP_REPEAT(n,BOOST_TYPEOF_PUSH_FRONT,n)
@@ -25,9 +25,9 @@ struct encode_impl<BOOST_TYPEOF_id + n>
     };
 };
 
-template<typename V,typename R,typename T BOOST_PP_ENUM_TRAILING_PARAMS(n,typename A),typename Types>
-typename encode_impl<BOOST_TYPEOF_id + n>::template encoder<V,R,T BOOST_PP_ENUM_TRAILING_PARAMS(n,A),Types>
-encode(R (T::* const&(*function)(V,Types))(BOOST_PP_ENUM_PARAMS(n,A)) BOOST_TYPEOF_qualifier);
+template<typename V,typename R,typename T BOOST_PP_ENUM_TRAILING_PARAMS(n,typename P),typename Types>
+typename encode_impl<BOOST_TYPEOF_id + n>::template encoder<V,R,T BOOST_PP_ENUM_TRAILING_PARAMS(n,P),Types>
+encode(R (T::* const&(*function)(V,Types))(BOOST_PP_ENUM_PARAMS(n,P)) BOOST_TYPEOF_qualifier);
 
 template<>
 struct decode_impl<BOOST_TYPEOF_id + n>
@@ -42,15 +42,15 @@ struct decode_impl<BOOST_TYPEOF_id + n>
         typedef typename decodeT::type T;
         typedef typename decodeT::iter iter0;
         BOOST_TYPEOF_DECODE_PARAMS(n)
-        template<typename R_,typename T_ BOOST_PP_ENUM_TRAILING_PARAMS(n,typename A_)>
+        template<typename R_,typename T_ BOOST_PP_ENUM_TRAILING_PARAMS(n,typename P_)>
         struct workaround {
-            typedef R_ (T_::*type)(BOOST_PP_ENUM_PARAMS(n,A_)) BOOST_TYPEOF_qualifier;
+            typedef R_ (T_::*type)(BOOST_PP_ENUM_PARAMS(n,P_)) BOOST_TYPEOF_qualifier;
         };
         template<>
         struct workaround<int,int BOOST_PP_ENUM_TRAILING_PARAMS(n,int BOOST_PP_INTERCEPT)> {
             typedef int type;
         };
-        typedef workaround<R,T BOOST_PP_ENUM_TRAILING_PARAMS(n,A)>::type type;
+        typedef workaround<R,T BOOST_PP_ENUM_TRAILING_PARAMS(n,P)>::type type;
         typedef BOOST_PP_CAT(iter,n) iter;
     };
 };

@@ -17,7 +17,7 @@
 
 #define BOOST_TYPEOF_DECODE_PARAM(z, n, text)   \
     typedef decode_impl<TYPEOF_GET_VALUE(iter##n)>::decoder<TYPEOF_GET_NEXT(iter##n)> decode##n;\
-    typedef typename decode##n::type A##n;      \
+    typedef typename decode##n::type P##n;      \
     typedef typename decode##n::iter BOOST_PP_CAT(iter, BOOST_PP_INC(n));
 
 #define BOOST_TYPEOF_DECODE_PARAMS(n)\
@@ -25,7 +25,7 @@
 
 #define BOOST_TYPEOF_PUSH_FRONT(z,n,template_size)\
   typedef type_list<\
-        BOOST_PP_CAT(A,BOOST_PP_DEC(BOOST_PP_SUB(template_size,n))),\
+        BOOST_PP_CAT(P,BOOST_PP_DEC(BOOST_PP_SUB(template_size,n))),\
         BOOST_PP_CAT(types_,BOOST_PP_SUB(template_size,n))\
     > BOOST_PP_CAT(types_,BOOST_PP_DEC(BOOST_PP_SUB(template_size,n)));
 
