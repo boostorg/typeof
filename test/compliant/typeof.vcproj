@@ -19,8 +19,9 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="C:\boost\boost_1_32_0;&quot;C:\ark\boost-sandbox\boost-sandbox&quot;"
+				AdditionalIncludeDirectories="C:\boost\boost_1_32_0;..\..\..\.."
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
+				GeneratePreprocessedFile="0"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="5"

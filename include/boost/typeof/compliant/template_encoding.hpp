@@ -15,11 +15,8 @@
 //////////
 
 #define BOOST_TYPEOF_REGISTER_TEMPLATE_class_ BOOST_TYPEOF_REGISTER_TEMPLATE_typename_
-#define BOOST_TYPEOF_REGISTER_TEMPLATE_typename_        (typename)  (void)  (TYPE)
-#define BOOST_TYPEOF_REGISTER_TEMPLATE_integral(x)      (x)         (x)     (VALUE)
-
-#define BOOST_TYPEOF_REGISTER_TEMPLATE_RESULT_TYPE(x) typename x::type
-#define BOOST_TYPEOF_REGISTER_TEMPLATE_RESULT_VALUE(x) x::value
+#define BOOST_TYPEOF_REGISTER_TEMPLATE_typename_        (typename)(TYPE)
+#define BOOST_TYPEOF_REGISTER_TEMPLATE_integral(x)      (x)(VALUE)
 
 //////////
 
@@ -64,39 +61,60 @@
 
 ///////////
 
+#define BOOST_TYPEOF_INTEGRAL(X) REGISTER_TEMPLATE_INTEGRAL(X) BOOST_TYPEOF_EAT
+#define BOOST_TYPEOF_EAT_BOOST_TYPEOF
+#define BOOST_TYPEOF_REGISTER_TEMPLATE_INTEGRAL(X) (inte)(gral(X))
+
+///////////
+
 #define BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_DESCR(n, Params)\
     BOOST_PP_CAT(BOOST_TYPEOF_REGISTER_TEMPLATE_, EAT_SPACE(BOOST_PP_SEQ_ELEM(n, Params)))
 
 #define BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_TYPE(n, Params)\
     BOOST_PP_SEQ_ELEM(0, BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_DESCR(n, Params))
 
-#define BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_SPEC_TYPE(n, Params)\
+#define BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_SUFFIX(n, Params)\
     BOOST_PP_SEQ_ELEM(1, BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_DESCR(n, Params))
-
-#define BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_RESULT(n, Params)\
-    BOOST_PP_CAT(\
-        BOOST_TYPEOF_REGISTER_TEMPLATE_RESULT_,\
-        BOOST_PP_SEQ_ELEM(2, BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_DESCR(n, Params))\
-    )
 
 //////////
 
-#define BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_PAIR(z, n, Params)\
-    BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_TYPE(n, Params) BOOST_PP_CAT(P, n)
+#define BOOST_TYPEOF_REGISTER_TEMPLATE_ENCODE_TYPE(n, Params)\
+    typedef typename encode_type<\
+        BOOST_PP_CAT(V, n),\
+        BOOST_PP_CAT(P, n)\
+    >::type BOOST_PP_CAT(V, BOOST_PP_INC(n)); 
 
-#define BOOST_TYPEOF_REGISTER_TEMPLATE_ENCODE_PARAM(z, n, Params)\
-    typedef typename encode_dispatcher<\
-        BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_SPEC_TYPE(n, Params)\
-    >::encode<BOOST_PP_CAT(V, n), BOOST_PP_CAT(P, n)>::type BOOST_PP_CAT(V, BOOST_PP_INC(n));
+#define BOOST_TYPEOF_REGISTER_TEMPLATE_ENCODE_VALUE(n, Params)\
+    typedef typename encode_integral<\
+        BOOST_PP_CAT(V, n),\
+        BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_TYPE(n, Params),\
+        BOOST_PP_CAT(P, n)\
+    >::type BOOST_PP_CAT(V, BOOST_PP_INC(n)); 
+
+#define BOOST_TYPEOF_REGISTER_TEMPLATE_DECODE_TYPE(n, PARAMS)\
+    typedef decode_type< BOOST_PP_CAT(iter, n) > BOOST_PP_CAT(d, n);\
+    typedef typename BOOST_PP_CAT(d, n)::type BOOST_PP_CAT(P, n);\
+    typedef typename BOOST_PP_CAT(d, n)::iter BOOST_PP_CAT(iter, BOOST_PP_INC(n));
+
+#define BOOST_TYPEOF_REGISTER_TEMPLATE_DECODE_VALUE(n, Params)\
+    typedef decode_integral< BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_TYPE(n, Params), BOOST_PP_CAT(iter, n) > BOOST_PP_CAT(d, n);\
+    static const BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_TYPE(n, Params) BOOST_PP_CAT(P, n) = BOOST_PP_CAT(d, n)::value;\
+    typedef typename BOOST_PP_CAT(d, n)::iter BOOST_PP_CAT(iter, BOOST_PP_INC(n));
 
 #define BOOST_TYPEOF_REGISTER_TEMPLATE_DECODE_PARAM(z, n, Params)\
-    typedef encode_dispatcher<\
-        BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_SPEC_TYPE(n, Params)\
-    >::decode<BOOST_PP_CAT(iter, n)> BOOST_PP_CAT(d, BOOST_PP_INC(n));\
-    typedef typename BOOST_PP_CAT(d, BOOST_PP_INC(n))::iter BOOST_PP_CAT(iter, BOOST_PP_INC(n));
+    BOOST_PP_CAT(\
+        BOOST_TYPEOF_REGISTER_TEMPLATE_DECODE_,\
+        BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_SUFFIX(n, Params)\
+    )(n, Params)
 
-#define BOOST_TYPEOF_REGISTER_TEMPLATE_DECODE_PARAM_RESULT(z, n, Params)\
-    BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_RESULT(n, Params)(BOOST_PP_CAT(d, BOOST_PP_INC(n)))
+#define BOOST_TYPEOF_REGISTER_TEMPLATE_ENCODE_PARAM(z, n, Params)\
+    BOOST_PP_CAT(\
+        BOOST_TYPEOF_REGISTER_TEMPLATE_ENCODE_,\
+        BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_SUFFIX(n, Params)\
+    )(n, Params)
+
+#define BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_PAIR(z, n, Params)\
+    BOOST_TYPEOF_REGISTER_TEMPLATE_PARAM_TYPE(n, Params) BOOST_PP_CAT(P, n)
 
 //////////
 
@@ -113,7 +131,7 @@
         BOOST_PP_SEQ_SIZE(Params),\
         P)> >\
     {\
-        typedef typename BOOST_TYPEOF_PUSH_BACK<V, mpl::size_t<ID> >::type V0;\
+        typedef typename BOOST_TYPEOF_PUSH_BACK<V, boost::mpl::size_t<ID> >::type V0;\
         BOOST_PP_REPEAT(\
             BOOST_PP_SEQ_SIZE(Params),\
             BOOST_TYPEOF_REGISTER_TEMPLATE_ENCODE_PARAM,\
@@ -128,61 +146,12 @@
             BOOST_PP_SEQ_SIZE(Params),\
             BOOST_TYPEOF_REGISTER_TEMPLATE_DECODE_PARAM,\
             Params)\
-        typedef Name<\
-            BOOST_PP_ENUM(\
-                BOOST_PP_SEQ_SIZE(Params),\
-                BOOST_TYPEOF_REGISTER_TEMPLATE_DECODE_PARAM_RESULT,\
-                Params)\
-        > type;\
+        typedef Name< BOOST_PP_ENUM_PARAMS(BOOST_PP_SEQ_SIZE(Params), P) > type;\
         typedef BOOST_PP_CAT(iter, BOOST_PP_SEQ_SIZE(Params)) iter;\
     };\
     }}}
 
 #define BOOST_TYPEOF_REGISTER_TEMPLATE_X(Name, Params)\
     BOOST_TYPEOF_REGISTER_TEMPLATE_X_IMPL(Name, Params, BOOST_TYPEOF_UNIQUE_ID())
-
-//////////
-
-#define BOOST_TYPEOF_spec_integral_dispatcher(r, data, T)   \
-    template<> struct encode_dispatcher<T>                  \
-    {                                                       \
-        template<class V, T n>                              \
-            struct encode : encode_integral<V, T, n>        \
-        {};                                                 \
-        template<class Iter>                                \
-            struct decode : decode_integral<T, Iter>        \
-        {};                                                 \
-    };
-
-namespace boost
-{
-    namespace type_of
-    {
-        template<class U = void> struct encode_dispatcher
-        {
-            template<class V, class T> 
-                struct encode : encode_type<V, T>
-            {};
-            template<class Iter> 
-                struct decode : decode_type<Iter>
-            {};
-        };
-
-        BOOST_PP_SEQ_FOR_EACH(BOOST_TYPEOF_spec_integral_dispatcher, ~, 
-            (char)
-            (short)
-            (int)
-            (long)
-            (bool)
-            (unsigned char)
-            (unsigned short)
-            (unsigned int)
-            (unsigned long)
-            (signed char)
-            )
-    }
-}
-
-#undef BOOST_TYPEOF_spec_integral_dispatcher
 
 #endif//BOOST_TYPEOF_COMPLIANT_TEMPLATE_ENCODING_HPP_INCLUDED
