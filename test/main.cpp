@@ -147,7 +147,7 @@ void odr_test()
 }
 
 #pragma message("main()...")
-main()
+int main()
 {
     odr_test();
 }
