@@ -43,7 +43,7 @@ struct typeof_test
 struct x
 {};
 
-BOOST_TYPEOF_REGISTER_TYPE(x);
+BOOST_TYPEOF_REGISTER_TYPE(x)
 
 template<class T, char c, unsigned short us, 
     int i, unsigned long ul, bool b1, bool b2, unsigned u> struct with_integrals
@@ -58,7 +58,7 @@ BOOST_TYPEOF_REGISTER_TEMPLATE_X(with_integrals,
     (bool)
     (bool)
     (unsigned)
-    );
+    )
 
 #pragma message("integral...")
 BOOST_STATIC_ASSERT((typeof_test<with_integrals<int, 5, 4, 3, 2, true, false, 5> >::value));
@@ -119,7 +119,7 @@ void lvalue_typeof_test()
 
 #pragma message("Noncopyable...")
 
-BOOST_TYPEOF_REGISTER_TYPE(boost::noncopyable);
+BOOST_TYPEOF_REGISTER_TYPE(boost::noncopyable)
 
 struct noncopiable_test
 {

@@ -33,9 +33,9 @@
     , BOOST_PP_CAT(P, n)>::type
 
 #define BOOST_TYPEOF_ENCODE_PARAMS(n, ID)                                   \
-    BOOST_PP_REPEAT(n, BOOST_TYPEOF_ENCODE_PARAMS_BEGIN, BOOST_PP_EMPTY())  \
+    BOOST_PP_REPEAT(n, BOOST_TYPEOF_ENCODE_PARAMS_BEGIN, ~)                 \
     typename BOOST_TYPEOF_PUSH_BACK<V, mpl::size_t<ID> >::type              \
-    BOOST_PP_REPEAT(n, BOOST_TYPEOF_ENCODE_PARAMS_END, BOOST_PP_EMPTY())
+    BOOST_PP_REPEAT(n, BOOST_TYPEOF_ENCODE_PARAMS_END, ~)
 
 // constant-time push_back for mpl::vector
 // to be removed once real one is available from MPL
@@ -58,7 +58,7 @@
     )                                               \
 
 namespace boost{namespace type_of{namespace detail{
-    BOOST_TYPEOF_implement_push_back();
+    BOOST_TYPEOF_implement_push_back()
 }}}
 
 #undef BOOST_TYPEOF_spec_push_back
