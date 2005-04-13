@@ -6,8 +6,8 @@
 // Works a little faster with VC7.1 and a lot faster with GCC (compliant mode).
 // Define BOOST_TYPEOF_USE_MPL_VECTOR to avoid it and use mpl::vector<> instead.
 
-#ifndef BOOST_TYPEOF_COMPLIANT_VECTOR_HPP_INCLUDED
-#define BOOST_TYPEOF_COMPLIANT_VECTOR_HPP_INCLUDED
+#ifndef BOOST_TYPEOF_VECTOR_HPP_INCLUDED
+#define BOOST_TYPEOF_VECTOR_HPP_INCLUDED
 
 #include <boost/mpl/at.hpp>
 #include <boost/mpl/deref.hpp>

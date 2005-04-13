@@ -3,8 +3,8 @@
 // Use, modification and distribution is subject to the Boost Software
 // License, Version 1.0. (http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef BOOST_TYPEOF_COMPLIANT_TEMPLATE_TEMPLATE_PARAM_HPP_INCLUDED
-#define BOOST_TYPEOF_COMPLIANT_TEMPLATE_TEMPLATE_PARAM_HPP_INCLUDED
+#ifndef BOOST_TYPEOF_TEMPLATE_TEMPLATE_PARAM_HPP_INCLUDED
+#define BOOST_TYPEOF_TEMPLATE_TEMPLATE_PARAM_HPP_INCLUDED
 
 #include <boost/preprocessor/logical/or.hpp>
 #include <boost/preprocessor/seq/fold_left.hpp>
@@ -123,4 +123,4 @@ namespace boost
         BOOST_TYPEOF_REGISTER_NOTHING,\
         BOOST_TYPEOF_REGISTER_TYPE_FOR_TEMPLATE_TEMPLATE)(Name,Params,ID)
 
-#endif //BOOST_TYPEOF_COMPLIANT_TEMPLATE_TEMPLATE_PARAM_HPP_INCLUDED
+#endif //BOOST_TYPEOF_TEMPLATE_TEMPLATE_PARAM_HPP_INCLUDED

@@ -2,8 +2,8 @@
 // Use, modification and distribution is subject to the Boost Software
 // License, Version 1.0. (http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef BOOST_TYPEOF_COMPLIANT_LIMIT_SIZE_HPP_INCLUDED
-#define BOOST_TYPEOF_COMPLIANT_LIMIT_SIZE_HPP_INCLUDED
+#ifndef BOOST_TYPEOF_LIMIT_SIZE_HPP_INCLUDED
+#define BOOST_TYPEOF_LIMIT_SIZE_HPP_INCLUDED
 
 #include "boost/mpl/vector.hpp"
 #include "boost/mpl/aux_/config/ctps.hpp"
@@ -32,4 +32,4 @@ namespace boost
 
 #endif//BOOST_TYPEOF_LIMIT_SIZE > BOOST_MPL_LIMIT_VECTOR_SIZE
 
-#endif//BOOST_TYPEOF_COMPLIANT_LIMIT_SIZE_HPP_INCLUDED
+#endif//BOOST_TYPEOF_LIMIT_SIZE_HPP_INCLUDED

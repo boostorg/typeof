@@ -2,8 +2,8 @@
 // Use, modification and distribution is subject to the Boost Software
 // License, Version 1.0. (http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef BOOST_TYPEOF_COMPLIANT_ENCODE_DECODE_PARAMS_HPP_INCLUDED
-#define BOOST_TYPEOF_COMPLIANT_ENCODE_DECODE_PARAMS_HPP_INCLUDED
+#ifndef BOOST_TYPEOF_ENCODE_DECODE_PARAMS_HPP_INCLUDED
+#define BOOST_TYPEOF_ENCODE_DECODE_PARAMS_HPP_INCLUDED
 
 #include <boost/preprocessor/cat.hpp>
 #include <boost/preprocessor/repetition/repeat.hpp>
@@ -31,4 +31,4 @@
     typename mpl::push_back<V, mpl::size_t<ID> >::type      \
     BOOST_PP_REPEAT(n, BOOST_TYPEOF_ENCODE_PARAMS_END, ~)
 
-#endif//BOOST_TYPEOF_COMPLIANT_ENCODE_DECODE_PARAMS_HPP_INCLUDED
+#endif//BOOST_TYPEOF_ENCODE_DECODE_PARAMS_HPP_INCLUDED

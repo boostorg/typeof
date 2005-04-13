@@ -2,11 +2,11 @@
 // Use, modification and distribution is subject to the Boost Software
 // License, Version 1.0. (http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef BOOST_TYPEOF_COMPLIANT_POINTERS_DATA_MEMBERS_HPP_INCLUDED
-#define BOOST_TYPEOF_COMPLIANT_POINTERS_DATA_MEMBERS_HPP_INCLUDED
+#ifndef BOOST_TYPEOF_POINTERS_DATA_MEMBERS_HPP_INCLUDED
+#define BOOST_TYPEOF_POINTERS_DATA_MEMBERS_HPP_INCLUDED
 
-#include <boost/typeof/compliant/encode_decode_params.hpp>
-#include <boost/typeof/compliant/encode_decode.hpp>
+#include <boost/typeof/encode_decode_params.hpp>
+#include <boost/typeof/encode_decode.hpp>
 
 #include BOOST_TYPEOF_INCREMENT_REGISTRATION_GROUP()
 
@@ -41,4 +41,4 @@ namespace boost
     }
 }
 
-#endif//BOOST_TYPEOF_COMPLIANT_POINTERS_DATA_MEMBERS_HPP_INCLUDED
+#endif//BOOST_TYPEOF_POINTERS_DATA_MEMBERS_HPP_INCLUDED

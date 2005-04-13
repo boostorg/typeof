@@ -2,8 +2,8 @@
 // Use, modification and distribution is subject to the Boost Software
 // License, Version 1.0. (http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef BOOST_TYPEOF_COMPLIANT_TYPE_ENCODING_HPP_INCLUDED
-#define BOOST_TYPEOF_COMPLIANT_TYPE_ENCODING_HPP_INCLUDED
+#ifndef BOOST_TYPEOF_TYPE_ENCODING_HPP_INCLUDED
+#define BOOST_TYPEOF_TYPE_ENCODING_HPP_INCLUDED
 
 #define BOOST_TYPEOF_REGISTER_TYPE_IMPL(T, Id)                          \
                                                                         \
@@ -21,4 +21,4 @@
         BOOST_TYPEOF_REGISTER_TYPE_IMPL(Type, BOOST_TYPEOF_UNIQUE_ID()) \
     }}}
 
-#endif//BOOST_TYPEOF_COMPLIANT_TYPE_ENCODING_HPP_INCLUDED
+#endif//BOOST_TYPEOF_TYPE_ENCODING_HPP_INCLUDED

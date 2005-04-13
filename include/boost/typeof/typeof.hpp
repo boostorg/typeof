@@ -23,12 +23,7 @@
 #elif defined(BOOST_TYPEOF_COMPLIANT)
 #   define BOOST_TYPEOF_TEXT "using compliant imlementation"
 #   include <boost/typeof/message.hpp>
-#   include <boost/typeof/compliant/typeof_impl.hpp>
-
-#elif defined(BOOST_TYPEOF_VINTAGE)
-#   define BOOST_TYPEOF_TEXT "using vintage imlementation"
-#   include <boost/typeof/message.hpp>
-#	include <boost/typeof/vintage/typeof_impl.hpp>
+#   include <boost/typeof/typeof_impl.hpp>
 
 #else//BOOST_TYPEOF_NATIVE
 
@@ -45,21 +40,14 @@
 
 // lvalue typeof
 
-#if defined(BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION)
-#	include <boost/typeof/vintage/lvalue_typeof.hpp>
-#else
-#	include <boost/typeof/compliant/lvalue_typeof.hpp>
-#endif
+#	include <boost/typeof/lvalue_typeof.hpp>
 
 // type/template encoding
 
 #if defined(BOOST_TYPEOF_COMPLIANT)
-#	include <boost/typeof/compliant/type_encoding.hpp>
-#	include <boost/typeof/compliant/template_encoding.hpp>
-#elif defined(BOOST_TYPEOF_VINTAGE)
-#	include <boost/typeof/vintage/type_encoding.hpp>
-#	include <boost/typeof/vintage/template_encoding.hpp>
-#else//BOOST_TYPEOF_NATIVE and BOOST_TYPEOF_MSVC
+#	include <boost/typeof/type_encoding.hpp>
+#	include <boost/typeof/template_encoding.hpp>
+#else   //BOOST_TYPEOF_NATIVE
 #	define BOOST_TYPEOF_REGISTER_TYPE(x)
 #	define BOOST_TYPEOF_REGISTER_TEMPLATE(x, params)
 #endif
@@ -75,17 +63,12 @@
 
 #if defined(BOOST_TYPEOF_COMPLIANT)
 
-#	include <boost/typeof/compliant/modifiers.hpp>
-#	include <boost/typeof/compliant/pointers_data_members.hpp>
-#	define BOOST_PP_FILENAME_1 <boost/typeof/compliant/register_functions_iterate.hpp>
+#	include <boost/typeof/modifiers.hpp>
+#	include <boost/typeof/pointers_data_members.hpp>
 #	include <boost/typeof/register_functions.hpp>
 
-#elif defined(BOOST_TYPEOF_VINTAGE)
-#	include <boost/typeof/vintage/modifiers.hpp>
-#	include <boost/typeof/vintage/pointers_data_members.hpp>
-#	define BOOST_PP_FILENAME_1 <boost/typeof/vintage/register_functions_iterate.hpp>
-#	include <boost/typeof/register_functions.hpp>
 #else //BOOST_TYPEOF_NATIVE
+
 #endif
 
 #endif//BOOST_TYPEOF_TYPEOF_HPP_INCLUDED

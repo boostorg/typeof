@@ -8,9 +8,7 @@
 #include <boost/config.hpp>
 
 #if !defined(BOOST_TYPEOF_COMPLIANT) &&\
-    !defined(BOOST_TYPEOF_VINTAGE) &&\
-    !defined(BOOST_TYPEOF_NATIVE) &&\
-    !defined(BOOST_TYPEOF_MSVC) 
+    !defined(BOOST_TYPEOF_NATIVE)
 
 #   if defined __GNUC__
 #       define BOOST_TYPEOF_NATIVE
@@ -22,19 +20,11 @@
 //Doesn't require registration
 #       define BOOST_TYPEOF_NATIVE
 
-#   elif defined BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
-#       define BOOST_TYPEOF_VINTAGE
-
-#   else
+#   elif !defined BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
 #       define BOOST_TYPEOF_COMPLIANT
 
 #   endif
 
 #endif
-
-#ifdef BOOST_TYPEOF_VINTAGE
-#include <boost/typeof/vintage/config.hpp>
-#endif
-
 
 #endif//BOOST_TYPEOF_CONFIG_HPP_INCLUDED

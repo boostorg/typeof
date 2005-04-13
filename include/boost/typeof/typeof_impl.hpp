@@ -2,12 +2,12 @@
 // Use, modification and distribution is subject to the Boost Software
 // License, Version 1.0. (http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef BOOST_TYPEOF_COMPLIANT_TYPEOF_IMPL_HPP_INCLUDED
-#define BOOST_TYPEOF_COMPLIANT_TYPEOF_IMPL_HPP_INCLUDED
+#ifndef BOOST_TYPEOF_TYPEOF_IMPL_HPP_INCLUDED
+#define BOOST_TYPEOF_TYPEOF_IMPL_HPP_INCLUDED
 
 #include <boost/mpl/size_t.hpp>
 #include <boost/preprocessor/repetition/enum.hpp>
-#include <boost/typeof/compliant/encode_decode.hpp>
+#include <boost/typeof/encode_decode.hpp>
 
 #ifdef BOOST_TYPEOF_USE_MPL_VECTOR
 #   include <boost/mpl/vector.hpp>
@@ -15,10 +15,10 @@
 #   include <boost/mpl/at.hpp>
 #   include <boost/mpl/begin_end.hpp>
 #   include <boost/mpl/push_back.hpp>
-#   include <boost/typeof/compliant/limit_size.hpp>
+#   include <boost/typeof/limit_size.hpp>
 #   define BOOST_TYPEOF_VECTOR(n) BOOST_PP_CAT(boost::mpl::vector, n)
 #else
-#   include <boost/typeof/compliant/vector.hpp>
+#   include <boost/typeof/vector.hpp>
 #   define BOOST_TYPEOF_VECTOR(n) BOOST_PP_CAT(boost::type_of::vector, n)
 #endif
 

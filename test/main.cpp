@@ -325,14 +325,10 @@ namespace test_integral
 
 void odr_test()
 {
-#if !defined(_MSC_VER) || _MSC_VER > 0x0700
-
     void odr_test1();
     void odr_test2();
     odr_test1();
     odr_test2();
-
-#endif//BOOST_TYPEOF_VINTAGE
 }
 
 #define BOOST_TYPEOF_TEXT "main()..."

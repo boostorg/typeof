@@ -1,9 +1,10 @@
+// Copyright (C) 2004 Arkadiy Vertleyb
 // Copyright (C) 2004 Peder Holt
 // Use, modification and distribution is subject to the Boost Software
 // License, Version 1.0. (http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef BOOST_VINTAGE_LVALUE_TYPEOF_HPP_INCLUDED
-#define BOOST_VINTAGE_LVALUE_TYPEOF_HPP_INCLUDED
+#ifndef BOOST_TYPEOF_LVALUE_TYPEOF_HPP_INCLUDED
+#define BOOST_TYPEOF_LVALUE_TYPEOF_HPP_INCLUDED
 
 #include <boost/type_traits/is_const.hpp>
 
@@ -26,6 +27,20 @@ namespace boost
         char(*classify_expression(T&))[
             is_const<T>::value ? CONST_LVALUE : LVALUE
         ];
+#if !defined(BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION)
+        template<class T, int n> struct decorate_type
+        {
+            typedef T type;
+        };
+        template<class T> struct decorate_type<T, LVALUE>
+        {
+            typedef T& type;
+        };
+        template<class T> struct decorate_type<T, CONST_LVALUE>
+        {
+            typedef const T& type;
+        };
+#else 
         template<int n> 
         struct decorate_type_impl {
             template<typename T>
@@ -53,8 +68,10 @@ namespace boost
         {
             typedef decorate_type_impl<n>::inner<T>::type type;
         };
+#endif
     }
 }
+
 
 // Since this is always a type, 
 // just add "typename" when using in templates
@@ -66,4 +83,4 @@ namespace boost
     >::type
 
 
-#endif //BOOST_VINTAGE_LVALUE_TYPEOF_HPP_INCLUDED
+#endif//BOOST_TYPEOF_LVALUE_TYPEOF_HPP_INCLUDED
