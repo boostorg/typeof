@@ -22,8 +22,6 @@
 #include <boost/typeof/integral_template_param.hpp>
 #include <boost/typeof/template_template_param.hpp>
 
-
-
 // The template parameter description, entered by the user,
 // is converted into a polymorphic "object" 
 // that is used to generate the code responsible for

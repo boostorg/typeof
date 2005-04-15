@@ -27,9 +27,13 @@
 
 #else//BOOST_TYPEOF_NATIVE
 
+#   define BOOST_TYPEOF_TEXT "using native imlementation"
+#   include <boost/typeof/message.hpp>
+
 #	if !defined BOOST_TYPEOF
 #		define BOOST_TYPEOF __typeof__
 #	endif
+
 #	define BOOST_TYPEOF_TPL BOOST_TYPEOF
 
 #endif

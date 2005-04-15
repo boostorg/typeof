@@ -20,7 +20,7 @@
 //Doesn't require registration
 #       define BOOST_TYPEOF_NATIVE
 
-#   elif !defined BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
+#   else
 #       define BOOST_TYPEOF_COMPLIANT
 
 #   endif

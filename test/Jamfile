@@ -1,0 +1,21 @@
+project-root ;
+
+variant debug_compliant : debug : <define>BOOST_TYPEOF_COMPLIANT ;
+variant release_compliant : release : <define>BOOST_TYPEOF_COMPLIANT ;
+
+exe typeof 
+: 
+	main.cpp
+	compliant/test_compliant.cpp
+	compliant/odr1.cpp
+	compliant/odr2.cpp
+: 
+	<include>C:/boost/boost_1_32_0
+	<include>../../..
+	<msvc><debug_compliant><build>no
+	<msvc><release_compliant><build>no
+	<vc-7><debug_compliant><build>no
+	<vc-7><release_compliant><build>no
+:
+	debug debug_compliant
+;
