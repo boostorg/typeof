@@ -291,16 +291,16 @@ namespace test_integral
 
 BOOST_TYPEOF_REGISTER_TEMPLATE(test_integral::foo, 
                                (BOOST_TYPEOF_INTEGRAL(test_integral::E))
-                               );
+                               )
 
 BOOST_TYPEOF_REGISTER_TEMPLATE(test_integral::blah, 
                                (BOOST_TYPEOF_INTEGRAL(unsigned long int))
-                               );
+                               )
 
 BOOST_TYPEOF_REGISTER_TEMPLATE(test_integral::bar,
                                (class)
                                (BOOST_TYPEOF_INTEGRAL(P0))
-                               );
+                               )
 
 namespace test_integral
 {
