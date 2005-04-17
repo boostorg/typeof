@@ -7,8 +7,8 @@ exe typeof
 : 
 	main.cpp
 	compliant/test_compliant.cpp
-	compliant/odr1.cpp
-	compliant/odr2.cpp
+	odr1.cpp
+	odr2.cpp
 : 
 	<include>C:/boost/boost_1_32_0
 	<include>../../..

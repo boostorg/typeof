@@ -220,13 +220,10 @@
 				RelativePath="..\main.cpp">
 			</File>
 			<File
-				RelativePath="..\..\..\..\boost\typeof\message.hpp">
+				RelativePath="..\odr1.cpp">
 			</File>
 			<File
-				RelativePath=".\odr1.cpp">
-			</File>
-			<File
-				RelativePath=".\odr2.cpp">
+				RelativePath="..\odr2.cpp">
 			</File>
 			<File
 				RelativePath=".\test_compliant.cpp">
@@ -240,19 +237,58 @@
 				RelativePath="..\..\..\..\boost\typeof\config.hpp">
 			</File>
 			<File
+				RelativePath="..\..\..\..\boost\typeof\encode_decode.hpp">
+			</File>
+			<File
+				RelativePath="..\..\..\..\boost\typeof\encode_decode_params.hpp">
+			</File>
+			<File
 				RelativePath="..\..\..\..\boost\typeof\increment_registration_group.hpp">
+			</File>
+			<File
+				RelativePath="..\..\..\..\boost\typeof\int_encoding.hpp">
 			</File>
 			<File
 				RelativePath="..\..\..\..\boost\typeof\integral_template_param.hpp">
 			</File>
 			<File
+				RelativePath="..\..\..\..\boost\typeof\limit_size.hpp">
+			</File>
+			<File
+				RelativePath="..\..\..\..\boost\typeof\lvalue_typeof.hpp">
+			</File>
+			<File
+				RelativePath="..\..\..\..\boost\typeof\message.hpp">
+			</File>
+			<File
+				RelativePath="..\..\..\..\boost\typeof\modifiers.hpp">
+			</File>
+			<File
+				RelativePath="..\odr.hpp">
+			</File>
+			<File
+				RelativePath="..\..\..\..\boost\typeof\pointers_data_members.hpp">
+			</File>
+			<File
 				RelativePath="..\..\..\..\boost\typeof\register_functions.hpp">
+			</File>
+			<File
+				RelativePath="..\..\..\..\boost\typeof\register_functions_iterate.hpp">
 			</File>
 			<File
 				RelativePath="..\..\..\..\boost\typeof\register_fundamental.hpp">
 			</File>
 			<File
+				RelativePath="..\..\..\..\boost\typeof\register_mem_functions.hpp">
+			</File>
+			<File
 				RelativePath="..\..\..\..\boost\typeof\template_encoding.hpp">
+			</File>
+			<File
+				RelativePath="..\..\..\..\boost\typeof\template_template_param.hpp">
+			</File>
+			<File
+				RelativePath="..\..\..\..\boost\typeof\type_encoding.hpp">
 			</File>
 			<File
 				RelativePath="..\..\..\..\boost\typeof\type_template_param.hpp">
@@ -260,61 +296,12 @@
 			<File
 				RelativePath="..\..\..\..\boost\typeof\typeof.hpp">
 			</File>
-			<Filter
-				Name="compliant"
-				Filter="">
-				<File
-					RelativePath="..\..\..\..\boost\typeof\compliant\concatenate.hpp">
-				</File>
-				<File
-					RelativePath="..\..\..\..\boost\typeof\compliant\encode_decode.hpp">
-				</File>
-				<File
-					RelativePath="..\..\..\..\boost\typeof\compliant\encode_decode_params.hpp">
-				</File>
-				<File
-					RelativePath="..\..\..\..\boost\typeof\compliant\int_encoding.hpp">
-				</File>
-				<File
-					RelativePath="..\..\..\..\boost\typeof\compliant\integral_template_param.hpp">
-				</File>
-				<File
-					RelativePath="..\..\..\..\boost\typeof\compliant\limit_size.hpp">
-				</File>
-				<File
-					RelativePath="..\..\..\..\boost\typeof\compliant\lvalue_typeof.hpp">
-				</File>
-				<File
-					RelativePath="..\..\..\..\boost\typeof\compliant\modifiers.hpp">
-				</File>
-				<File
-					RelativePath="..\..\..\..\boost\typeof\compliant\pointers_data_members.hpp">
-				</File>
-				<File
-					RelativePath="..\..\..\..\boost\typeof\compliant\register_functions_iterate.hpp">
-				</File>
-				<File
-					RelativePath="..\..\..\..\boost\typeof\compliant\register_mem_functions.hpp">
-				</File>
-				<File
-					RelativePath="..\..\..\..\boost\typeof\compliant\template_encoding.hpp">
-				</File>
-				<File
-					RelativePath="..\..\..\..\boost\typeof\compliant\template_template_param.hpp">
-				</File>
-				<File
-					RelativePath="..\..\..\..\boost\typeof\compliant\type_encoding.hpp">
-				</File>
-				<File
-					RelativePath="..\..\..\..\boost\typeof\compliant\type_template_param.hpp">
-				</File>
-				<File
-					RelativePath="..\..\..\..\boost\typeof\compliant\typeof_impl.hpp">
-				</File>
-				<File
-					RelativePath="..\..\..\..\boost\typeof\compliant\vector.hpp">
-				</File>
-			</Filter>
+			<File
+				RelativePath="..\..\..\..\boost\typeof\typeof_impl.hpp">
+			</File>
+			<File
+				RelativePath="..\..\..\..\boost\typeof\vector.hpp">
+			</File>
 		</Filter>
 		<Filter
 			Name="spirit"

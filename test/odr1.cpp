@@ -2,8 +2,6 @@
 // Use, modification and distribution is subject to the Boost Software
 // License, Version 1.0. (http://www.boost.org/LICENSE_1_0.txt)
 
-#include <boost/typeof/config.hpp>
-
 #include <iostream>
 #include "odr.hpp"
 

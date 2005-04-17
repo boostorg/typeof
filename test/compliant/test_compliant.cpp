@@ -2,14 +2,17 @@
 // Use, modification and distribution is subject to the Boost Software
 // License, Version 1.0. (http://www.boost.org/LICENSE_1_0.txt)
 
-#include <boost/typeof/config.hpp>
-#if !defined(_MSC_VER) || _MSC_VER > 0x0700
+#include <boost/typeof/typeof.hpp>
+
+// this test would not work for MSVC 7.0 and earlier, 
+// since Spirit/Lambda are not supported
+
+#if !(BOOST_WORKAROUND(BOOST_MSVC, <= 1300))
 
 #ifdef _MSC_VER
 #   pragma warning(disable:4512)
 #endif
 
-#include <boost/typeof/typeof.hpp>
 #include "spirit/register.hpp"
 #include "lambda/register.hpp"
 #include <libs/typeof/test/stl/register.hpp>
@@ -92,4 +95,4 @@ namespace negate_test
     }
 }
 
-#endif//BOOST_TYPEOF_VINTAGE
+#endif//!(BOOST_WORKAROUND(BOOST_MSVC, <= 1300))
