@@ -85,10 +85,11 @@ void test_spirit2()
 #include <functional>
 namespace negate_test
 {
-    template<class T> T make();
+	template<class T> 
+	std::negate<T> make_negate(const T&);
 
     template <class T>
-    BOOST_TYPEOF_TPL(make<std::negate<T> >()(T()))
+    BOOST_TYPEOF_TPL(make_negate(T())(T()))
     operator-(T const& x)
     {
         return std::negate<T>()(x);
