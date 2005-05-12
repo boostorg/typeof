@@ -7,22 +7,22 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <meta name=ProgId content=Word.Document>
 <meta name=Generator content="Microsoft Word 9">
 <meta name=Originator content="Microsoft Word 9">
-<link rel=File-List href="./internals_files/filelist.xml">
+<link rel=File-List href="./typeof_internals_files/filelist.xml">
 <title>So, let’s say we have an expression “expr”</title>
 <!--[if gte mso 9]><xml>
  <o:DocumentProperties>
   <o:Author>Vertleyb</o:Author>
   <o:LastAuthor>Vertleyb</o:LastAuthor>
-  <o:Revision>17</o:Revision>
-  <o:TotalTime>2982</o:TotalTime>
+  <o:Revision>24</o:Revision>
+  <o:TotalTime>3449</o:TotalTime>
   <o:Created>2005-03-26T06:10:00Z</o:Created>
-  <o:LastSaved>2005-04-02T20:36:00Z</o:LastSaved>
-  <o:Pages>17</o:Pages>
-  <o:Words>2531</o:Words>
-  <o:Characters>14427</o:Characters>
-  <o:Lines>120</o:Lines>
-  <o:Paragraphs>28</o:Paragraphs>
-  <o:CharactersWithSpaces>17717</o:CharactersWithSpaces>
+  <o:LastSaved>2005-04-30T14:53:00Z</o:LastSaved>
+  <o:Pages>22</o:Pages>
+  <o:Words>3359</o:Words>
+  <o:Characters>19150</o:Characters>
+  <o:Lines>159</o:Lines>
+  <o:Paragraphs>38</o:Paragraphs>
+  <o:CharactersWithSpaces>23517</o:CharactersWithSpaces>
   <o:Version>9.3821</o:Version>
  </o:DocumentProperties>
 </xml><![endif]--><!--[if gte mso 9]><xml>
@@ -246,6 +246,14 @@ span.NewCode2
 	mso-hansi-font-family:"Courier New";
 	color:red;
 	font-weight:bold;}
+span.NewCode3
+	{mso-style-name:"New Code 3";
+	mso-style-parent:"New Code";
+	mso-ansi-font-size:12.0pt;
+	mso-ascii-font-family:"Courier New";
+	mso-hansi-font-family:"Courier New";
+	color:green;
+	font-weight:bold;}
 @page Section1
 	{size:11.0in 8.5in;
 	mso-page-orientation:landscape;
@@ -295,73 +303,81 @@ style='font-size:20.0pt;mso-bidi-font-size:12.0pt'><o:p></o:p></span></b></p>
 <p class=MsoToc1 style='tab-stops:right dotted 647.5pt'><!--[if supportFields]><span
 style='mso-element:field-begin'></span><span style="mso-spacerun:
 yes"> </span>TOC \o &quot;1-3&quot; \h \z <span style='mso-element:field-separator'></span><![endif]--><span
-class=MsoHyperlink><span style='font-family:Arial'><a href="#_Toc100202465">Introduction<span
+class=MsoHyperlink><span style='font-family:Arial'><a href="#_Toc102142297">Introduction<span
 style='font-family:"Times New Roman";color:windowtext;display:none;mso-hide:
 screen;text-decoration:none;text-underline:none'><span style='mso-tab-count:
-1 dotted'>. </span><span style='mso-field-code:"PAGEREF _Toc100202465 \\h"'>1<!--[if gte mso 9]><xml>
- <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100300030003200300032003400360035000000</w:data>
+1 dotted'>. </span><span style='mso-field-code:"PAGEREF _Toc102142297 \\h"'>1<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100300032003100340032003200390037000000</w:data>
 </xml><![endif]--></span></span></a></span></span></p>
 
 <p class=MsoToc1 style='tab-stops:right dotted 647.5pt'><span
-class=MsoHyperlink><span style='font-family:Arial'><a href="#_Toc100202466">General
+class=MsoHyperlink><span style='font-family:Arial'><a href="#_Toc102142298">General
 idea<span style='font-family:"Times New Roman";color:windowtext;display:none;
 mso-hide:screen;text-decoration:none;text-underline:none'><span
-style='mso-tab-count:1 dotted'>. </span><span style='mso-field-code:"PAGEREF _Toc100202466 \\h"'>2<!--[if gte mso 9]><xml>
- <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100300030003200300032003400360036000000</w:data>
+style='mso-tab-count:1 dotted'>. </span><span style='mso-field-code:"PAGEREF _Toc102142298 \\h"'>2<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100300032003100340032003200390038000000</w:data>
 </xml><![endif]--></span></span></a></span></span></p>
 
 <p class=MsoToc1 style='tab-stops:right dotted 647.5pt'><span
-class=MsoHyperlink><span style='font-family:Arial'><a href="#_Toc100202467">Encoding
+class=MsoHyperlink><span style='font-family:Arial'><a href="#_Toc102142299">Encoding
 and decoding a type<span style='font-family:"Times New Roman";color:windowtext;
 display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
-style='mso-tab-count:1 dotted'>. </span><span style='mso-field-code:"PAGEREF _Toc100202467 \\h"'>4<!--[if gte mso 9]><xml>
- <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100300030003200300032003400360037000000</w:data>
+style='mso-tab-count:1 dotted'>. </span><span style='mso-field-code:"PAGEREF _Toc102142299 \\h"'>4<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100300032003100340032003200390039000000</w:data>
 </xml><![endif]--></span></span></a></span></span></p>
 
 <p class=MsoToc1 style='tab-stops:right dotted 647.5pt'><span
-class=MsoHyperlink><span style='font-family:Arial'><a href="#_Toc100202468">Implementation<span
+class=MsoHyperlink><span style='font-family:Arial'><a href="#_Toc102142300">Implementation<span
 style='font-family:"Times New Roman";color:windowtext;display:none;mso-hide:
 screen;text-decoration:none;text-underline:none'><span style='mso-tab-count:
-1 dotted'>. </span><span style='mso-field-code:"PAGEREF _Toc100202468 \\h"'>6<!--[if gte mso 9]><xml>
- <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100300030003200300032003400360038000000</w:data>
+1 dotted'>. </span><span style='mso-field-code:"PAGEREF _Toc102142300 \\h"'>7<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100300032003100340032003300300030000000</w:data>
 </xml><![endif]--></span></span></a></span></span></p>
 
 <p class=MsoToc1 style='tab-stops:right dotted 647.5pt'><span
-class=MsoHyperlink><span style='font-family:Arial'><a href="#_Toc100202469">Encoding
+class=MsoHyperlink><span style='font-family:Arial'><a href="#_Toc102142301">Encoding
 and decoding templates<span style='font-family:"Times New Roman";color:windowtext;
 display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
-style='mso-tab-count:1 dotted'>. </span><span style='mso-field-code:"PAGEREF _Toc100202469 \\h"'>9<!--[if gte mso 9]><xml>
- <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100300030003200300032003400360039000000</w:data>
+style='mso-tab-count:1 dotted'>. </span><span style='mso-field-code:"PAGEREF _Toc102142301 \\h"'>9<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100300032003100340032003300300031000000</w:data>
 </xml><![endif]--></span></span></a></span></span></p>
 
 <p class=MsoToc1 style='tab-stops:right dotted 647.5pt'><span
-class=MsoHyperlink><span style='font-family:Arial'><a href="#_Toc100202470">Different
+class=MsoHyperlink><span style='font-family:Arial'><a href="#_Toc102142302">Different
 kinds of template parameters or polymorphism with macros<span style='font-family:
 "Times New Roman";color:windowtext;display:none;mso-hide:screen;text-decoration:
 none;text-underline:none'><span style='mso-tab-count:1 dotted'>. </span><span
-style='mso-field-code:"PAGEREF _Toc100202470 \\h"'>10<!--[if gte mso 9]><xml>
- <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100300030003200300032003400370030000000</w:data>
+style='mso-field-code:"PAGEREF _Toc102142302 \\h"'>10<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100300032003100340032003300300032000000</w:data>
 </xml><![endif]--></span></span></a></span></span></p>
 
 <p class=MsoToc1 style='tab-stops:right dotted 647.5pt'><span
-class=MsoHyperlink><span style='font-family:Arial'><a href="#_Toc100202471">Handling
+class=MsoHyperlink><span style='font-family:Arial'><a href="#_Toc102142303">Template
+template parameters<span style='font-family:"Times New Roman";color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-tab-count:1 dotted'>. </span><span style='mso-field-code:"PAGEREF _Toc102142303 \\h"'>14<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100300032003100340032003300300033000000</w:data>
+</xml><![endif]--></span></span></a></span></span></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 647.5pt'><span
+class=MsoHyperlink><span style='font-family:Arial'><a href="#_Toc102142304">Handling
 unused sequence elements<span style='font-family:"Times New Roman";color:windowtext;
 display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
-style='mso-tab-count:1 dotted'>. </span><span style='mso-field-code:"PAGEREF _Toc100202471 \\h"'>14<!--[if gte mso 9]><xml>
- <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100300030003200300032003400370031000000</w:data>
+style='mso-tab-count:1 dotted'>. </span><span style='mso-field-code:"PAGEREF _Toc102142304 \\h"'>18<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100300032003100340032003300300034000000</w:data>
 </xml><![endif]--></span></span></a></span></span></p>
 
 <p class=MsoToc1 style='tab-stops:right dotted 647.5pt'><span
-class=MsoHyperlink><span style='font-family:Arial'><a href="#_Toc100202472">A
+class=MsoHyperlink><span style='font-family:Arial'><a href="#_Toc102142305">A
 word about complexity<span style='font-family:"Times New Roman";color:windowtext;
 display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
-style='mso-tab-count:1 dotted'>. </span><span style='mso-field-code:"PAGEREF _Toc100202472 \\h"'>17<!--[if gte mso 9]><xml>
- <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100300030003200300032003400370032000000</w:data>
+style='mso-tab-count:1 dotted'>. </span><span style='mso-field-code:"PAGEREF _Toc102142305 \\h"'>21<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100300032003100340032003300300035000000</w:data>
 </xml><![endif]--></span></span></a></span></span></p>
 
 <p class=MsoToc1><!--[if supportFields]><span style='mso-element:field-end'></span><![endif]--><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
 
-<h1><a name="_Toc100200536"></a><a name="_Toc100202465"><span style='mso-bookmark:
+<h1><a name="_Toc100200536"></a><a name="_Toc102142297"><span style='mso-bookmark:
 _Toc100200536'>Introduction</span></a></h1>
 
 <p class=MsoNormal>This document describes the internals of<span
@@ -369,7 +385,7 @@ style="mso-spacerun: yes">  </span>the TYPEOF macro implementation.<span
 style="mso-spacerun: yes">  </span>It is related to so called “compliant”
 implementation – one that uses partial template specializations to encode and
 decode types, and is not to be confused with the other two implementations that
-currently exist (or will soon exist) under the umbrella of the proposed
+currently exist (or once existed) under the umbrella of the proposed
 BOOST_TYPEOF macro – Peder Holt’s “vintage” implementation, that trades partial
 template specialization for function overloading and compile time constants, as
 well as recently invented by Igor Chesnokov MSVC-specific typeof trick.</p>
@@ -390,17 +406,18 @@ they are found and reported.</p>
 
 <p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
 
-<p class=MsoNormal>It has to be stressed that the idea of breaking a type into multiple
-compile-time integers by using partial template specializations is not new, and
-belongs, to the best of my knowledge, to Steve Dewhurst, who described it in
-his famous CUJ article “A BIT-Wise Typeof Operator”.<span style="mso-spacerun:
-yes">  </span>The idea of applying MPL to this problem belongs to David
-Abrahams, see <a href="http://thread.gmane.org/gmane.comp.lib.boost.devel/76208"><span
+<p class=MsoNormal>It has to be stressed that the idea of breaking a type into
+multiple compile-time integers by using partial template specializations is not
+new, and belongs, to the best of my knowledge, to <b>Steve Dewhurst</b>, who
+described it in his famous CUJ article “A BIT-Wise Typeof Operator”.<span
+style="mso-spacerun: yes">  </span>The idea of applying MPL to this problem
+belongs to <b>David Abrahams</b>, see <a
+href="http://thread.gmane.org/gmane.comp.lib.boost.devel/76208"><span
 style='mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
 mso-bidi-font-family:"Times New Roman"'>http://thread.gmane.org/gmane.comp.lib.boost.devel/76208</span></a>.<span
 style="mso-spacerun: yes">  </span></p>
 
-<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+<p class=MsoToc1><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
 
 <p class=MsoNormal>The main thing that distinguishes this implementation from
 others available is the ease of definition of new specializations for
@@ -415,16 +432,22 @@ class Tpl&gt; </p>
 
 <p class=Code><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
 
-<p class=Code><span class=NewCode>REGISTER_TEMPLATE(foo, (class)(int)(TEMPLATE((class)(unsigned
-int))))</span> /* now foo can be handled by TYPEOF */</p>
+<p class=Code><span class=NewCode>REGISTER_TEMPLATE(foo,
+(class)(int)(TEMPLATE((class)(unsigned int))))</span> /* now foo can be handled
+by TYPEOF */</p>
 
 <p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
 
 <p class=MsoNormal>The implementation of this REGISTER_TEMPLATE macro, as well
 as many other useful specializations (for functions, arrays, etc.), has become
-possible because of extensive usage of the Boost Preprocessor Library.</p>
+possible because of extensive usage of the <b>Boost Preprocessor Library</b>.</p>
 
-<h1><a name="_Toc100200537"></a><a name="_Toc100202466"><span style='mso-bookmark:
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal><b>Peder Holt</b> deserves the most credit for support of
+template template parameters (discussed later in this document).</p>
+
+<h1><a name="_Toc100200537"></a><a name="_Toc102142298"><span style='mso-bookmark:
 _Toc100200537'>General idea</span></a></h1>
 
 <p class=MsoNormal>Let’s say we have an expression “expr”.<span
@@ -544,20 +567,19 @@ mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></span></p>
 
 <p class=Code style='text-indent:.5in'><span class=NewCode>decode_type&lt;</span>mpl::vector&lt;\</p>
 
-<p class=Code><span style='mso-tab-count:1'>     </span><span style='mso-tab-count:
-1'>     </span>mpl::int_&lt;sizeof(at(expr, mpl::int_&lt;0&gt;()))&gt;,\</p>
+<p class=Code><span style='mso-tab-count:2'>          </span>mpl::int_&lt;sizeof(at(expr,
+mpl::int_&lt;0&gt;()))&gt;,\</p>
 
-<p class=Code><span style='mso-tab-count:1'>     </span><span style='mso-tab-count:
-1'>     </span>mpl::int_&lt;sizeof(at(expr, mpl::int_&lt;1&gt;()))&gt;,\</p>
+<p class=Code><span style='mso-tab-count:2'>          </span>mpl::int_&lt;sizeof(at(expr,
+mpl::int_&lt;1&gt;()))&gt;,\</p>
 
-<p class=Code><span style='mso-tab-count:1'>     </span><span style='mso-tab-count:
-1'>     </span>mpl::int_&lt;sizeof(at(expr, mpl::int_&lt;2&gt;()))&gt;,\</p>
+<p class=Code><span style='mso-tab-count:2'>          </span>mpl::int_&lt;sizeof(at(expr,
+mpl::int_&lt;2&gt;()))&gt;,\</p>
 
-<p class=Code><span style='mso-tab-count:1'>     </span><span style='mso-tab-count:
-1'>     </span>…\</p>
+<p class=Code><span style='mso-tab-count:2'>          </span>…\</p>
 
-<p class=Code><span style='mso-tab-count:1'>     </span><span style='mso-tab-count:
-1'>     </span>mpl::int_&lt;sizeof(at(expr, mpl::int_&lt;N&gt;()))&gt;\</p>
+<p class=Code><span style='mso-tab-count:2'>          </span>mpl::int_&lt;sizeof(at(expr,
+mpl::int_&lt;N&gt;()))&gt;\</p>
 
 <p class=Code style='text-indent:.5in'>&gt; <span class=NewCode>&gt;::type</span></p>
 
@@ -587,7 +609,7 @@ sequence.</p>
 
 <p class=MsoNormal>Let’s now explore these three issues in more detail.</p>
 
-<h1><a name="_Toc100200538"></a><a name="_Toc100202467"><span style='mso-bookmark:
+<h1><a name="_Toc100200538"></a><a name="_Toc102142299"><span style='mso-bookmark:
 _Toc100200538'>Encoding and decoding a type</span></a></h1>
 
 <p class=MsoNormal>Let’s consider the following type:</p>
@@ -604,8 +626,8 @@ either a type or a template or a modifier of the original type:</p>
 
 <p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
 
-<p class=Code><span style="mso-spacerun: yes">                               
-</span>+-- <b>pointer</b> -- <b>int</b></p>
+<p class=Code><span style="mso-spacerun: yes">                            
+</span><span style="mso-spacerun: yes">   </span>+-- <b>pointer</b> -- <b>int</b></p>
 
 <p class=Code><b>pointer</b> -- <b>const</b> -- <b>std::pair</b> --+</p>
 
@@ -618,17 +640,13 @@ either a type or a template or a modifier of the original type:</p>
 
 <p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
 
-<p class=Code>pointer<span style='mso-tab-count:1'>   </span><span
-style='mso-tab-count:1'>     </span>1</p>
+<p class=Code>pointer<span style='mso-tab-count:2'>       </span>1</p>
 
-<p class=Code>const<span style='mso-tab-count:1'>     </span><span
-style='mso-tab-count:1'>     </span>2</p>
+<p class=Code>const<span style='mso-tab-count:2'>         </span>2</p>
 
-<p class=Code>std::pair<span style='mso-tab-count:1'> </span><span
-style='mso-tab-count:1'>     </span>3</p>
+<p class=Code>std::pair<span style='mso-tab-count:2'>     </span>3</p>
 
-<p class=Code>int<span style='mso-tab-count:2'>       </span><span
-style='mso-tab-count:1'>     </span>4</p>
+<p class=Code>int<span style='mso-tab-count:3'>           </span>4</p>
 
 <p class=Code>std::string<span style='mso-tab-count:1'>   </span>5</p>
 
@@ -768,7 +786,7 @@ parameters:</p>
 of integers, and then decoded back, let’s now see how this all can be
 implemented.</p>
 
-<h1><a name="_Toc100200539"></a><a name="_Toc100202468"><span style='mso-bookmark:
+<h1><a name="_Toc100200539"></a><a name="_Toc102142300"><span style='mso-bookmark:
 _Toc100200539'>Implementation</span></a></h1>
 
 <p class=MsoNormal>The described type encoding can be implemented with partial
@@ -869,11 +887,12 @@ V&gt;<span style="mso-spacerun: yes">                              </span>\ </p>
 style="mso-spacerun: yes">  </span>\</p>
 
 <p class=Code><span style="mso-spacerun: yes">    </span>V,<span
-style="mso-spacerun: yes">                                           </span>\</p>
+style="mso-spacerun: yes">                   </span><span style="mso-spacerun:
+yes">                        </span>\</p>
 
 <p class=Code><span style="mso-spacerun: yes">    </span>mpl::int_&lt;<span
-class=NewCode>ID</span>&gt;<span style="mso-spacerun: yes">                  
-</span><span style="mso-spacerun: yes">             </span>\</p>
+class=NewCode>ID</span>&gt;<span style="mso-spacerun:
+yes">                                </span>\</p>
 
 <p class=Code><span style="mso-spacerun: yes">  </span>&gt;<span
 style="mso-spacerun: yes">                                             
@@ -890,8 +909,8 @@ decode_type_impl&lt;mpl::int_&lt;<span class=NewCode>ID</span>&gt;,
 Iter&gt;<span style="mso-spacerun: yes">   </span>\</p>
 
 <p class=Code><span style="mso-spacerun: yes">  </span>{<span
-style="mso-spacerun: yes">                                  </span><span
-style="mso-spacerun: yes">            </span>\</p>
+style="mso-spacerun: yes">                                             
+</span>\</p>
 
 <p class=Code><span style="mso-spacerun: yes">    </span>typedef <span
 class=NewCode>Name</span> type;<span style="mso-spacerun:
@@ -923,7 +942,7 @@ iter;<span style="mso-spacerun: yes">                           </span>\</p>
 
 <p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
 
-<h1><a name="_Toc100200540"></a><a name="_Toc100202469"><span style='mso-bookmark:
+<h1><a name="_Toc100200540"></a><a name="_Toc102142301"><span style='mso-bookmark:
 _Toc100200540'>Encoding and decoding templates</span></a></h1>
 
 <p class=MsoNormal>Let’s consider std::pair class template.<span
@@ -999,8 +1018,7 @@ decode_type&lt;typename d0::iter&gt; d1;</p>
 
 <p class=Code><span style="mso-spacerun: yes">  </span>typedef std::pair&lt;</p>
 
-<p class=Code><span style="mso-spacerun: yes"> </span><span
-style="mso-spacerun: yes">   </span>typename d0::type, </p>
+<p class=Code><span style="mso-spacerun: yes">    </span>typename d0::type, </p>
 
 <p class=Code><span style="mso-spacerun: yes">    </span>typename d1::type</p>
 
@@ -1029,7 +1047,7 @@ only have type parameters.<span style="mso-spacerun: yes">  </span>Things get
 more interesting however once we get to consider integral and template template
 parameters.</p>
 
-<h1><a name="_Toc100200541"></a><a name="_Toc100202470"><span style='mso-bookmark:
+<h1><a name="_Toc100200541"></a><a name="_Toc102142302"><span style='mso-bookmark:
 _Toc100200541'>Different kinds of template parameters or polymorphism with
 macros</span></a></h1>
 
@@ -1094,8 +1112,7 @@ mpl::push_back&lt;</p>
 <p class=Code><span class=NewCode><span style="mso-spacerun: yes"> 
 </span>typedef typename encode_type&lt;<o:p></o:p></span></p>
 
-<p class=Code><span class=NewCode><span style="mso-spacerun: yes">   
-</span>v0,<o:p></o:p></span></p>
+<p class=Code><span class=NewCode><span style="mso-spacerun: yes">    </span>v0,<o:p></o:p></span></p>
 
 <p class=Code><span class=NewCode><span style="mso-spacerun: yes">    </span>P0<o:p></o:p></span></p>
 
@@ -1144,7 +1161,20 @@ yes">  </span>This type information can later be used for dispatching:</p>
 
 <p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
 
-<p class=MsoNormal>Let’s now define “virtual functions”:</p>
+<p class=MsoNormal>The first “class”, TYPE_PARAM, doesn’t define any
+properties.<span style="mso-spacerun: yes">  </span>The only data contained
+inside the “object” is the class information, which is used for dispatching,
+and can be thought of as an analogue of the vptr.</p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal>The second class, INTEGRAL_PARAM, defines the only property,
+which is an integral type of the parameter.</p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal>Let’s now implement “virtual functions” (note how their
+names are formed – this is used in the virtual function call mechanism):</p>
 
 <p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
 
@@ -1154,8 +1184,8 @@ yes">  </span>This type information can later be used for dispatching:</p>
 
 <p class=Code><span class=NewCode>#define TYPE_PARAM_ENCODE(This, n)\<o:p></o:p></span></p>
 
-<p class=Code><span class=NewCode><span style="mso-spacerun: yes">  </span>typedef
-typename encode_type&lt;v ## n, P ## n&gt;::type\<o:p></o:p></span></p>
+<p class=Code><span class=NewCode><span style="mso-spacerun: yes"> 
+</span>typedef typename encode_type&lt;v ## n, P ## n&gt;::type\<o:p></o:p></span></p>
 
 <p class=Code><span class=NewCode><span style="mso-spacerun: yes">   
 </span>BOOST_PP_CAT(v, BOOST_PP_INC(n))<o:p></o:p></span></p>
@@ -1178,7 +1208,7 @@ BOOST_PP_SEQ_ELEM(1, This)<o:p></o:p></span></p>
 
 <p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
 
-<p class=MsoNormal>Now we need a virtual function:</p>
+<p class=MsoNormal>Now we need a virtual function call mechanism:</p>
 
 <p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
 
@@ -1191,6 +1221,34 @@ BOOST_PP_SEQ_ELEM(1, This)<o:p></o:p></span></p>
 
 <p class=MsoNormal>As you can see, the head of the object (sequence) is used
 for dispatching.</p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal>Now the following:</p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=Code>VIRTUAL(ENCODE, obj)(obj, 2)</p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal>will expand into either</p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=Code>TYPE_PARAM_ENCODE(obj, 2)</p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal>or </p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=Code>INTEGRAL_PARAM_ENCODE(obj, 2),</p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal>depending of what the “class” of obj is.</p>
 
 <p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
 
@@ -1250,8 +1308,8 @@ TYPE_PARAM</p>
 
 <p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
 
-<p class=MsoNormal>Assuming this transformation is done with the macro called TRANSFORM_PARAMS,
-we can define our encoding specialization like this:</p>
+<p class=MsoNormal>Assuming this transformation is done with the macro called
+TRANSFORM_PARAMS, we can define our encoding specialization like this:</p>
 
 <p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
 
@@ -1264,8 +1322,8 @@ elem)(elem) BOOST_PP_CAT(P, n)</p>
 
 <p class=Code>#define REGISTER_TEMPLATE_ENCODE_PARAM(r, data, n, elem)\</p>
 
-<p class=Code><span style="mso-spacerun: yes">    </span>VIRTUAL(ENCODE, elem)(elem,
-n)</p>
+<p class=Code><span style="mso-spacerun: yes">    </span>VIRTUAL(ENCODE,
+elem)(elem, n)</p>
 
 <p class=Code><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
 
@@ -1285,14 +1343,14 @@ encode_type_impl&lt;V, Name&lt;BOOST_PP_ENUM_PARAMS(Size, P)&gt; &gt;\</p>
 
 <p class=Code><span style="mso-spacerun: yes">  </span>{\</p>
 
-<p class=Code><span style="mso-spacerun: yes">    </span>typedef typename mpl::push_back&lt;V,
-mpl::int_&lt;ID&gt; &gt;::type V0;\</p>
+<p class=Code><span style="mso-spacerun: yes">    </span>typedef typename
+mpl::push_back&lt;V, mpl::int_&lt;ID&gt; &gt;::type V0;\</p>
 
 <p class=Code><span style="mso-spacerun: yes">   
 </span>BOOST_PP_SEQ_FOR_EACH_I(REGISTER_TEMPLATE_ENCODE_PARAM, ~, Params)\</p>
 
-<p class=Code><span style="mso-spacerun: yes">    </span>typedef
-BOOST_PP_CAT(V, Size) type;\</p>
+<p class=Code><span style="mso-spacerun: yes">    </span>typedef BOOST_PP_CAT(V,
+Size) type;\</p>
 
 <p class=Code><span style="mso-spacerun: yes">  </span>};\</p>
 
@@ -1321,13 +1379,377 @@ meaning)</p>
 
 <p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
 
-<p class=MsoNormal>It’s worth noting here that we also support the third
-template parameter type, template template parameters.<span
-style="mso-spacerun: yes">  </span>With three different types, and half a dozen
-“virtual functions”, such polymorphic approach really pays off. </p>
+<p class=MsoNormal>The library also supports the third template parameter type,
+template template parameters.<span style="mso-spacerun: yes">  </span>Let’s now
+take a look at how it’s done. </p>
 
-<h1><a name="_Toc100200542"></a><a name="_Toc100202471"><span style='mso-bookmark:
-_Toc100200542'>Handling unused sequence elements</span></a></h1>
+<h1><a name="_Toc102142303"></a><a name="_Toc100200542"><span style='mso-bookmark:
+_Toc102142303'>Template template parameters</span></a></h1>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'>The good news is
+that templates already have unique integer Ids, which are assigned to them
+during the registration.<span style="mso-spacerun: yes">  </span>Placing this
+Id into the encoding sequence, and then restoring the template from this Id is
+all that needs to be done.</span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'>Unfortunately,
+templates, although strange it might sound, are not the first-class citizens in
+template metaprogramming.<span style="mso-spacerun: yes">  </span>True, a
+template can be passed into a metafunction, as a template template parameter,
+but it turns out to be not very convenient.<span style="mso-spacerun: yes"> 
+</span>Also, a template can never be returned as a result of a metafunction.</span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'>The Typeof library
+solves this problem by converting templates into types.<span
+style="mso-spacerun: yes">  </span>It does this by instantiating templates with
+well-known dummy types and values – int for type parameters, and zero for
+integrals.<span style="mso-spacerun: yes">  </span>Such type is used to move
+the template around, and later the template gets extracted using partial
+template specialization (this approach is somewhat similar to one used by MPL
+to convert metafunctions into metafunction classes).<span style="mso-spacerun:
+yes">  </span>For example, consider the std::pair class template.<span
+style="mso-spacerun: yes">  </span>Its type representation would be
+std::pair&lt;int, int&gt;.<span style="mso-spacerun: yes">  </span>The
+following code might then be used to extract the template:</span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>template&lt;class T&gt; </span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>struct extract; // not
+defined</span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>template&lt;template&lt;class,
+class&gt; class Tpl, class T1, class T2&gt; </span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>struct extract&lt;Tpl&lt;T1,
+T2&gt; &gt;</span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>{</span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span style='mso-tab-count:
+1'>     </span>typedef Tpl&lt;T1*, T2*&gt; type; /* use Tpl in any way you want
+*/</span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>};</span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'>Armed with this
+approach, let’s go back to our template template parameters.</span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'>Let’s declare a
+metafunction to encode a template:</span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>template&lt;class V,
+class T&gt;</span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>struct encode_template;
+// not defined</span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'>Note that it
+accepts a type rather than a template.<span style="mso-spacerun: yes"> 
+</span>This type is the instantiation of the template that was discussed just a
+moment ago.<span style="mso-spacerun: yes">  </span>Hadn’t we used this
+approach, it wouldn’t have been possible to declare this:</span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>template&lt;class V,
+template&lt;<b>???</b>&gt; class Tpl&gt;</span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>struct encode_template;
+// not defined</span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'>Now let us provide
+the specialization for std::pair:</span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>template&lt;class V,
+class P0, class P1&gt; </span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>struct encode_template
+&lt;V, std::pair&lt;P0, P1&gt; &gt; </span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span
+style="mso-spacerun: yes">    </span>: mpl::push_back&lt;V, mpl::int_&lt;3&gt;
+&gt; /* we still use 3 as an Id of std::pair */</span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>{}; </span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'>Similarly, let’s
+implement decoding:</span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>template&lt;class T,
+class Iter&gt; </span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>struct
+decode_template_impl; // not defined</span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>template&lt;class
+Iter&gt; </span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>struct decode_template :
+decode_template_impl&lt;</span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span
+style="mso-spacerun: yes">    </span>typename mpl::deref&lt;Iter&gt;::type, </span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span
+style="mso-spacerun: yes">    </span>typename mpl::next&lt;Iter&gt;::type</span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>&gt;</span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>{};</span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>template&lt;class
+Iter&gt; </span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>struct
+decode_template_impl&lt;mpl::int_&lt;3&gt;, Iter&gt; </span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>{</span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span
+style="mso-spacerun: yes">    </span>typedef int P0; </span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span
+style="mso-spacerun: yes">    </span>typedef std::pair&lt;int, int&gt; type; </span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span
+style="mso-spacerun: yes">    </span>typedef Iter iter; </span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>}; </span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'>As you can see, the
+iterator is de-referenced to determine the Id, which is used to match against a
+template specialization.<span style="mso-spacerun: yes">  </span>The template
+specialization for std::pair’s Id returns the std::pair class template by
+instantiating it with two ints.</span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'>The encode_template
+and decode_template_impl specializations are added to REGISTER_TEMPLATE macro,
+thus making it possible to use registered templates as template template
+parameters.</span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'>We now can encode
+and decode templates.<span style="mso-spacerun: yes">  </span>Recall that
+earlier we talked about template encoding actually meaning encoding a type,
+which is an instantiation of a template.<span style="mso-spacerun: yes"> 
+</span>Let’s now return to the template encoding in this sense, and see how we
+can add template template parameters support.</span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'>Let’s assume we
+have the following template definition:</span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>template&lt;class T,
+template &lt;class&gt; class Tpl&gt; </span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>struct B</span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>{};</span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'>If its ID happens
+to be 15, its encoding specialization will look like following:</span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>template&lt;class V, <span
+class=NewCode>class</span> P0, <span class=NewCode3>template&lt;class&gt; class</span>
+P1&gt; </span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>struct encode_type&lt;V,
+B&lt;P0, P1&gt; &gt; </span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>{</span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span
+style="mso-spacerun: yes">    </span>typedef typename mpl::push_back&lt;V,
+mpl::int_&lt;15&gt; &gt;::type V0; </span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span class=NewCode><span
+style="mso-spacerun: yes">    </span>typedef typename encode_type&lt;V0,
+P0&gt;::type V1; <o:p></o:p></span></span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span class=NewCode3><span
+style="mso-spacerun: yes">    </span>typedef typename encode_template&lt;V1,
+P1&lt;int&gt; &gt;::type V2;<span style="mso-spacerun: yes">   </span><o:p></o:p></span></span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span
+style="mso-spacerun: yes">    </span>typedef V2 type; </span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>}; </span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'><span
+style="mso-spacerun: yes"> </span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'>The decoding
+specialization will be:</span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>template&lt;class
+Iter&gt; </span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>struct decode_type_impl&lt;mpl::int_&lt;15&gt;,
+Iter&gt; </span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>{</span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span
+style="mso-spacerun: yes">    </span>typedef Iter iter0; </span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span class=NewCode><span
+style="mso-spacerun: yes">    </span>typedef decode_type&lt;iter0&gt; d0; <o:p></o:p></span></span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span class=NewCode><span
+style="mso-spacerun: yes">    </span>typedef typename d0::type P0; <o:p></o:p></span></span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span class=NewCode><span
+style="mso-spacerun: yes">    </span>typedef typename d0::iter iter1; <o:p></o:p></span></span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span class=NewCode3><span
+style="mso-spacerun: yes">    </span>typedef decode_template&lt;iter1&gt; d1; <o:p></o:p></span></span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span class=NewCode3><span
+style="mso-spacerun: yes">    </span>typedef typename d1::type P1; <o:p></o:p></span></span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span class=NewCode3><span
+style="mso-spacerun: yes">    </span>typedef typename d1::iter iter2;<span
+style="mso-spacerun: yes">   </span><o:p></o:p></span></span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span
+style="mso-spacerun: yes">    </span>typedef typename B&lt;<span class=NewCode>P0</span>,
+<span class=NewCode3>???</span>&gt;::type type; /* need to do something else */
+</span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span
+style="mso-spacerun: yes">    </span>typedef iter2 iter; </span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'>}; </span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'>The only missing
+piece is how to instantiate B.<span style="mso-spacerun: yes">  </span>Its
+second parameter is a template, but we have a type (which is an instantiation
+of the needed template with dummy parameters).</span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'>As we discussed in
+the beginning of this section, we have to use partial template specialization
+to extract the template.<span style="mso-spacerun: yes">  </span>The commented
+line in the above code can be replaced with the following code:</span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span
+style="mso-spacerun: yes">    </span>. . .</span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span
+style="mso-spacerun: yes">    </span>template&lt;class T0, class T1&gt; </span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span
+style="mso-spacerun: yes">    </span>struct decode_params; </span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span
+style="mso-spacerun: yes">    </span>template&lt;<span class=NewCode>class</span>
+T0, <span class=NewCode3>template &lt;class&gt; class</span> T1&gt; </span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span
+style="mso-spacerun: yes">    </span>struct decode_params&lt;<span
+class=NewCode>T0</span>, <span class=NewCode3>T1&lt;int&gt;</span> &gt; </span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span
+style="mso-spacerun: yes">    </span>{</span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span
+style="mso-spacerun: yes">        </span>typedef B&lt;T0, T1&gt; type; </span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span
+style="mso-spacerun: yes">    </span>}; </span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span
+style="mso-spacerun: yes">    </span>typedef typename decode_params&lt;P0,
+P1&gt;::type type; </span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span
+style="mso-spacerun: yes">    </span>. . .</span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'>Note how
+decode_params extracts the template from its second parameter, and uses it when
+defining the resulting type.<span style="mso-spacerun: yes">  </span>The first
+parameter, on the other hand, is a type, and therefore passed through
+decode_params as is.</span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'>The code discussed
+in this section is generated as a result of the expansion of the
+REGISTER_TEMPLATE macro.<span style="mso-spacerun: yes">  </span>The code
+specific to template template parameters (green) is handled by the third
+polymorphic “class” – TEMPLATE_PARAM, whose only property is a sequence that
+describes parameters of the template:</span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=Code><span style='mso-bookmark:_Toc100200542'><span class=NewCode3>#define
+TEMPLATE_PARAM(Params) (TEMPLATE_PARAM)(Params)<o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc100200542'>With three
+“classes” and half a dozen “virtual functions” such plymorphic approach really
+pays off.<span style="mso-spacerun: yes">  </span></span></p>
+
+<h1><span style='mso-bookmark:_Toc100200542'><a name="_Toc102142304">Handling
+unused sequence elements</a></span></h1>
 
 <p class=MsoNormal>Let’s revisit our TYPEOF macro implementation.<span
 style="mso-spacerun: yes">  </span>We left it in the following state:</p>
@@ -1349,20 +1771,19 @@ N&gt;::type::value</p>
 
 <p class=Code style='text-indent:.5in'>decode_type&lt;mpl::vector&lt;\</p>
 
-<p class=Code><span style='mso-tab-count:1'>     </span><span style='mso-tab-count:
-1'>     </span>mpl::int_&lt;sizeof(at(expr, mpl::int_&lt;0&gt;()))&gt;,\</p>
+<p class=Code><span style='mso-tab-count:2'>          </span>mpl::int_&lt;sizeof(at(expr,
+mpl::int_&lt;0&gt;()))&gt;,\</p>
 
-<p class=Code><span style='mso-tab-count:1'>     </span><span style='mso-tab-count:
-1'>     </span>mpl::int_&lt;sizeof(at(expr, mpl::int_&lt;1&gt;()))&gt;,\</p>
+<p class=Code><span style='mso-tab-count:2'>          </span>mpl::int_&lt;sizeof(at(expr,
+mpl::int_&lt;1&gt;()))&gt;,\</p>
 
-<p class=Code><span style='mso-tab-count:1'>     </span><span style='mso-tab-count:
-1'>     </span>mpl::int_&lt;sizeof(at(expr, mpl::int_&lt;2&gt;()))&gt;,\</p>
+<p class=Code><span style='mso-tab-count:2'>          </span>mpl::int_&lt;sizeof(at(expr,
+mpl::int_&lt;2&gt;()))&gt;,\</p>
 
-<p class=Code><span style='mso-tab-count:1'>     </span><span style='mso-tab-count:
-1'>     </span>…\</p>
+<p class=Code><span style='mso-tab-count:2'>          </span>…\</p>
 
-<p class=Code><span style='mso-tab-count:1'>     </span><span style='mso-tab-count:
-1'>     </span>mpl::int_&lt;sizeof(at(expr, mpl::int_&lt;N&gt;()))&gt;\</p>
+<p class=Code><span style='mso-tab-count:2'>          </span>mpl::int_&lt;sizeof(at(expr,
+mpl::int_&lt;N&gt;()))&gt;\</p>
 
 <p class=Code style='text-indent:.5in'>&gt; &gt;::type</p>
 
@@ -1388,20 +1809,19 @@ class=NewCode>mpl::vector0&lt;&gt;, </span>T&gt;::type, N&gt;::type::value</p>
 
 <p class=Code style='text-indent:.5in'>decode_type&lt;<span class=NewCode>mpl::begin&lt;</span>mpl::vector&lt;\</p>
 
-<p class=Code><span style='mso-tab-count:1'>     </span><span style='mso-tab-count:
-1'>     </span>mpl::int_&lt;sizeof(at(expr, mpl::int_&lt;0&gt;()))&gt;,\</p>
+<p class=Code><span style='mso-tab-count:2'>          </span>mpl::int_&lt;sizeof(at(expr,
+mpl::int_&lt;0&gt;()))&gt;,\</p>
 
-<p class=Code><span style='mso-tab-count:1'>     </span><span style='mso-tab-count:
-1'>     </span>mpl::int_&lt;sizeof(at(expr, mpl::int_&lt;1&gt;()))&gt;,\</p>
+<p class=Code><span style='mso-tab-count:2'>          </span>mpl::int_&lt;sizeof(at(expr,
+mpl::int_&lt;1&gt;()))&gt;,\</p>
 
-<p class=Code><span style='mso-tab-count:1'>     </span><span style='mso-tab-count:
-1'>     </span>mpl::int_&lt;sizeof(at(expr, mpl::int_&lt;2&gt;()))&gt;,\</p>
+<p class=Code><span style='mso-tab-count:2'>          </span>mpl::int_&lt;sizeof(at(expr,
+mpl::int_&lt;2&gt;()))&gt;,\</p>
 
-<p class=Code><span style='mso-tab-count:1'>     </span><span style='mso-tab-count:
-1'>     </span>…\</p>
+<p class=Code><span style='mso-tab-count:2'>          </span>…\</p>
 
-<p class=Code><span style='mso-tab-count:1'>     </span><span style='mso-tab-count:
-1'>     </span>mpl::int_&lt;sizeof(at(expr, mpl::int_&lt;N&gt;()))&gt;\</p>
+<p class=Code><span style='mso-tab-count:2'>          </span>mpl::int_&lt;sizeof(at(expr,
+mpl::int_&lt;N&gt;()))&gt;\</p>
 
 <p class=Code style='text-indent:.5in'>&gt;<span class=NewCode>::type</span>&gt;::type</p>
 
@@ -1500,8 +1920,8 @@ T&gt;::type&gt;::type::value</p>
 
 <p class=Code><span style="mso-spacerun: yes">    </span>)&gt;()))&gt;,\</p>
 
-<p class=Code><span style="mso-spacerun: yes">   
-</span>mpl::int_&lt;sizeof(at(expr, mpl::int_&lt;(\</p>
+<p class=Code><span style="mso-spacerun: yes">    </span>mpl::int_&lt;sizeof(at(expr,
+mpl::int_&lt;(\</p>
 
 <p class=Code><span style="mso-spacerun: yes">      </span><span class=NewCode>1
 &lt; sizeof(size(expr)) ? 1 : 0</span>\</p>
@@ -1534,11 +1954,10 @@ T&gt;::type&gt;::type::value</p>
 <p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
 
 <p class=MsoNormal>It’s now trivial for anybody familiar with the Boost
-Preprocessor Library to re-write this nicely, so let’s omit this. <span
-style="mso-spacerun: yes"> </span>You can always see the result at
-boost/typeof/compliant/typeof_impl.hpp.</p>
+Preprocessor Library to re-write this nicely, so let’s omit this.<span
+style="mso-spacerun: yes">  </span>You can always see the result at boost/typeof/compliant/typeof_impl.hpp.</p>
 
-<h1><a name="_Toc100200543"></a><a name="_Toc100202472"><span style='mso-bookmark:
+<h1><a name="_Toc100200543"></a><a name="_Toc102142305"><span style='mso-bookmark:
 _Toc100200543'>A word about complexity</span></a></h1>
 
 <p class=MsoNormal>Looking at the resulting TYPEOF macro, it may seem that the

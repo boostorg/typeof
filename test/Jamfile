@@ -19,5 +19,5 @@ exe typeof
 	<vc-8_0><debug_compliant><build>no
 	<vc-8_0><release_compliant><build>no
 :
-	debug debug_compliant
+	debug release debug_compliant release_compliant
 ;
