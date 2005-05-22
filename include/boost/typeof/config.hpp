@@ -6,6 +6,7 @@
 #define BOOST_TYPEOF_CONFIG_HPP_INCLUDED
 
 #include <boost/config.hpp>
+#include <boost/detail/workaround.hpp>
 
 #if !defined(BOOST_TYPEOF_COMPLIANT) &&\
     !defined(BOOST_TYPEOF_NATIVE)
@@ -25,6 +26,10 @@
 
 #   endif
 
+#endif
+
+#if BOOST_WORKAROUND(BOOST_MSVC, >= 1400)
+#   define BOOST_TYPEOF_NO_SIMPLE_TYPE_OPTIMIZATION
 #endif
 
 #endif//BOOST_TYPEOF_CONFIG_HPP_INCLUDED

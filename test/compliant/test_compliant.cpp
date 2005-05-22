@@ -96,4 +96,20 @@ namespace negate_test
     }
 }
 
+#define BOOST_TYPEOF_TEXT "adder..."
+#include <boost/typeof/message.hpp>
+
+namespace test_adder
+{
+    template<class T> T make();
+
+    template<class T, class U>
+    struct adder
+    {
+        typedef BOOST_TYPEOF_TPL(make<T>() + make<U>()) type;
+    };
+
+    typedef adder<int, double>::type type;
+};
+
 #endif//!(BOOST_WORKAROUND(BOOST_MSVC, <= 1300))
