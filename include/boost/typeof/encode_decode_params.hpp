@@ -28,7 +28,7 @@
 
 #define BOOST_TYPEOF_ENCODE_PARAMS(n, ID)                   \
     BOOST_PP_REPEAT(n, BOOST_TYPEOF_ENCODE_PARAMS_BEGIN, ~) \
-    typename mpl::push_back<V, mpl::size_t<ID> >::type      \
+    typename push_back<V, mpl::size_t<ID> >::type      \
     BOOST_PP_REPEAT(n, BOOST_TYPEOF_ENCODE_PARAMS_END, ~)
 
 #endif//BOOST_TYPEOF_ENCODE_DECODE_PARAMS_HPP_INCLUDED

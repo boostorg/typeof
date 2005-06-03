@@ -1,0 +1,7 @@
+#project boost/doc ;
+project root ;
+
+import boostbook : boostbook ;
+
+boostbook typeof : typeof.xml ;
+

@@ -65,7 +65,7 @@ namespace boost
         {};
 
         template<class Iter> struct decode_template 
-            :   decode_template_impl<typename mpl::deref<Iter>::type, typename mpl::next<Iter>::type>
+            :   decode_template_impl<typename Iter::type, typename Iter::next>
         {};
     }
 }
@@ -82,7 +82,7 @@ namespace boost
         BOOST_PP_ENUM_PARAMS(\
         BOOST_PP_SEQ_SIZE(Params),\
         P)> >\
-    :   mpl::push_back<V, mpl::size_t<ID> >\
+    :   push_back<V, mpl::size_t<ID> >\
     {\
     };\
     template<class Iter> struct decode_template_impl<mpl::size_t<ID>, Iter>\

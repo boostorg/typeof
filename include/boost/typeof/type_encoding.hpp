@@ -8,7 +8,7 @@
 #define BOOST_TYPEOF_REGISTER_TYPE_IMPL(T, Id)                          \
                                                                         \
     template<class V> struct encode_type_impl<V, T >                    \
-        : mpl::push_back<V, mpl::size_t<Id> >                   \
+        : push_back<V, mpl::size_t<Id> >                   \
     {};                                                                 \
     template<class Iter> struct decode_type_impl<mpl::size_t<Id>, Iter> \
     {                                                                   \

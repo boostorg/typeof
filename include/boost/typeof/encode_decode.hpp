@@ -25,8 +25,8 @@ namespace boost{namespace type_of{namespace{
 
     template<class Iter> 
     struct decode_type : decode_type_impl<
-        typename mpl::deref<Iter>::type,
-        typename mpl::next<Iter>::type
+        typename Iter::type,
+        typename Iter::next
     >
     {};
 }}}

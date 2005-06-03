@@ -16,7 +16,7 @@
     {\
         typedef\
             typename encode_type<\
-            typename mpl::push_back<\
+            typename push_back<\
             V\
             , mpl::size_t<ID> >::type\
             , T>::type\
@@ -60,8 +60,8 @@ namespace boost{namespace type_of{namespace{
     {\
         typedef\
             typename encode_type<\
-            typename mpl::push_back<\
-            typename mpl::push_back<\
+            typename push_back<\
+            typename push_back<\
             V\
             , mpl::size_t<ID> >::type\
             , mpl::size_t<N> >::type\
@@ -71,8 +71,8 @@ namespace boost{namespace type_of{namespace{
     template<class Iter>\
     struct decode_type_impl<mpl::size_t<ID>, Iter>\
     {\
-        enum{n = mpl::deref<Iter>::type::value};\
-        typedef decode_type<typename mpl::next<Iter>::type> d;\
+        enum{n = Iter::type::value};\
+        typedef decode_type<typename Iter::next> d;\
         typedef typename d::type Qualifier type[n];\
         typedef typename d::iter iter;\
     }
