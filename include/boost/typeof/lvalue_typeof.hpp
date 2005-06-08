@@ -78,7 +78,6 @@ namespace boost
 // just add "typename" when using in templates
 
 #if defined BOOST_TYPEOF_COMPLIANT || (defined(BOOST_TYPEOF_NATIVE) && defined(BOOST_MSVC))
-
 namespace boost { namespace type_of {
 
     template<class V, int n>
@@ -97,8 +96,6 @@ namespace boost { namespace type_of {
         sizeof(*boost::type_of::classify_expression(expr))  \
     >::type
 
-#endif
-
 #else //BOOST_TYPEOF_NATIVE
 
 #define BOOST_LVALUE_TYPEOF(expr)                           \
@@ -106,5 +103,7 @@ namespace boost { namespace type_of {
         BOOST_TYPEOF(expr),                                 \
         sizeof(*boost::type_of::classify_expression(expr))  \
     >::type
+
+#endif
 
 #endif//BOOST_TYPEOF_LVALUE_TYPEOF_HPP_INCLUDED
