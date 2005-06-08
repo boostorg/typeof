@@ -30,9 +30,20 @@
 #   define BOOST_TYPEOF_TEXT "using native imlementation"
 #   include <boost/typeof/message.hpp>
 
-#	if !defined BOOST_TYPEOF
-#		define BOOST_TYPEOF __typeof__
+#	if !defined BOOST_TYPEOF_KEYWORD
+#		define BOOST_TYPEOF_KEYWORD __typeof__
 #	endif
+
+    /* Native __typeof__ can accept either type or value.
+    Something like "int()" can be viewed either way, but 
+    __typeof__ consideres it a type.  We force it otherwise
+    to ensure consistensy with emulation */
+
+    namespace boost { namespace type_of {
+        template<class T> T& ensure_obj(const T&);
+    }}
+
+#   define BOOST_TYPEOF(expr) BOOST_TYPEOF_KEYWORD(boost::type_of::ensure_obj(expr))
 
 #	define BOOST_TYPEOF_TPL BOOST_TYPEOF
 

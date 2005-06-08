@@ -37,7 +37,7 @@ void odr_test2();
     template<class T, class U>
     typename sum_t<T,U>::result_type sum_t<T,U>::operator()()
     {
-    //    BOOST_AUTO_TPL(result, m_sum);
+        //BOOST_AUTO_TPL(result, m_sum);
         return m_sum;
     }
 

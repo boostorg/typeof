@@ -34,21 +34,26 @@ namespace boost { namespace type_of {
 
 #undef BOOST_TYPEOF_sizer_item
 
+namespace boost { namespace type_of {
+
+    template<class V>
+    struct decode_begin
+    {
+        typedef typename decode_type<typename V::begin>::type type;
+    };
+}}
+
 #define BOOST_TYPEOF_TYPEITEM(z, n, expr)\
     boost::mpl::size_t<sizeof(boost::type_of::encode(expr).item ## n)>
 
-#define BOOST_TYPEOF(Expr)                                                      \
-    boost::type_of::decode_type<                                                \
-        BOOST_TYPEOF_VECTOR(BOOST_TYPEOF_LIMIT_SIZE)<                           \
-            BOOST_PP_ENUM(BOOST_TYPEOF_LIMIT_SIZE, BOOST_TYPEOF_TYPEITEM, Expr) \
-        >::begin                                                                \
-    >::type
+#define BOOST_TYPEOF_ENCODED_VECTOR(Expr)                                   \
+    BOOST_TYPEOF_VECTOR(BOOST_TYPEOF_LIMIT_SIZE)<                           \
+        BOOST_PP_ENUM(BOOST_TYPEOF_LIMIT_SIZE, BOOST_TYPEOF_TYPEITEM, Expr) \
+    >
 
-#define BOOST_TYPEOF_TPL(Expr)                                                  \
-    typename boost::type_of::decode_type<                                       \
-        typename BOOST_TYPEOF_VECTOR(BOOST_TYPEOF_LIMIT_SIZE)<                  \
-            BOOST_PP_ENUM(BOOST_TYPEOF_LIMIT_SIZE, BOOST_TYPEOF_TYPEITEM, Expr) \
-        >::begin                                                                \
-    >::type
+#define BOOST_TYPEOF(Expr)\
+    boost::type_of::decode_begin<BOOST_TYPEOF_ENCODED_VECTOR(Expr) >::type
+
+#define BOOST_TYPEOF_TPL typename BOOST_TYPEOF
 
 #endif//BOOST_TYPEOF_COMPLIANT_TYPEOF_IMPL_HPP_INCLUDED

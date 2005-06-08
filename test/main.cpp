@@ -205,6 +205,27 @@ void lvalue_typeof_test()
     //BOOST_STATIC_ASSERT((boost::is_same<BOOST_LVALUE_TYPEOF(21), int>::value)); //msvc
     BOOST_STATIC_ASSERT((boost::is_same<BOOST_LVALUE_TYPEOF(int(21)), int>::value));
 }
+namespace ltype
+{
+    int& foo(double);
+    char foo(int);
+
+    template<class T> 
+    struct result_type
+    {
+        typedef typename BOOST_LVALUE_TYPEOF(foo(T())) type;
+    };
+
+    BOOST_STATIC_ASSERT((boost::is_same<
+        result_type<int>::type, 
+        char
+    >::value));
+
+    BOOST_STATIC_ASSERT((boost::is_same<
+        result_type<double>::type, 
+        int&
+    >::value));
+};
 
 #define BOOST_TYPEOF_TEXT "Noncopyable..."
 #include <boost/typeof/message.hpp>
@@ -330,6 +351,11 @@ void odr_test()
     odr_test1();
     odr_test2();
 }
+
+#define BOOST_TYPEOF_TEXT "native/emulation consistency..."
+#include <boost/typeof/message.hpp>
+
+BOOST_STATIC_ASSERT((is_same<BOOST_TYPEOF(int()), int>::value));
 
 #define BOOST_TYPEOF_TEXT "main()..."
 #include <boost/typeof/message.hpp>
