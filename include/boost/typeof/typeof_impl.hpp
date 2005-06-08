@@ -51,8 +51,9 @@ namespace boost { namespace type_of {
         BOOST_PP_ENUM(BOOST_TYPEOF_LIMIT_SIZE, BOOST_TYPEOF_TYPEITEM, Expr) \
     >
 
-#define BOOST_TYPEOF(Expr)\
-    boost::type_of::decode_begin<BOOST_TYPEOF_ENCODED_VECTOR(Expr) >::type
+#define BOOST_TYPEOF_NO_TYPE(Expr)\
+    boost::type_of::decode_begin<BOOST_TYPEOF_ENCODED_VECTOR(Expr) >
+#define BOOST_TYPEOF(Expr) BOOST_TYPEOF_NO_TYPE(Expr)::type
 
 #define BOOST_TYPEOF_TPL typename BOOST_TYPEOF
 
