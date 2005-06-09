@@ -7,7 +7,6 @@
 #define BOOST_TYPEOF_LVALUE_TYPEOF_HPP_INCLUDED
 
 #include <boost/type_traits/is_const.hpp>
-#include <boost/typeof/typeof.hpp>
 
 namespace boost
 {
@@ -77,14 +76,25 @@ namespace boost
 // Since this is always a type, 
 // just add "typename" when using in templates
 
-#if defined BOOST_TYPEOF_COMPLIANT || (defined(BOOST_TYPEOF_NATIVE) && defined(BOOST_MSVC))
+#ifndef BOOST_TYPEOF_COMPLIANT
+
+#define BOOST_LVALUE_TYPEOF(expr)                           \
+    boost::type_of::decorate_type<                          \
+        BOOST_TYPEOF(expr),                                 \
+        sizeof(*boost::type_of::classify_expression(expr))  \
+    >::type
+
+#else //BOOST_TYPEOF_COMPLIANT
+
+#include <boost/typeof/typeof_impl.hpp>
+
 namespace boost { namespace type_of {
 
     template<class V, int n>
     struct decorate_decode_begin
     {
         typedef typename decorate_type<
-            typename V::type,
+            typename decode_begin<V>::type,
             n
         >::type type;
     };
@@ -92,15 +102,7 @@ namespace boost { namespace type_of {
 
 #define BOOST_LVALUE_TYPEOF(expr)                           \
     boost::type_of::decorate_decode_begin<                  \
-        BOOST_TYPEOF_NO_TYPE(expr),                         \
-        sizeof(*boost::type_of::classify_expression(expr))  \
-    >::type
-
-#else //BOOST_TYPEOF_NATIVE
-
-#define BOOST_LVALUE_TYPEOF(expr)                           \
-    boost::type_of::decorate_type<                          \
-        BOOST_TYPEOF(expr),                                 \
+        BOOST_TYPEOF_ENCODED_VECTOR(expr),                  \
         sizeof(*boost::type_of::classify_expression(expr))  \
     >::type
 

@@ -148,11 +148,8 @@ namespace boost
     }
 }
 
-# define BOOST_TYPEOF_NO_TYPE(expr) \
-    boost::type_of::msvc_typeid_wrapper<sizeof(*boost::type_of::encode_start(expr))>
-
 # define BOOST_TYPEOF(expr) \
-    BOOST_TYPEOF_NO_TYPE(expr)::type
+    boost::type_of::msvc_typeid_wrapper<sizeof(*boost::type_of::encode_start(expr))>::type
 
 # define BOOST_TYPEOF_TPL(expr) typename BOOST_TYPEOF(expr)
 

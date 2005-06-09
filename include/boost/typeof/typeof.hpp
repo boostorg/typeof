@@ -47,7 +47,6 @@
 
 #	define BOOST_TYPEOF_TPL BOOST_TYPEOF
 
-
 #endif
 
 // auto
