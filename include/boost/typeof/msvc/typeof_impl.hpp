@@ -1,5 +1,5 @@
                                                                                                                                                                                                                                                                
-// Copyright (C) 2005 Igor Chesnokov
+// Copyright (C) 2005 Igor Chesnokov, mailto:ichesnokov@gmail.com
 // Copyright (C) 2005 Peder Holt
 
 // Use, modification and distribution is subject to the Boost Software
