@@ -1,7 +1,6 @@
                                                                                                                                                                                                                                                                
-// Copyright (C) 2005 Igor Chesnokov, mailto:ichesnokov@gmail.com (VC 6.5,VC 7.1 + counter code)
-// Copyright (C) 2005 Peder Holt (VC 7.0 + framework)
-// Copyright (C) 2006 Steven Watanabe (VC 8.0)
+// Copyright (C) 2005 Igor Chesnokov, mailto:ichesnokov@gmail.com
+// Copyright (C) 2005 Peder Holt
 
 // Use, modification and distribution is subject to the Boost Software
 // License, Version 1.0. (http://www.boost.org/LICENSE_1_0.txt)
@@ -99,38 +98,6 @@ namespace boost
             {
                 typedef T type;
             };
-        };
-#elif BOOST_WORKAROUND(BOOST_MSVC,==1400)
-        struct msvc_extract_type_default_param {};
-
-        template<typename ID, typename T = msvc_extract_type_default_param>
-        struct msvc_extract_type;
-
-        template<typename ID>
-        struct msvc_extract_type<ID, msvc_extract_type_default_param> {
-            template<bool>
-            struct id2type_impl;
-
-            typedef id2type_impl<true> id2type;
-        };
-
-        template<typename ID, typename T>
-        struct msvc_extract_type : msvc_extract_type<ID,msvc_extract_type_default_param>
-        {
-            template<>
-            struct id2type_impl<true>  //VC8.0 specific bugfeature
-            {
-                typedef T type;
-            };
-            template<bool>
-            struct id2type_impl;
-
-            typedef id2type_impl<true> id2type;
-        };
-
-        template<typename T, typename ID>
-        struct msvc_register_type : msvc_extract_type<ID, T>
-        {
         };
 # else 
         template<typename ID>
