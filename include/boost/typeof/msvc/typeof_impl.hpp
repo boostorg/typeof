@@ -168,11 +168,11 @@ namespace boost
         {
             typedef char(*type)[encode_type<T>::value];
         };
-        template<typename T> typename disable_if<
+        template<typename T> typename boost::disable_if<
             typename is_function<T>::type,
             typename sizer<T>::type>::type encode_start(T const&);
 
-        template<typename T> typename enable_if<
+        template<typename T> typename boost::enable_if<
             typename is_function<T>::type,
             typename sizer<T>::type>::type encode_start(T&);
         template<typename Organizer, typename T>
