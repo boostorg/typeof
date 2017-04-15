@@ -49,7 +49,7 @@
 #       endif
 #   endif
 
-#elif defined(__GNUC__)
+#elif defined(__GNUC__) || defined(__clang__)
 #   ifndef BOOST_TYPEOF_EMULATION
 #       ifndef BOOST_TYPEOF_NATIVE
 #           define BOOST_TYPEOF_NATIVE
