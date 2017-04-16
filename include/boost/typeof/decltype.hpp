@@ -6,8 +6,8 @@
 #ifndef BOOST_TYPEOF_DECLTYPE_HPP_INCLUDED
 # define BOOST_TYPEOF_DECLTYPE_HPP_INCLUDED
 
-#include <boost/type_traits/remove_cv.hpp> 
-#include <boost/type_traits/remove_reference.hpp> 
+#include <boost/type_traits/remove_cv.hpp>
+#include <boost/type_traits/remove_reference.hpp>
 
 namespace boost { namespace type_of {
     template<typename T>
