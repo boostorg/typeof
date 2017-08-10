@@ -47,7 +47,7 @@ install:
   - git submodule update --init tools/build
   - git submodule update --init libs/config
   - git submodule update --init tools/boostdep
-  - xcopy /s /e /q $TRAVIS_BUILD_DIR/* libs/typeof
+  - xcopy /s /e /q %APPVEYOR_BUILD_FOLDER% libs\typeof\
   - python tools/boostdep/depinst/depinst.py typeof
   - bootstrap
   - b2 headers
