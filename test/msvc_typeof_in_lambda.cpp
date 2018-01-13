@@ -2,8 +2,23 @@
 // Use, modification and distribution is subject to the Boost Software
 // License, Version 1.0. (http://www.boost.org/LICENSE_1_0.txt)
 
+#include <boost/config.hpp>
+#include <boost/config/pragma_message.hpp>
+
+#if defined(BOOST_NO_CXX11_LAMBDAS)
+
+BOOST_PRAGMA_MESSAGE("Skipping test due to BOOST_NO_CXX11_LAMBDAS")
+int main() {}
+
+#elif defined(BOOST_NO_CXX11_AUTO_DECLARATIONS)
+
+BOOST_PRAGMA_MESSAGE("Skipping test due to BOOST_NO_CXX11_AUTO_DECLARATIONS")
+int main() {}
+
+#else
 
 #include <boost/typeof/typeof.hpp>
+#include BOOST_TYPEOF_INCREMENT_REGISTRATION_GROUP()
 
 namespace detail {
     template<class T> inline T& deref(T& r) {
@@ -17,6 +32,7 @@ namespace detail {
     template<class T> wrapper<T> wrap(T&);
 };
 
+BOOST_TYPEOF_REGISTER_TEMPLATE(::detail::wrapper, 1)
 
 void test_typeof_in_lambda() {
     // Visual Studio 2015 (BOOST_MSVC == 1900) had an internal compiler error with Boost 1.65 and 1.66 when using BOOST_SCOPE_EXIT inside a lambda
@@ -54,3 +70,5 @@ int main() {
 
     return 0;
 }
+
+#endif
