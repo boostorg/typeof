@@ -100,6 +100,9 @@ namespace boost
         template<typename ID, typename T>
         struct msvc_extract_type : msvc_extract_type<ID,msvc_extract_type_default_param>
         {
+            template<bool>
+            struct id2type_impl;
+            
             template<>
             struct id2type_impl<true>  //VC8.0 specific bugfeature
             {
