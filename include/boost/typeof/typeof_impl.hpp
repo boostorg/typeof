@@ -10,8 +10,8 @@
 #include <boost/preprocessor/repetition/enum.hpp>
 #include <boost/typeof/encode_decode.hpp>
 #include <boost/typeof/vector.hpp>
+#include <boost/type_traits/enable_if.hpp>
 #include <boost/type_traits/is_function.hpp>
-#include <boost/utility/enable_if.hpp>
 
 #define BOOST_TYPEOF_VECTOR(n) BOOST_PP_CAT(boost::type_of::vector, n)
 
@@ -39,13 +39,13 @@ namespace boost { namespace type_of {
     sizer<typename encode_type<V, T>::type> encode(const T&);
 # else
     template<class V, class T>
-    typename enable_if<
-        typename is_function<T>::type,
+    typename enable_if_<
+        is_function<T>::value,
         sizer<typename encode_type<V, T>::type> >::type encode(T&);
 
     template<class V, class T>
-    typename disable_if<
-        typename is_function<T>::type,
+    typename enable_if_<
+        !is_function<T>::value,
         sizer<typename encode_type<V, T>::type> >::type encode(const T&);
 # endif
 }}
