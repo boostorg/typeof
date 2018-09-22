@@ -10,7 +10,7 @@
 # define BOOST_TYPEOF_MSVC_TYPEOF_IMPL_HPP_INCLUDED
 
 # include <boost/config.hpp>
-# include <boost/detail/workaround.hpp>
+# include <boost/config/workaround.hpp>
 # include <boost/mpl/int.hpp>
 # include <boost/type_traits/enable_if.hpp>
 # include <boost/type_traits/is_function.hpp>
