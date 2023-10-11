@@ -13,5 +13,5 @@
         "Arkadiy Vertleyb <vertleyb -at- hotmail.com>",
         "Peder Holt <peder.holt -at- gmail.com>"
     ],
-    "cxxstd": "03"
+    "cxxstd": "11"
 }
