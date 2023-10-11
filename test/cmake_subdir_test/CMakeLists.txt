@@ -30,7 +30,7 @@ endforeach()
 # --target check
 
 add_executable(main main.cpp)
-target_link_libraries(quick Boost::typeof)
+target_link_libraries(main Boost::typeof)
 
 enable_testing()
 add_test(main main)

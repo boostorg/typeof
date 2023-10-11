@@ -7,5 +7,5 @@
 int main()
 {
     BOOST_AUTO(x, 5);
-    return x == 5;
+    return x == 5? 0: 1;
 }
