@@ -15,8 +15,6 @@ target_include_directories(boost_typeof INTERFACE include)
 target_link_libraries(boost_typeof
   INTERFACE
     Boost::config
-    Boost::preprocessor
-    Boost::type_traits
 )
 
 target_compile_features(boost_typeof INTERFACE cxx_std_11)
