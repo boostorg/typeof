@@ -10,8 +10,6 @@ import project ;
 project /boost/typeof
     : common-requirements
         <library>/boost/config//boost_config
-        <library>/boost/preprocessor//boost_preprocessor
-        <library>/boost/type_traits//boost_type_traits
         <include>include
     ;
 
