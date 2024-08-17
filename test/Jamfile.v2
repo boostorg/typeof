@@ -10,7 +10,6 @@ import set ;
 
 project : requirements
     <library>/boost/core//boost_core
-    <library>/boost/lexical_cast//boost_lexical_cast
     ;
 
 # The special requirement is not ported yet.
