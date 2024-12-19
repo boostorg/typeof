@@ -10,8 +10,7 @@
         "Emulation"
     ],
     "maintainers": [
-        "Arkadiy Vertleyb <vertleyb -at- hotmail.com>",
-        "Peder Holt <peder.holt -at- gmail.com>"
+        "Glen Fernandes <glenjofe -at- gmail.com>"
     ],
     "cxxstd": "11"
 }
