@@ -9,12 +9,11 @@ constant boost_dependencies :
     /boost/config//boost_config ;
 
 project /boost/typeof
-    : common-requirements
-        <include>include
     ;
 
 explicit
-    [ alias boost_typeof : : : : <library>$(boost_dependencies) ]
+    [ alias boost_typeof : : :
+        : <include>include <library>$(boost_dependencies) ]
     [ alias all : boost_typeof test ]
     ;
 
